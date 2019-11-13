@@ -6,17 +6,54 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>Hello World | Hexo</title>
+  <title>cv image differentiation | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="图像的微分在图像中，边缘可以看做一阶导数较大的像素处，因此我们可以使用图像的一阶导数来确定图像的边缘，像sobel等一系列算子都是基于这个思想的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;13&#x2F;hello-world&#x2F;index.html">
+<meta property="og:title" content="cv image differentiation">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;10&#x2F;cv-image-differentiation&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="图像的微分在图像中，边缘可以看做一阶导数较大的像素处，因此我们可以使用图像的一阶导数来确定图像的边缘，像sobel等一系列算子都是基于这个思想的。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-25T05:50:33.368Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110191658.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110191740.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110191808.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112184617.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110195112.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110195152.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110195238.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;gif.gif">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?x">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?y">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7Bg%7D_%7Bx%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7Bg%7D_%7By%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112212103.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213140.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213337.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213354.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213413.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213424.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7B%7Bd%7D_%7Bx%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7B%7Bd%7D_%7By%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213732.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?x">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?y">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7Bg%7D_%7Bx%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;private.codecogs.com&#x2F;gif.latex?%7Bg%7D_%7By%7D%7D">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213807.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213818.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112213843.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112214318.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112214338.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111224851.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111224906.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111225044.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111225131.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111225155.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191111225204.png">
+<meta property="og:updated_time" content="2019-11-13T16:12:25.629Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110191658.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,39 +189,129 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-cv-image-differentiation" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      cv image differentiation
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/13/hello-world/" class="archive-article-date">
-  	<time datetime="2019-11-13T14:05:09.669Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-13</time>
+        <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" class="archive-article-date">
+  	<time datetime="2019-11-10T11:06:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h1 id="图像的微分"><a href="#图像的微分" class="headerlink" title="图像的微分"></a>图像的微分</h1><p>在图像中，边缘可以看做一阶导数较大的像素处，因此我们可以使用图像的一阶导数来确定图像的边缘，像sobel等一系列算子都是基于这个思想的。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191658.png" alt="函数图像"></p>
+ <a id="more"></a>   
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191740.png" alt="一阶导"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191808.png" alt="二阶导"></p>
+<p>上图的总结：<br>一阶微分：</p>
+<ul>
+<li>在恒定灰度值区域的微分值为零</li>
+<li>在灰度台阶或斜坡微分值为零</li>
+<li>沿着斜坡的微分值非零</li>
+</ul>
+<p>二阶微分：</p>
+<ul>
+<li>在恒定灰度区域的微分值为零</li>
+<li>在灰度台阶或斜坡起点微分值为非零</li>
+<li>沿着斜坡的微分值为零。</li>
+</ul>
+<p>总结:</p>
+<ul>
+<li>一阶导数在图像边缘产生较粗的边缘。如果是边缘的话，那么它的值变化不是如噪声那么大，这样一阶导数之间的差别不会很大，会产生一个缓坡，那么此处的二阶导数会更加平滑，意义不大。</li>
+<li>二阶导数对于精细细节，如细线、孤立点、和噪声有较强的响应。譬如，如果是噪声的话，一阶导数在此处的值会比周围一定范围的内的值大很多，会产生一个高峰，因此其二阶导也会很大。</li>
+<li>二阶导数在灰度斜坡和灰度台阶过度处产生双边响应，解释：由于一阶导数会有一个高峰，那么在高峰的底部其导数会非常大，因此会产生一个很明显的双边。</li>
+<li>一阶导数的符号可以确定边缘的过渡是从亮到暗还是从暗到亮。解释：从亮到暗，它的一阶导数是负数，但是其负数变化</li>
+<li>选导数提取边沿之前最好提取对图片做平滑，导数对噪声比较敏感。（譬如我们可以采取高斯滤波进行平滑操作）。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112184617.png" alt=""></p>
+<h1 id="图像一阶导的application"><a href="#图像一阶导的application" class="headerlink" title="图像一阶导的application"></a>图像一阶导的application</h1><h2 id="梯度计算"><a href="#梯度计算" class="headerlink" title="梯度计算"></a>梯度计算</h2><p>梯度方向是图像上某个像素点增长最快的方向，即方向导数中取最大值的方向。</p>
+<p>梯度计算是图像边缘提取的重要中间步骤，根据x，y方向向量值，可以得到如下的重要参数振幅magnitude,角度theta,。</p>
+<p>图像的梯度计算如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195112.png" alt=""></p>
+<p>magnitude计算如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195152.png" alt=""></p>
+<p>但是为了节约计算资源，我们通常将上述公式省略为：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195238.png" alt=""></p>
+<p> Theta = tan-1(yGradient/xGradient) </p>
+<p>magnitude表示边缘强度信息。</p>
+<p>theta预言边缘方向走势。相对于水平方向的角度值。</p>
+<p>当我们有一幅图像时，将某个像素点的对应值与其magnitude相加，则图像的边缘将被大大加强，轮廓会更加明显，是一个很典型的shape filter 的效果。</p>
+<h2 id="梯度图像"><a href="#梯度图像" class="headerlink" title="梯度图像"></a>梯度图像</h2><p>由图像上各点梯度值所构成的图像成为梯度图像，往往在另一个矩阵中就是一个轮廓图。</p>
+<h2 id="Roberts算子"><a href="#Roberts算子" class="headerlink" title="Roberts算子"></a>Roberts算子</h2><h3 id="1-基本原理"><a href="#1-基本原理" class="headerlink" title="1.基本原理"></a>1.基本原理</h3><p>Roberts算子又称为交叉微分算法，它是基于交叉差分的梯度算法，通过局部差分计算检测边缘线条。常用来处理具有陡峭的低噪声图像，当图像边缘接近于正45度或负45度时，该算法处理效果更理想。其缺点是对边缘的定位不太准确，提取的边缘线条较粗。</p>
+<p>Roberts算子的模板分为水平方向和垂直方向，如下式所示，从其模板可以看出，Roberts算子能较好的增强正负45度的图像边缘。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif.gif" alt=""></p>
+<p> 例如，下面给出<strong>Roberts算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong> <img src="https://private.codecogs.com/gif.latex?x" alt="x"> 和 <img src="https://private.codecogs.com/gif.latex?y" alt="y"> 方向上的梯度大小 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7Bx%7D%7D" alt="{g}_{x}}"> 和 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7By%7D%7D" alt="{g}_{y}}"> 分别计算为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112212103.png" alt=""></p>
+<p>![](<a href="https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif" target="_blank" rel="noopener">https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif</a> (1).gif)</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213140.png" alt=""></p>
+<h2 id="2-Prewitt算子"><a href="#2-Prewitt算子" class="headerlink" title="2.Prewitt算子"></a>2.Prewitt算子</h2><p>Prewitt算子是一种图像边缘检测的微分算子，其原理是利用特定区域内像素灰度值产生的差分实现边缘检测。由于Prewitt算子采用 3*3 模板对区域内的像素值进行计算，而Robert算子的模板为 2*2，故Prewitt算子的边缘检测结果在水平方向和垂直方向均比Robert算子更加明显。Prewitt算子适合用来识别噪声较多、灰度渐变的图像，其计算公式如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213337.png" alt=""></p>
+<p>例如，下面给出<strong>Prewitt算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong>x 和 y方向上的梯度大小gx和gy分别计算为:<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213354.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213413.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213424.png" alt=""></p>
+<h2 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h2><h3 id="1-基本原理-1"><a href="#1-基本原理-1" class="headerlink" title="1.基本原理"></a>1.基本原理</h3><p>Sobel算子是一种用于边缘检测的离散微分算子，它结合高斯平滑和微分求导。 该算子用于计算图像明暗程度近似值，根据图像边缘旁边明暗程度把该区域内超过某个数的特定点记为边缘。Sobel算子在Prewitt算子的基础上增加了权重的概念，认为相邻点的距离远近对当前像素点的影响是不同的，距离越近的像素点对应当前像素的影响越大，从而实现图像锐化并突出边缘轮廓。 </p>
+<p> Sobel算子根据像素点上下、左右邻点灰度加权差，在边缘处达到极值这一现象检测边缘。对噪声具有平滑作用，提供较为精确的边缘方向信息。因为Sobel算子结合了高斯平滑和微分求导（分化），因此结果会具有更多的抗噪性，当对精度要求不是很高时，Sobel算子是一种较为常用的边缘检测方法。 </p>
+<p> Sobel算子的边缘定位更准确，常用于噪声较多、灰度渐变的图像。其算法模板如下面的公式所示，其中 <img src="https://private.codecogs.com/gif.latex?%7B%7Bd%7D_%7Bx%7D%7D" alt=""> 表示水平方向，<img src="https://private.codecogs.com/gif.latex?%7B%7Bd%7D_%7By%7D%7D" alt=""> 表示垂直方向。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213732.png" alt=""></p>
+<p> 例如，下面给出<strong>Sobel算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong> <img src="https://private.codecogs.com/gif.latex?x" alt="x"> 和 <img src="https://private.codecogs.com/gif.latex?y" alt="y"> 方向上的梯度大小 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7Bx%7D%7D" alt="{g}_{x}}"> 和 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7By%7D%7D" alt="{g}_{y}}"> 分别计算为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213807.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213818.png" alt=""></p>
+<p> <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213843.png" alt=""> </p>
+<h1 id="二阶导数应用：拉普拉斯"><a href="#二阶导数应用：拉普拉斯" class="headerlink" title="二阶导数应用：拉普拉斯"></a>二阶导数应用：拉普拉斯</h1><h1 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h1><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>用于检测团块，边缘检测，突出图像中的孤立点、孤立线或者线端点为目的的场合；图像的锐化操作（L3拉普拉斯变换后的图像与原图叠加）</p>
+<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ul>
+<li><p>1）判断图像中心像素灰度值与它周围其他像素的灰度值，如果中心像素的灰度值更高，则提升中心像素的灰度；反之降低中心像素的灰度，从而实现图像的锐化操作。</p>
+</li>
+<li><p>2）在算法实现过程中，Laplacian算子通过对邻域中心像素的四方向或八方向求梯度，再将梯度相加起来判断中心像素灰度与邻域内其他像素灰度的关系； </p>
+</li>
+<li><p>3） 最后通过梯度运算的结果对像素灰度进行调整。 </p>
+<p>其中，Laplacian算子<strong>四邻域</strong>模板如下所示： </p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112214318.png" alt=""></p>
+<p> Laplacian算子的<strong>八邻域</strong>模板如下所示： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112214338.png" alt=""></p>
+<p>通过Laplacian算子的模板可以发现：</p>
+<ul>
+<li><p>1）当邻域内像素灰度相同时，模板的卷积运算结果为0；</p>
+</li>
+<li><p>2）当中心像素灰度高于邻域内其他像素的平均灰度时，模板的卷积运算结果为正数；</p>
+</li>
+<li><p>3）当中心像素的灰度低于邻域内其他像素的平均灰度时，模板的卷积为负数。对卷积运算的结果用适当的衰弱因子处理并加在原中心像素上，就可以实现图像的锐化处理。</p>
+</li>
+</ul>
+<h2 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h2><p>拉普拉斯算子是最简单的各向同性微分算子，具有旋转不变性。</p>
+<p>一个二维图像f(x,y)的拉普拉斯微分算子的定义如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111224851.png" alt=""></p>
+<p>将（2）和（3）式带入（1)得到（4）式：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111224906.png" alt=""></p>
+<p>写成权系数矩阵模板为（卷积形式）：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225044.png" alt=""></p>
+<p><strong>从模板我们可以看出，如果图像中一个较暗的区域出现一个亮点，用拉普拉斯变换会使这个亮点变得更亮。</strong></p>
+<p>一般的增强技术对于陡峭的边缘和缓慢变换的边缘很难确定其边缘线的位置。但此算子却可用二微分正峰和负峰之间的过零点来确定，对孤立点或端点更为敏感。</p>
+<p>还有其他几种拉普拉斯算子：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225131.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225155.png" alt=""></p>
+<h3 id="图像的锐化"><a href="#图像的锐化" class="headerlink" title="图像的锐化"></a>图像的锐化</h3><p>图像的锐化操作实际就是</p>
+<p>使灰度反差增强，从而使模糊图像变得更加清晰。图像模糊的实质就是图像受到平均运算或积分运算，因此可以对图像进行逆运算，如微分运算能够突出图像细节，使图像变得更为清晰。由于拉普拉斯是一种微分算子，它的应用可增强图像中灰度突变的区域，减弱灰度的缓慢变化区域。因此，锐化处理可选择拉普拉斯算子对原图像进行处理，产生描述灰度突变的图像，再将拉普拉斯图像与原始图像叠加而产生锐化图像。拉普拉斯锐化的基本方法可以由下式表示：</p>
+<p>这种简单的锐化方法既可以产生拉普拉斯锐化处理的效果，同时又能保留背景信息，将原始图像叠加到拉普拉斯变换的处理结果中去，可以使图像中的各灰度值得到保留，使灰度突变处的对比度得到增强，最终结果是在保留图像背景的前提下，突现出图像中小的细节信息。</p>
+<p>卷积实现如下:</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225204.png" alt=""></p>
+<h1 id="各类算子的优缺点"><a href="#各类算子的优缺点" class="headerlink" title="各类算子的优缺点"></a>各类算子的优缺点</h1><h2 id="Roberts"><a href="#Roberts" class="headerlink" title="Roberts"></a>Roberts</h2><p>Robers算子利用局部差分算子寻找边缘，边缘定位精度较高，但是容易缺失一部分边缘，不具备抑制噪声的作用。该算子对具有陡峭边缘且含噪声少的图像效果会很好，尤其是边缘正负45度较多的图像，但是定位准确率较差。</p>
+<h2 id="Sobel-算子"><a href="#Sobel-算子" class="headerlink" title="Sobel 算子"></a>Sobel 算子</h2><p>Sobel算子考虑了综合因素，对噪声较多的图像处理效果更好，Sobel 算子边缘定位效果不错，但检测出的边缘容易出现多像素宽度。</p>
+<h2 id="Prewitt-算子"><a href="#Prewitt-算子" class="headerlink" title="Prewitt 算子"></a>Prewitt 算子</h2><p>Prewitt算子对灰度渐变的图像边缘提取效果较好，而没有考虑相邻点的距离远近对当前像素点的影响，与Sobel 算子类似，不同的是在平滑部分的权重大小有些差异；</p>
+<h2 id="Laplacian-算子"><a href="#Laplacian-算子" class="headerlink" title="Laplacian 算子"></a>Laplacian 算子</h2><p>Laplacian 算子不依赖于边缘方向的二阶微分算子，对图像中的阶跃型边缘点定位准确，该算子对噪声非常敏感，它使噪声成分得到加强，这两个特性使得该算子容易丢失一部分边缘的方向信息，造成一些不连续的检测边缘，同时抗噪声能力比较差，由于其算法可能会出现双像素边界，常用来判断边缘像素位于图像的明区或暗区，很少用于边缘检测；</p>
 
       
 
@@ -215,6 +342,17 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -264,7 +402,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/13/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/10/cv-image-differentiation/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +416,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/13/cv-image-differentiation/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          cv-image-differentiation
+          cv Harris Corner
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv Harris Corner</div>
+    <a href="/jontyhuang.github.io/2019/11/09/cv-week1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cv-week1</div>
       <i class="icon-circle-right"></i>
     </a>
   
