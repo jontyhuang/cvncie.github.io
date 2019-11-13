@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
   <title>cv-week1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。  另： 举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像">
+  <meta name="description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cv-week1">
 <meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;09&#x2F;cv-week1&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。  另： 举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像">
+<meta property="og:description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110144843.png">
-<meta property="og:updated_time" content="2019-11-10T07:00:00.420Z">
+<meta property="og:updated_time" content="2019-11-13T15:59:34.262Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110144843.png">
   
@@ -177,6 +177,8 @@
         <p><strong>本文原图像的长度为n,卷积核长度为f，卷积核步长为s。</strong></p>
 <h1 id="为什么卷积核是奇数-奇数"><a href="#为什么卷积核是奇数-奇数" class="headerlink" title="为什么卷积核是奇数*奇数"></a>为什么卷积核是奇数*奇数</h1><p> 一是padding的原因，如果f是奇数，图像两边的padding是对称的。</p>
 <p>第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。 </p>
+<a id="more"></a>
+
 <p>另：</p>
 <p>举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像长度为4-2+1.</p>
 <p>通用公式为n-f+1。</p>

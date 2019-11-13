@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="小明开了一家糖果店。他别出心裁：把水果糖包成4颗一包和7颗一包的两种。糖果不能拆包卖。 小朋友来买糖的时候，他就用这两种包装来组合。当然有些糖果数目是无法组合出来的，比如要买 10 颗糖。 你可以用计算机测试一下，在这种包装情况下，最大不能买到的数量是17。大于17的任何数字都可以用4和7组合出来。 本题的要求就是在已知两个包装的数量时，求最大不能组合出的数字。输入格式两个正整数，表示每种包装中糖">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-07T04:22:24.563Z">
+<meta property="og:updated_time" content="2019-11-13T16:06:32.209Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -173,6 +173,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>小明开了一家糖果店。他别出心裁：把水果糖包成4颗一包和7颗一包的两种。糖果不能拆包卖。 小朋友来买糖的时候，他就用这两种包装来组合。当然有些糖果数目是无法组合出来的，比如要买 10 颗糖。 你可以用计算机测试一下，在这种包装情况下，最大不能买到的数量是17。大于17的任何数字都可以用4和7组合出来。 本题的要求就是在已知两个包装的数量时，求最大不能组合出的数字。<br>输入格式<br>两个正整数，表示每种包装中糖的颗数(都不多于1000)<br>输出格式<br>一个正整数，表示最大不能买到的糖数<br>样例输入<br>4 7<br>样例输出<br>17<br>样例输入<br>3 5<br>样例输出<br>7</p>
+<a id="more"></a>
+
 <h1 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h1><p>方法一：自然数a,b互质,则不能表示成ax+by（x,y为非负整数）的最大整数是ab-a-b.<br>证明：<br>a或者b是1的情况下容易证明.<br>以下情况都是a&gt;1且b&gt;1的情况.<br>首先证明ab-a-b不能表示成ax+by<br>假设ab-a-b=ax+by,那么ab=am+bn (m,n都大于等于1)<br>左边是a的倍数,右边am是a的倍数,那么要求bn也要是a的倍数<br>b不是a的倍数,只能要求n是a的倍数,这样的话,bn=bn’a&gt;=ba<br>那么am=ab-bn&lt;=0就与am&gt;1矛盾.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.lang.Math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> a = in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> b = in.nextInt();</span><br><span class="line">		in.close();</span><br><span class="line">		System.out.println(a*b-a-b);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 

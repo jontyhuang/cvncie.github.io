@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
   <title>cv Harris Corner | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。 这里我们理解一下Harris Corner 一种角点检测的算法 角点检测基本原理：  人们通常通过在一个">
+  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cv Harris Corner">
 <meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。 这里我们理解一下Harris Corner 一种角点检测的算法 角点检测基本原理：  人们通常通过在一个">
+<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-12T16:47:17.241Z">
+<meta property="og:updated_time" content="2019-11-13T15:59:04.931Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
   
@@ -196,6 +196,8 @@
       
         <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
 <p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+<a id="more"></a>
+
 <p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
 <p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>

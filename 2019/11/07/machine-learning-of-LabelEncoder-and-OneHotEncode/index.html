@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="LabelEncoder标准化标签labelEncoder是对不连续的数字或者文本进行编号。  sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内   123456from sklearn.preprocessing import LabelEncoder()le = LabelEncoder()le.fit(">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-07T04:46:26.493Z">
+<meta property="og:updated_time" content="2019-11-13T16:00:57.013Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -180,7 +180,7 @@
 
 
 
-
+<a id="more"></a>
 
 <h1 id="独热码oneHotEncode"><a href="#独热码oneHotEncode" class="headerlink" title="独热码oneHotEncode"></a>独热码oneHotEncode</h1><p> 独热码，在英文文献中称做 one-hot code, 直观来说就是有多少个状态就有多少比特，而且只有一个比特为1，其他全为0的一种码制。 </p>
 <p>假如有三种颜色特征：红、黄、蓝。 在利用机器学习的算法时一般需要进行向量化或者数字化。那么你可能想令 红=1，黄=2，蓝=3. 那么这样其实实现了标签编码，即给不同类别以标签。然而这意味着机器可能会学习到“红&lt;黄&lt;蓝”，但这并不是我们的让机器学习的本意，<strong>只是想让机器区分它们，并无大小比较之意</strong>。所以这时标签编码是不够的，需要进一步转换。因为有三种颜色状态，所以就有3个比特。即红色：1 0 0 ，黄色: 0 1 0，蓝色：0 0 1 。<strong>如此一来每两个向量之间的距离都是根号2，在向量空间距离都相等</strong>，所以这样<strong>不会出现偏序性</strong>，基本不会影响基于向量空间度量算法的效果。</p>

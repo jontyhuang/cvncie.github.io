@@ -8,14 +8,14 @@
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
   <title>java-Scanner class | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Scanner 类java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。创建scanner对象的基本语法： 1Scanner s = new Scanner(System.in); 我们可以通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext 与 hasNext">
+  <meta name="description" content="Scanner 类java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。创建scanner对象的基本语法： 1Scanner s = new Scanner(System.in);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java-Scanner class">
 <meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;10&#x2F;29&#x2F;java-Scanner-class&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Scanner 类java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。创建scanner对象的基本语法： 1Scanner s = new Scanner(System.in); 我们可以通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext 与 hasNext">
+<meta property="og:description" content="Scanner 类java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。创建scanner对象的基本语法： 1Scanner s = new Scanner(System.in);">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-29T08:47:32.117Z">
+<meta property="og:updated_time" content="2019-11-13T16:01:38.645Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -174,6 +174,8 @@
       
         <h1 id="Scanner-类"><a href="#Scanner-类" class="headerlink" title="Scanner 类"></a>Scanner 类</h1><p>java.util.Scanner 是 Java5 的新特征，我们可以通过 Scanner 类来获取用户的输入。<br>创建scanner对象的基本语法：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
 <p>我们可以通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要 使用 hasNext 与 hasNextLine 判断是否还有输入的数据：  </p>
 <h2 id="使用next-方法"><a href="#使用next-方法" class="headerlink" title="使用next()方法"></a>使用next()方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner scan = <span class="keyword">new</span> Scanner(System.in); <span class="comment">//从键盘接收数据</span></span><br><span class="line">		System.out.println(<span class="string">"next方式接收:"</span>);</span><br><span class="line">		<span class="comment">// 判断是否还有输入</span></span><br><span class="line">		<span class="keyword">if</span> (scan.hasNext())&#123;</span><br><span class="line">			String str1 = scan.next();</span><br><span class="line">			System.out.println(<span class="string">"接收数据为："</span> + str1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>执行结果为：</p>
