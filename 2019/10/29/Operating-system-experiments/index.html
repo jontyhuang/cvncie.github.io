@@ -10,14 +10,14 @@
   <meta name="description" content="Producers and Consumers有两个进程：一组生产者进程和一组消费者进程共享一个初始为空、固定大小为n的缓存（缓冲区）。生产者的工作是制造一段数据，只有缓冲区没满时，生产者才能把消息放入到缓冲区，否则必须等待，如此反复; 同时，只有缓冲区不空时，消费者才能从中取出消息，一次消费一段数据（即将其从缓存中移出），否则必须等待。由于缓冲区是临界资源，它只允许一个生产者放入消息，或者一个消">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Operating system experiments">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;29&#x2F;Operating-system-experiments&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;jontyhuang.github.io&#x2F;blog&#x2F;2019&#x2F;10&#x2F;29&#x2F;Operating-system-experiments&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Producers and Consumers有两个进程：一组生产者进程和一组消费者进程共享一个初始为空、固定大小为n的缓存（缓冲区）。生产者的工作是制造一段数据，只有缓冲区没满时，生产者才能把消息放入到缓冲区，否则必须等待，如此反复; 同时，只有缓冲区不空时，消费者才能从中取出消息，一次消费一段数据（即将其从缓存中移出），否则必须等待。由于缓冲区是临界资源，它只允许一个生产者放入消息，或者一个消">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-10-29T03:46:29.746Z">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -25,7 +25,7 @@
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/blog/css/style.css">
 </head>
 
 <body>
@@ -36,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/blog/" id="logo">Hexo</a>
       </h1>
       
     </div>
@@ -44,19 +44,19 @@
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/blog/">Home</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/blog/archives">Archives</a>
         
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/blog/atom.xml" title="RSS Feed"></a>
         
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jontyhuang.github.io/blog"></form>
       </div>
     </div>
   </div>
@@ -64,7 +64,7 @@
       <div class="outer">
         <section id="main"><article id="post-Operating-system-experiments" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/10/29/Operating-system-experiments/" class="article-date">
+    <a href="/blog/2019/10/29/Operating-system-experiments/" class="article-date">
   <time datetime="2019-10-29T02:31:22.000Z" itemprop="datePublished">2019-10-29</time>
 </a>
     
@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/10/29/Operating-system-experiments/" data-id="ck2xd9zv10000oool5emtahxq" class="article-share-link">Share</a>
+      <a data-url="https://jontyhuang.github.io/blog/2019/10/29/Operating-system-experiments/" data-id="ck2xdjd0p0005poolb2el1c0y" class="article-share-link">Share</a>
       
       
     </footer>
@@ -112,7 +112,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/10/29/java-Scanner-class/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blog/2019/10/29/java-Scanner-class/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -122,7 +122,7 @@
     </a>
   
   
-    <a href="/2019/10/27/else-and-with/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/blog/2019/10/27/else-and-with/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">else and with</div>
     </a>
@@ -140,7 +140,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/blog/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/blog/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
     </div>
   </div>
 
@@ -155,7 +155,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2019/10/">October 2019</a></li></ul>
     </div>
   </div>
 
@@ -168,23 +168,23 @@
       <ul>
         
           <li>
-            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+            <a href="/blog/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
           </li>
         
           <li>
-            <a href="/2019/11/13/hello-world/">Hello World</a>
+            <a href="/blog/2019/11/13/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+            <a href="/blog/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
           </li>
         
           <li>
-            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+            <a href="/blog/2019/11/09/cv-week1/">cv-week1</a>
           </li>
         
           <li>
-            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+            <a href="/blog/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
           </li>
         
       </ul>
@@ -207,9 +207,9 @@
     </div>
     <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/blog/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/blog/archives" class="mobile-nav-link">Archives</a>
   
 </nav>
     
@@ -217,11 +217,11 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  <script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
+<script src="/blog/js/script.js"></script>
 
 
 
