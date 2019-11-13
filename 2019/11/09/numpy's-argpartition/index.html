@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>numpy&#39;s argpartition | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="argpartition numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None)   使用np.argpartition.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。 12345678import numpy a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy&#39;s argpartition">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;numpy&#39;s-argpartition&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="argpartition numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None)   使用np.argpartition.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。 12345678import numpy a">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-08T17:02:04.307Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-numpy&#39;s-argpartition" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/numpy's-argpartition/" class="article-date">
+  <time datetime="2019-11-08T16:55:13.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/numpy/">numpy</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      numpy&#39;s argpartition
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="argpartition"><a href="#argpartition" class="headerlink" title="argpartition"></a>argpartition</h1><p> numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None) </p>
+<p> 使用<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.argpartition.html" target="_blank" rel="noopener"><code>np.argpartition</code></a>.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([<span class="number">1</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">17</span>, <span class="number">17</span>, <span class="number">1.5</span>])</span><br><span class="line">k = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">idx = np.argpartition(A, k)</span><br><span class="line">print(idx)</span><br><span class="line"><span class="comment"># [4 0 7 3 1 2 6 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>这将返回k个最小值.请注意,这些可能不是按排序顺序.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(A[idx[:k]])</span><br><span class="line"># [ 0.1  1.   1.5]</span><br></pre></td></tr></table></figure>
+
+<p>要获得k最大值使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">idx = np.argpartition(A, -k)</span><br><span class="line"># [4 0 7 3 1 2 6 5]</span><br><span class="line"></span><br><span class="line">A[idx[-3:]]</span><br><span class="line"># [  9.  17.  17.]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/numpy's-argpartition/" data-id="ck2xd9zx70010oooleiib6xgq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/09/machine-learning-of-logistic-regression/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          machine learning of logistic regression
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">machine learning of LabelEncoder and OneHotEncode</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

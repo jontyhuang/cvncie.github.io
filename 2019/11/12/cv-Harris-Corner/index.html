@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>cv Harris Corner | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。 这里我们理解一下Harris Corner 一种角点检测的算法 角点检测基本原理：  人们通常通过在一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cv Harris Corner">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。 这里我们理解一下Harris Corner 一种角点检测的算法 角点检测基本原理：  人们通常通过在一个">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
+<meta property="og:updated_time" content="2019-11-12T16:47:17.241Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cv-Harris-Corner" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/12/cv-Harris-Corner/" class="article-date">
+  <time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished">2019-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cv Harris Corner
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
+<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
+<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
+<ul>
+<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
+<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
+<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
+</ul>
+<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
+<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
+<p> 利用二维泰勒展开式我们有 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
+<p>所以其中一阶可以近似为</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
+<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
+<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
+<p> 其中M为2*2矩阵如下 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
+<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
+<p>根据λ1，λ2的值我们可以把其分为三类：</p>
+<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
+<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
+<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
+<p>下图是一个例子：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
+<p>如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
+<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
+<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
+<p> 算法步骤： </p>
+<p> 1.计算图像x,y方向的梯度Ix，Iy </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
+<p> 2.计算每个像素点的梯度平方 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
+<p> 3.计算梯度在每个像素点的和 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
+<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
+<p> 5.计算每个像素的角点响应 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
+<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/12/cv-Harris-Corner/" data-id="ck2xd9zwa000eooolcalzfa9r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/13/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/09/cv-week1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cv-week1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

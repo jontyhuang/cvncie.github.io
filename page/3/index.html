@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;page&#x2F;3&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-moudel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/27/moudel/" class="article-date">
+  <time datetime="2019-10-27T10:45:48.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/27/moudel/">moudel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果你从 Python 解释器退出再进入，那么你定义的所有的方法和变量就都消失了。</p>
+<p>为此 Python 提供了一个办法，把这些定义存放在文件中，为一些脚本或者交互式的解释器实例使用，这个文件被称为模块。</p>
+<p>模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引入，以使用该模块中的函数等功能。这也是使用 python 标准库的方法。</p>
+<p>面是一个使用 python 标准库中模块的例子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment">#-*- coding: uft-8 -*-</span></span><br><span class="line"><span class="comment"># 文件名: using_sys.py</span></span><br><span class="line"><span class="string">' a test module'</span> </span><br><span class="line">__author__ = <span class="string">'jontyhuang'</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"> </span><br><span class="line">print(<span class="string">'命令行参数如下:'</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> sys.argv:</span><br><span class="line">   print(i)</span><br><span class="line"> </span><br><span class="line">print(<span class="string">'\n\nPython 路径为：'</span>, sys.path, <span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+<p>执行结果如下所示：<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027185153.png" alt=""></p>
+<ul>
+<li>1、import sys 引入 python 标准库中的 sys.py 模块；导入sys模块之后，我们就有变量sys指向该模块，就可以访问该模块的所有功能，这是引入某一模块的方法。</li>
+<li>2、sys.argv 是一个包含命令行参数的列表。argv至少有一个参数，因为第一个参数永远是该.py文件。</li>
+<li>3、sys.path 包含了一个 Python 解释器自动查找所需模块的路径的列表。</li>
+</ul>
+<p>第1行和第2行是标准注释，第1行注释可以让这个hello.py文件直接在Unix/Linux/Mac上运行，第2行注释表示.py文件本身使用标准UTF-8编码；</p>
+<p>第4行是一个字符串，表示模块的文档注释，任何模块代码的第一个字符串都被视为模块的文档注释；</p>
+<p>第6行使用<strong>author</strong>变量把作者写进去，这样当你公开源代码后别人就可以瞻仰你的大名；</p>
+<p>以上就是Python模块的标准文件模板，当然也可以全部删掉不写，但是，按标准办事肯定没错。之后才是真正的代码部分。</p>
+<h1 id="import-模块名"><a href="#import-模块名" class="headerlink" title="import 模块名"></a>import 模块名</h1><p>新建一个fibo.py文件，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 斐波那契数列模块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">    a, b = <span class="number">0</span>,<span class="number">1</span>  </span><br><span class="line">    <span class="keyword">while</span> b &lt; n:</span><br><span class="line">        print(b, end=<span class="string">''</span>)</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">    pint()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib2</span><span class="params">(n)</span>:</span></span><br><span class="line">    result =[]</span><br><span class="line">    a, b = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> b &lt; n:</span><br><span class="line">        result.append(b)</span><br><span class="line">        a, b = b, a+b</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<p>然后进入Python解释器，使用下面的命令导入这个模块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> fibo</span><br></pre></td></tr></table></figure>
+<p>这样做并没有把直接定义在fibo中的函数名称写入到当前符号表里，只是把模块fibo的名字写到了那里。</p>
+<p>可以使用模块名称来访问函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">实例</span><br><span class="line">&gt;&gt;&gt;fibo.fib(<span class="number">1000</span>)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span> <span class="number">987</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fibo.fib2(<span class="number">100</span>)</span><br><span class="line">[<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">13</span>, <span class="number">21</span>, <span class="number">34</span>, <span class="number">55</span>, <span class="number">89</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fibo.__name__</span><br><span class="line"><span class="string">'fibo'</span></span><br></pre></td></tr></table></figure>
+
+<p>如果你打算经常使用一个函数，你可以把它赋给一个本地的名称：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib = fibo.fib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">500</span>)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span></span><br></pre></td></tr></table></figure>
+<h1 id="from-模块名-import-函数名"><a href="#from-模块名-import-函数名" class="headerlink" title="from 模块名 import 函数名"></a>from 模块名 import 函数名</h1><p>Python 的 from 语句让你从模块中导入一个指定的部分到当前命名空间中，语法如下：</p>
+<p>from modname import name1[, name2[, … nameN]]<br>例如，要导入模块 fibo 的 fib 函数，使用如下语句：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> fibo <span class="keyword">import</span> fib, fib2</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">500</span>)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span></span><br></pre></td></tr></table></figure>
+<p>这个声明不会把整个fibo模块导入到当前的命名空间中，它只会将fibo里的fib函数引入进来。<br>为了避免名字的不方便，我们也可以使用简写</p>
+<p><strong>import 模块名 as 简写名</strong></p>
+<h1 id="from…-import-语句"><a href="#from…-import-语句" class="headerlink" title="from… import * 语句"></a>from… import * 语句</h1><p>把一个模块的所有内容全都导入到当前的命名空间也是可行的，只需使用如下声明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> modname <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<p>这提供了一个简单的方法来导入一个模块中的所有项目。然而这种声明不该被过多地使用。</p>
+<h1 id="深入模块"><a href="#深入模块" class="headerlink" title="深入模块"></a>深入模块</h1><p>模块除了方法定义，还可以包括可执行的代码。这些代码一般用来初始化这个模块。这些代码只有在第一次被导入时才会被执行。</p>
+<p>每个模块有各自独立的符号表，在模块内部为所有的函数当作全局符号表来使用。</p>
+<p>所以，模块的作者可以放心大胆的在模块内部使用这些全局变量，而不用担心把其他用户的全局变量搞混。</p>
+<p>从另一个方面，当你确实知道你在做什么的话，你也可以通过 modname.itemname 这样的表示法来访问模块内的函数。</p>
+<p>模块是可以导入其他模块的。在一个模块（或者脚本，或者其他地方）的最前面使用 import 来导入一个模块，当然这只是一个惯例，而不是强制的。被导入的模块的名称将被放入当前操作的模块的符号表中。</p>
+<p>还有一种导入的方法，可以使用 import 直接把模块内（函数，变量的）名称导入到当前操作模块。比如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> fibo <span class="keyword">import</span> fib, fib2</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">500</span>)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span></span><br></pre></td></tr></table></figure>
+<p>这种导入的方法不会把被导入的模块的名称放在当前的字符表中（所以在这个例子里面，fibo 这个名称是没有定义的）。</p>
+<p>这还有一种方法，可以一次性的把模块中的所有（函数，变量）名称都导入到当前模块的字符表:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> fibo <span class="keyword">import</span> *</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib(<span class="number">500</span>)</span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span></span><br></pre></td></tr></table></figure>
+<p>这将把所有的名字都导入进来，但是那些由单一下划线（_）开头的名字不在此例。大多数情况， Python程序员不使用这种方法，因为引入的其它来源的命名，很可能覆盖了已有的定义。</p>
+<h1 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h1><p>接着上面所说的为什么下划线(_)开头的名字不在此列呢？<br>这里涉及到一个变量的作用域</p>
+<p>在一个模块中，我们可能会定义很多函数和变量，但有的函数和变量我们希望给别人使用，有的函数和变量我们希望仅仅在模块内部使用。在Python中，这个private作用是通过_前缀来实现的。</p>
+<p>正常的函数和变量名是公开的（public），可以被直接引用，比如：abc，x123，PI等；</p>
+<p>类似<strong>xxx</strong>这样的变量是特殊变量，可以被直接引用，但是有特殊用途，比如上面的<strong>author</strong>，<strong>name</strong>就是特殊变量，using_sys模块定义的文档注释也可以用特殊变量<strong>doc</strong>访问，我们自己的变量一般不要用这种变量名；</p>
+<p>类似_xxx和<strong>xxx这样的函数或变量就是非公开的（private），不应该被直接引用，比如_abc，</strong>abc等；</p>
+<p>之所以我们说，private函数和变量“不应该”被直接引用，而不是“不能”被直接引用，是因为Python并没有一种方法可以完全限制访问private函数或变量，但是，从编程习惯上不应该引用private函数或变量。</p>
+<p>private函数或变量不应该被别人引用，那它们有什么用呢？请看例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_private_1</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hello, %s'</span> % name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">_private_2</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Hi, %s'</span> % name</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span><span class="params">(name)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(name) &gt; <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> _private_1(name)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> _private_2(name)</span><br></pre></td></tr></table></figure>
+<p>我们在模块里公开greeting()函数，而把内部逻辑用private函数隐藏起来了，这样，调用greeting()函数不用关心内部的private函数细节，这也是一种非常有用的代码封装和抽象的方法，即：</p>
+<p>外部不需要引用的函数全部定义成private，只有外部需要引用的函数才定义为public。</p>
+<h1 id="name属性"><a href="#name属性" class="headerlink" title="name属性"></a><strong>name</strong>属性</h1><p>一个模块被另一个程序第一次引入时，其主程序将运行。如果我们想在模块被引入时，模块中的某一程序块不执行，我们可以用<strong>name</strong>属性来使该程序块仅在该模块自身运行时执行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"><span class="comment"># Filename: using_name.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">   print(<span class="string">'程序自身在运行'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">   print(<span class="string">'我来自另一模块'</span>)</span><br></pre></td></tr></table></figure>
+<p>运行输出如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ python using_name.py</span><br><span class="line">程序自身在运行</span><br><span class="line">$ python</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> using_name</span><br><span class="line">我来自另一模块</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<p>说明： 每个模块都有一个<strong>name</strong>属性，当其值是’<strong>main</strong>‘时，表明该模块自身在运行，否则是被引入。</p>
+<p>说明：<strong>name</strong> 与 <strong>main</strong> 底下是双下划线， _ _ 是这样去掉中间的那个空格。</p>
+<h1 id="dir-函数"><a href="#dir-函数" class="headerlink" title="dir() 函数"></a>dir() 函数</h1><p>内置的函数 dir() 可以找到模块内定义的所有名称。以一个字符串列表的形式返回:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> fibo, sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(fibo)</span><br><span class="line">[<span class="string">'__name__'</span>, <span class="string">'fib'</span>, <span class="string">'fib2'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir(sys)  </span><br><span class="line">[<span class="string">'__displayhook__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__excepthook__'</span>, <span class="string">'__loader__'</span>, <span class="string">'__name__'</span>,</span><br><span class="line"> <span class="string">'__package__'</span>, <span class="string">'__stderr__'</span>, <span class="string">'__stdin__'</span>, <span class="string">'__stdout__'</span>,</span><br><span class="line"> <span class="string">'_clear_type_cache'</span>, <span class="string">'_current_frames'</span>, <span class="string">'_debugmallocstats'</span>, <span class="string">'_getframe'</span>,</span><br><span class="line"> <span class="string">'_home'</span>, <span class="string">'_mercurial'</span>, <span class="string">'_xoptions'</span>, <span class="string">'abiflags'</span>, <span class="string">'api_version'</span>, <span class="string">'argv'</span>,</span><br><span class="line"> <span class="string">'base_exec_prefix'</span>, <span class="string">'base_prefix'</span>, <span class="string">'builtin_module_names'</span>, <span class="string">'byteorder'</span>,</span><br><span class="line"> <span class="string">'call_tracing'</span>, <span class="string">'callstats'</span>, <span class="string">'copyright'</span>, <span class="string">'displayhook'</span>,</span><br><span class="line"> <span class="string">'dont_write_bytecode'</span>, <span class="string">'exc_info'</span>, <span class="string">'excepthook'</span>, <span class="string">'exec_prefix'</span>,</span><br><span class="line"> <span class="string">'executable'</span>, <span class="string">'exit'</span>, <span class="string">'flags'</span>, <span class="string">'float_info'</span>, <span class="string">'float_repr_style'</span>,</span><br><span class="line"> <span class="string">'getcheckinterval'</span>, <span class="string">'getdefaultencoding'</span>, <span class="string">'getdlopenflags'</span>,</span><br><span class="line"> <span class="string">'getfilesystemencoding'</span>, <span class="string">'getobjects'</span>, <span class="string">'getprofile'</span>, <span class="string">'getrecursionlimit'</span>,</span><br><span class="line"> <span class="string">'getrefcount'</span>, <span class="string">'getsizeof'</span>, <span class="string">'getswitchinterval'</span>, <span class="string">'gettotalrefcount'</span>,</span><br><span class="line"> <span class="string">'gettrace'</span>, <span class="string">'hash_info'</span>, <span class="string">'hexversion'</span>, <span class="string">'implementation'</span>, <span class="string">'int_info'</span>,</span><br><span class="line"> <span class="string">'intern'</span>, <span class="string">'maxsize'</span>, <span class="string">'maxunicode'</span>, <span class="string">'meta_path'</span>, <span class="string">'modules'</span>, <span class="string">'path'</span>,</span><br><span class="line"> <span class="string">'path_hooks'</span>, <span class="string">'path_importer_cache'</span>, <span class="string">'platform'</span>, <span class="string">'prefix'</span>, <span class="string">'ps1'</span>,</span><br><span class="line"> <span class="string">'setcheckinterval'</span>, <span class="string">'setdlopenflags'</span>, <span class="string">'setprofile'</span>, <span class="string">'setrecursionlimit'</span>,</span><br><span class="line"> <span class="string">'setswitchinterval'</span>, <span class="string">'settrace'</span>, <span class="string">'stderr'</span>, <span class="string">'stdin'</span>, <span class="string">'stdout'</span>,</span><br><span class="line"> <span class="string">'thread_info'</span>, <span class="string">'version'</span>, <span class="string">'version_info'</span>, <span class="string">'warnoptions'</span>]</span><br></pre></td></tr></table></figure>
+<p>如果没有给定参数，那么 dir() 函数会罗列出当前模块定义的所有名称:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> fibo</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fib = fibo.fib</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir() <span class="comment"># 得到一个当前模块中定义的属性列表</span></span><br><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__name__'</span>, <span class="string">'a'</span>, <span class="string">'fib'</span>, <span class="string">'fibo'</span>, <span class="string">'sys'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">5</span> <span class="comment"># 建立一个新的变量 'a'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir()</span><br><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'a'</span>, <span class="string">'sys'</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">del</span> a <span class="comment"># 删除变量名a</span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dir()</span><br><span class="line">[<span class="string">'__builtins__'</span>, <span class="string">'__doc__'</span>, <span class="string">'__name__'</span>, <span class="string">'sys'</span>]</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1><p>包是一种管理 Python 模块命名空间的形式，采用”点模块名称”。</p>
+<p>比如一个模块的名称是 A.B， 那么他表示一个包 A中的子模块 B 。</p>
+<p>就好像使用模块的时候，你不用担心不同模块之间的全局变量相互影响一样，采用点模块名称这种形式也不用担心不同库之间的模块重名的情况。</p>
+<p>这样不同的作者都可以提供 NumPy 模块，或者是 Python 图形库。</p>
+<p>不妨假设你想设计一套统一处理声音文件和数据的模块（或者称之为一个”包”）。</p>
+<p>现存很多种不同的音频文件格式（基本上都是通过后缀名区分的，例如： .wav，:file:.aiff，:file:.au，），所以你需要有一组不断增加的模块，用来在不同的格式之间转换。</p>
+<p>并且针对这些音频数据，还有很多不同的操作（比如混音，添加回声，增加均衡器功能，创建人造立体声效果），所以你还需要一组怎么也写不完的模块来处理这些操作。</p>
+<p>这里给出了一种可能的包结构（在分层的文件系统中）:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sound/                          顶层包</span><br><span class="line">      __init__.py               初始化 sound 包</span><br><span class="line">      formats/                  文件格式转换子包</span><br><span class="line">              __init__.py</span><br><span class="line">              wavread.py</span><br><span class="line">              wavwrite.py</span><br><span class="line">              aiffread.py</span><br><span class="line">              aiffwrite.py</span><br><span class="line">              auread.py</span><br><span class="line">              auwrite.py</span><br><span class="line">              ...</span><br><span class="line">      effects/                  声音效果子包</span><br><span class="line">              __init__.py</span><br><span class="line">              echo.py</span><br><span class="line">              surround.py</span><br><span class="line">              reverse.py</span><br><span class="line">              ...</span><br><span class="line">      filters/                  filters 子包</span><br><span class="line">              __init__.py</span><br><span class="line">              equalizer.py</span><br><span class="line">              vocoder.py</span><br><span class="line">              karaoke.py</span><br><span class="line">              ...</span><br></pre></td></tr></table></figure>
+<p>在导入一个包的时候，Python 会根据 sys.path 中的目录来寻找这个包中包含的子目录。</p>
+<p>目录只有包含一个叫做 <strong>init</strong>.py 的文件才会被认作是一个包，主要是为了避免一些滥俗的名字（比如叫做 string）不小心的影响搜索路径中的有效模块。</p>
+<p>最简单的情况，放一个空的 :file:<strong>init</strong>.py就可以了。当然这个文件中也可以包含一些初始化代码或者为（将在后面介绍的） <strong>all</strong>变量赋值。</p>
+<p>用户可以每次只导入一个包里面的特定模块，比如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sound.effects.echo</span><br></pre></td></tr></table></figure>
+<p>这将会导入子模块:sound.effects.echo。 他必须使用全名去访问:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)</span><br></pre></td></tr></table></figure>
+<p>还有一种导入子模块的方法是:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> sound.effects <span class="keyword">import</span> echo</span><br></pre></td></tr></table></figure>
+<p>这同样会导入子模块: echo，并且他不需要那些冗长的前缀，所以他可以这样使用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo.echofilter(input, output, delay=<span class="number">0.7</span>, atten=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>还有一种变化就是直接导入一个函数或者变量:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sound.effects.echo <span class="keyword">import</span> echofilter</span><br></pre></td></tr></table></figure>
+<p>同样的，这种方法会导入子模块: echo，并且可以直接使用他的 echofilter() 函数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">echofilter(input, output, delay=<span class="number">0.7</span>, atten=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>注意当使用 from package import item 这种形式的时候，对应的 item 既可以是包里面的子模块（子包），或者包里面定义的其他名称，比如函数，类或者变量。</p>
+<p>import 语法会首先把 item 当作一个包定义的名称，如果没找到，再试图按照一个模块去导入。如果还没找到，抛出一个 :exc:ImportError 异常。</p>
+<p>反之，如果使用形如 import item.subitem.subsubitem 这种导入形式，除了最后一项，都必须是包，而最后一项则可以是模块或者是包，但是不可以是类，函数或者变量的名字。</p>
+<h1 id="从一个包中导入"><a href="#从一个包中导入" class="headerlink" title="从一个包中导入*"></a>从一个包中导入*</h1><p>设想一下，如果我们使用 from sound.effects import *会发生什么？</p>
+<p>Python 会进入文件系统，找到这个包里面所有的子模块，一个一个的把它们都导入进来。</p>
+<p>但是很不幸，这个方法在 Windows平台上工作的就不是非常好，因为Windows是一个大小写不区分的系统。</p>
+<p>在这类平台上，没有人敢担保一个叫做 ECHO.py 的文件导入为模块 echo 还是 Echo 甚至 ECHO。</p>
+<p>（例如，Windows 95就很讨厌的把每一个文件的首字母大写显示）而且 DOS 的 8+3 命名规则对长模块名称的处理会把问题搞得更纠结。</p>
+<p>为了解决这个问题，只能烦劳包作者提供一个精确的包的索引了。</p>
+<p>导入语句遵循如下规则：如果包定义文件 <strong>init</strong>.py 存在一个叫做 <strong>all</strong> 的列表变量，那么在使用 from package import * 的时候就把这个列表中的所有名字作为包内容导入。</p>
+<p>作为包的作者，可别忘了在更新包之后保证 <strong>all</strong> 也更新了啊。你说我就不这么做，我就不使用导入*这种用法，好吧，没问题，谁让你是老板呢。这里有一个例子，在:file:sounds/effects/<strong>init</strong>.py中包含如下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__all__ = [<span class="string">"echo"</span>, <span class="string">"surround"</span>, <span class="string">"reverse"</span>]</span><br></pre></td></tr></table></figure>
+<p>这表示当你使用from sound.effects import *这种用法时，你只会导入包里面这三个子模块。</p>
+<p>如果 <strong>all</strong> 真的没有定义，那么使用from sound.effects import *这种语法的时候，就不会导入包 sound.effects 里的任何子模块。他只是把包sound.effects和它里面定义的所有内容导入进来（可能运行<strong>init</strong>.py里定义的初始化代码）。</p>
+<p>这会把 <strong>init</strong>.py 里面定义的所有名字导入进来。并且他不会破坏掉我们在这句话之前导入的所有明确指定的模块。看下这部分代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sound.effects.echo</span><br><span class="line"><span class="keyword">import</span> sound.effects.surround</span><br><span class="line"><span class="keyword">from</span> sound.effects <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
+<p>这个例子中，在执行 from…import 前，包 sound.effects 中的 echo 和 surround 模块都被导入到当前的命名空间中了。（当然如果定义了 <strong>all</strong> 就更没问题了）</p>
+<p>通常我们并不主张使用 * 这种方法来导入模块，因为这种方法经常会导致代码的可读性降低。不过这样倒的确是可以省去不少敲键的功夫，而且一些模块都设计成了只能通过特定的方法导入。</p>
+<p>记住，使用 from Package import specific_submodule 这种方法永远不会有错。事实上，这也是推荐的方法。除非是你要导入的子模块有可能和其他包的子模块重名。</p>
+<p>如果在结构中包是一个子包（比如这个例子中对于包sound来说），而你又想导入兄弟包（同级别的包）你就得使用导入绝对的路径来导入。比如，如果模块sound.filters.vocoder 要使用包 sound.effects 中的模块 echo，你就要写成 from sound.effects import echo。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> echo</span><br><span class="line"><span class="keyword">from</span> .. <span class="keyword">import</span> formats</span><br><span class="line"><span class="keyword">from</span> ..filters <span class="keyword">import</span> equalizer</span><br></pre></td></tr></table></figure>
+<p>无论是隐式的还是显式的相对导入都是从当前模块开始的。主模块的名字永远是”<strong>main</strong>“，一个Python应用程序的主模块，应当总是使用绝对路径引用。</p>
+<p>包还提供一个额外的属性<strong>path</strong>。这是一个目录列表，里面每一个包含的目录都有为这个包服务的<strong>init</strong>.py，你得在其他<strong>init</strong>.py被执行前定义哦。可以修改这个变量，用来影响包含在包里面的模块和子包。</p>
+<p>这个功能并不常用，一般用来扩展包里面的模块。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/27/moudel/" data-id="ck2xd9zxd0016ooolagzeh5gq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-iterator-and-generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/27/iterator-and-generator/" class="article-date">
+  <time datetime="2019-10-27T07:48:56.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/27/iterator-and-generator/">iterator and generator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h1><p>迭代器对象从集合的第一个元素开始访问，直到所有的元素被访问完结束。迭代器只能往前不会后退。<br>迭代器有两个基本的方法：iter() 和 next()。<br>字符串，列表或元组对象都可用于创建迭代器。<br>迭代器可以也可以使用常规for语句进行遍历：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">实例(Python <span class="number">3.0</span>+)</span><br><span class="line"><span class="comment">#!/usr/bin/python3</span></span><br><span class="line"> </span><br><span class="line">list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">it = iter(list)    <span class="comment"># 创建迭代器对象</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> it:</span><br><span class="line">    <span class="keyword">print</span> (x, end=<span class="string">" "</span>)</span><br><span class="line">执行以上程序，输出结果如下：</span><br><span class="line"></span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<p>也可以使用 next() 函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">实例(Python <span class="number">3.0</span>+)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>it = iter(list)    <span class="comment"># 创建迭代器对象</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> (next(it))   <span class="comment"># 输出迭代器的下一个元素</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> (next(it))</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(it))</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(it))</span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>print(next(it))  <span class="comment">#迭代器无对象，报错</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027160141.png" alt=""></p>
+<h1 id="创建一个迭代器"><a href="#创建一个迭代器" class="headerlink" title="创建一个迭代器"></a>创建一个迭代器</h1><p>把一个类作为一个迭代器使用需要在类中实现两个方法 _<em>iter_</em>() 与 _<em>next_</em>() 。</p>
+<p>如果你已经了解的面向对象编程，就知道类都有一个构造函数，Python 的构造函数为 _<em>init_</em>(), 它会在对象初始化的时候执行。</p>
+<p>_<em>iter_</em>() 方法返回一个特殊的迭代器对象， 这个迭代器对象实现了 <strong>next</strong>() 方法并通过 StopIteration 异常标识迭代的完成<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027161624.png" alt=""><br>if 语句是用来限制迭代次数，否则会不停的迭代下去。</p>
+<h1 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h1><p>在 Python 中，使用了 yield 的函数被称为生成器（generator）。</p>
+<p>跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。</p>
+<p>在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。</p>
+<p>调用一个生成器函数，返回的是一个迭代器对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">以下实例使用 yield 实现斐波那契数列：</span><br><span class="line">#!/usr/bin/python3</span><br><span class="line"> </span><br><span class="line">import sys</span><br><span class="line"> </span><br><span class="line">def fibonacci(n): # 生成器函数 - 斐波那契</span><br><span class="line">    a, b, counter = 0, 1, 0</span><br><span class="line">    while True:</span><br><span class="line">        if (counter &gt; n): </span><br><span class="line">            return</span><br><span class="line">        yield a</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">        counter += 1</span><br><span class="line">f = fibonacci(10) # f 是一个迭代器，由生成器返回生成</span><br><span class="line"> </span><br><span class="line">while True:</span><br><span class="line">    try:</span><br><span class="line">        print (next(f), end=&quot; &quot;)</span><br><span class="line">    except StopIteration:</span><br><span class="line">        sys.exit()</span><br><span class="line">执行以上程序，输出结果如下：</span><br><span class="line"></span><br><span class="line">0 1 1 2 3 5 8 13 21 34 55</span><br></pre></td></tr></table></figure>
+<p>另一个例子</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027195325.png" alt=""></p>
+<h2 id="for-创建生成器"><a href="#for-创建生成器" class="headerlink" title="for 创建生成器"></a>for 创建生成器</h2><p>列表<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027195402.png" alt=""><br>字典<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027195423.png" alt=""><br>元组<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191027195441.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(i <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>) <span class="keyword">if</span> <span class="keyword">not</span>(i % <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/27/iterator-and-generator/" data-id="ck2xd9zwq000looolejs54toj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-list and tuple" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/27/list%20and%20tuple/" class="article-date">
+  <time datetime="2019-10-27T07:39:25.000Z" itemprop="datePublished">2019-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/27/list%20and%20tuple/">list and tuple</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
+<h1 id="内嵌函数的运行"><a href="#内嵌函数的运行" class="headerlink" title="内嵌函数的运行"></a>内嵌函数的运行</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">		print(<span class="string">'bar() called'</span>)</span><br><span class="line">	<span class="keyword">print</span> (<span class="string">'foo() called'</span>)</span><br><span class="line">	<span class="keyword">return</span> bar()</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;foo()</span><br><span class="line">foo() called</span><br><span class="line">bar() called</span><br></pre></td></tr></table></figure>
+<p>我们可以发现，先执行的是外函数，再执行的内嵌函数</p>
+<h1 id="无参数的装饰器"><a href="#无参数的装饰器" class="headerlink" title="无参数的装饰器"></a>无参数的装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p>这个执行过程如果用无装饰器的代码理解，如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say = debug(say)  <span class="comment"># 实际上@debug完成的就是这是操作。</span></span><br><span class="line">say(<span class="string">"hell0"</span>)</span><br></pre></td></tr></table></figure>
+<p>如何理解上述执行的过程：<br>@debug的作用可以理解为say = debug(say)<br><strong>同时我们明白理解装饰函数在被装饰函数定义好后立即执行say = debug(say)的操作。</strong><br>整个装饰器实现过程如下：<br><strong>在@debug定义完之后就执行say = debug(say)的操作，由于debug函数存在返回值，那么say就指向了wrapper，接下来的say(“hello”)实际是wrapper(“hello”)函数。</strong>最后返回func函数即say函数 ，最后执行say函数 。其实前面加粗的部分是装饰器所实现的功能，很明显这部分实现的功能和say()定义函数里的代码毫无关系。</p>
+<p>进一步理解：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">"this is debug"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight plain"><figcaption><span>is debug```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">在上面的程序中，我们没有运行函数，但是debug函数却执行了，也就是执行了say= debug(say)这个操作。那么之后say的调用就是调用装饰器内部函数的过程。</span><br><span class="line"></span><br><span class="line"># 带参数的装饰器</span><br><span class="line">有时候，需要装饰器有参数，比如设计一个计时程序，用来测试网络训练和测试的时间，此时需要指定当前执行的是训练或测试过程，为此，需要传入一个状态参数。此处说明一下装饰器传参的方式：@debug(args1,args2)等价于func=debug(args1,args2)(func)，值得说明的是此处所谓的参数是指装饰器的参数而不是被装饰函数的参数，被装饰函数的参数是通过*args和**kwargs自然地传递的。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">def debug(text):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        def wrapper(*args, **kw):</span><br><span class="line">            print(&quot;[&#123;&#125;] call &#123;&#125; &quot;.format(text, func.__name__))</span><br><span class="line">            return func(*args, **kw)</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br><span class="line"></span><br><span class="line">@debug(&quot;train&quot;)</span><br><span class="line">def training():</span><br><span class="line">    print(&quot;traing&quot;)</span><br><span class="line">@debug(&quot;testing&quot;)</span><br><span class="line">def testing():</span><br><span class="line">    print(&quot;testing&quot;)</span><br><span class="line"></span><br><span class="line">training()</span><br><span class="line">testing()</span><br></pre></td></tr></table></figure>
+<p>结果为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[train] call training </span><br><span class="line">traing</span><br><span class="line">[testing] call testing </span><br><span class="line">testing</span><br></pre></td></tr></table></figure>
+<p>整个执行过程的理解：<br>在定义@debug(“train”)完成之后，立即执行了training = debug(“train”)(training)这个语句，这个句子可以分开理解<code>next = debug(&quot;train&quot;), training = next(training)</code>其中debug(“train”)语句执行debug函数，返回decorator函数，接着执行decorator(training)这个函数，最后就得到了wrapper这个函数，那么其实此时执行的traning()其实就是wrapper()这个函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">"Train"</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"this is timing"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kw)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args, **kw)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s'</span>%(status, time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"><span class="meta">@timing()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Training</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">Training()</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">[Train] time: <span class="number">3.000</span> s</span><br></pre></td></tr></table></figure>
+<p>对上述过程分步描述：<br>首先说明，@timing()在此处等价于Training=timing(‘Train’)(Training)</p>
+<ul>
+<li>第一步，打印第一句话，然后Training=timing(‘Train’)(Training)=debug(Training)。</li>
+<li>第二步，打印第二句话，且debug(Training)返回wrapper，即Training=wrapper。（到这一步都只是定义Testing所产生的操作，即即使不调用该函数，上两句话也会被打印）</li>
+<li>调用wrapper函数，记下起始时间start，执行Testing函数，延时2秒，打印所用时间，返回func1。<br>值得说明的是，这里返回的func1是None，因为这个返回值实际是Testing函数的返回值，而这个函数我并没有定义返回值。</li>
+</ul>
+<h1 id="多装饰器"><a href="#多装饰器" class="headerlink" title="多装饰器"></a>多装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@debug1(args)</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@debug3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>这等价于:func = debug1(args)(debug2(debug3(func)))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">'Train'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">'this is timing'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line"><span class="meta">        @functools.wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper3</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args,**kwargs)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s '</span>%(status,time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper3</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug1</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug1'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper1</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug1'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug2</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug2'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper2</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug2'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper2</span><br><span class="line">    </span><br><span class="line"><span class="meta">@debug1</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@timing(status='Test')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug2</span><br><span class="line">this <span class="keyword">is</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug2</span><br><span class="line">[Test] time: <span class="number">2.001</span> s</span><br></pre></td></tr></table></figure>
+<p>程序在定义完成后，执行fun = debug1(debug2(timing(‘Test’)(fun)))语句，我们可以得到，wrapper3作用域的func = fun,wrapper2作用域的func = wrapper3，wrapper1作用域的func=wrapper2，最后fun = wrapper1。<br>这个可以从里往外进行逻辑推理。<br>观察结果，类似于自底向上完成装饰器的定义，自顶向下完成装饰器的功能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/27/list%20and%20tuple/" data-id="ck2xd9zx90012oool7lnjgzga" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-decorator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/26/decorator/" class="article-date">
+  <time datetime="2019-10-26T14:18:38.000Z" itemprop="datePublished">2019-10-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/26/decorator/">decorator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
+<h1 id="内嵌函数的运行"><a href="#内嵌函数的运行" class="headerlink" title="内嵌函数的运行"></a>内嵌函数的运行</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">		print(<span class="string">'bar() called'</span>)</span><br><span class="line">	<span class="keyword">print</span> (<span class="string">'foo() called'</span>)</span><br><span class="line">	<span class="keyword">return</span> bar()</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;foo()</span><br><span class="line">foo() called</span><br><span class="line">bar() called</span><br></pre></td></tr></table></figure>
+<p>我们可以发现，先执行的是外函数，再执行的内嵌函数</p>
+<h1 id="无参数的装饰器"><a href="#无参数的装饰器" class="headerlink" title="无参数的装饰器"></a>无参数的装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p>这个执行过程如果用无装饰器的代码理解，如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say = debug(say)  <span class="comment"># 实际上@debug完成的就是这是操作。</span></span><br><span class="line">say(<span class="string">"hell0"</span>)</span><br></pre></td></tr></table></figure>
+<p>如何理解上述执行的过程：<br>@debug的作用可以理解为say = debug(say)<br><strong>同时我们明白理解装饰函数在被装饰函数定义好后立即执行say = debug(say)的操作。</strong></p>
+<p>整个装饰器实现过程如下：<br><strong>在@debug定义完之后就执行say = debug(say)的操作，由于debug函数存在返回值，那么say就指向了wrapper，接下来的say(“hello”)实际是wrapper(“hello”)函数。</strong>最后返回func函数即say函数 ，最后执行say函数 。其实前面加粗的部分是装饰器所实现的功能，很明显这部分实现的功能和say()定义函数里的代码毫无关系。</p>
+<p>进一步理解：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">"this is debug"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br></pre></td></tr></table></figure>
+<p>结果为：</p>
+<figure class="highlight plain"><figcaption><span>is debug```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">在上面的程序中，我们没有运行函数，但是debug函数却执行了，也就是执行了say= debug(say)这个操作。那么之后say的调用就是调用装饰器内部函数的过程。</span><br><span class="line"></span><br><span class="line"># 带参数的装饰器</span><br><span class="line">有时候，需要装饰器有参数，比如设计一个计时程序，用来测试网络训练和测试的时间，此时需要指定当前执行的是训练或测试过程，为此，需要传入一个状态参数。此处说明一下装饰器传参的方式：@debug(args1,args2)等价于func=debug(args1,args2)(func)，值得说明的是此处所谓的参数是指装饰器的参数而不是被装饰函数的参数，被装饰函数的参数是通过*args和**kwargs自然地传递的。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">def debug(text):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        def wrapper(*args, **kw):</span><br><span class="line">            print(&quot;[&#123;&#125;] call &#123;&#125; &quot;.format(text, func.__name__))</span><br><span class="line">            return func(*args, **kw)</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br><span class="line"></span><br><span class="line">@debug(&quot;train&quot;)</span><br><span class="line">def training():</span><br><span class="line">    print(&quot;traing&quot;)</span><br><span class="line">@debug(&quot;testing&quot;)</span><br><span class="line">def testing():</span><br><span class="line">    print(&quot;testing&quot;)</span><br><span class="line"></span><br><span class="line">training()</span><br><span class="line">testing()</span><br></pre></td></tr></table></figure>
+<p>结果为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[train] call training </span><br><span class="line">traing</span><br><span class="line">[testing] call testing </span><br><span class="line">testing</span><br></pre></td></tr></table></figure>
+<p>整个执行过程的理解：<br>在定义@debug(“train”)完成之后，立即执行了training = debug(“train”)(training)这个语句，这个句子可以分开理解<code>next = debug(&quot;train&quot;), training = next(training)</code>其中debug(“train”)语句执行debug函数，返回decorator函数，接着执行decorator(training)这个函数，最后就得到了wrapper这个函数，那么其实此时执行的traning()其实就是wrapper()这个函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">"Train"</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"this is timing"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kw)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args, **kw)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s'</span>%(status, time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"><span class="meta">@timing()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Training</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">Training()</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">[Train] time: <span class="number">3.000</span> s</span><br></pre></td></tr></table></figure>
+<p>对上述过程分步描述：<br>首先说明，@timing()在此处等价于Training=timing(‘Train’)(Training)</p>
+<ul>
+<li>第一步，打印第一句话，然后Training=timing(‘Train’)(Training)=debug(Training)。</li>
+<li>第二步，打印第二句话，且debug(Training)返回wrapper，即Training=wrapper。（到这一步都只是定义Testing所产生的操作，即即使不调用该函数，上两句话也会被打印）</li>
+<li>调用wrapper函数，记下起始时间start，执行Testing函数，延时2秒，打印所用时间，返回func1。</li>
+</ul>
+<p>值得说明的是，这里返回的func1是None，因为这个返回值实际是Testing函数的返回值，而这个函数我并没有定义返回值。</p>
+<h1 id="多装饰器"><a href="#多装饰器" class="headerlink" title="多装饰器"></a>多装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@debug1(args)</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@debug3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<p>这等价于:func = debug1(args)(debug2(debug3(func)))</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">'Train'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">'this is timing'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line"><span class="meta">        @functools.wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper3</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args,**kwargs)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s '</span>%(status,time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper3</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug1</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug1'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper1</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug1'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug2</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug2'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper2</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug2'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper2</span><br><span class="line">    </span><br><span class="line"><span class="meta">@debug1</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@timing(status='Test')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug2</span><br><span class="line">this <span class="keyword">is</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug2</span><br><span class="line">[Test] time: <span class="number">2.001</span> s</span><br></pre></td></tr></table></figure>
+<p>程序在定义完成后，执行fun = debug1(debug2(timing(‘Test’)(fun)))语句，我们可以得到，wrapper3作用域的func = fun,wrapper2作用域的func = wrapper3，wrapper1作用域的func=wrapper2，最后fun = wrapper1。</p>
+<p>这个可以从里往外进行逻辑推理。</p>
+<p>观察结果，类似于自底向上完成装饰器的定义，自顶向下完成装饰器的功能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/10/26/decorator/" data-id="ck2xd9zwk000iooolfigke4jq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

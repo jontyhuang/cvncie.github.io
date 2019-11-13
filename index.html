@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-cv-image-differentiation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/13/cv-image-differentiation/" class="article-date">
+  <time datetime="2019-11-13T14:15:01.105Z" itemprop="datePublished">2019-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: cv image differentiation<br>date: 2019-11-10 19:06:51<br>categories:-basic learning of cv</p>
+<h1 id="图像的微分"><a href="#图像的微分" class="headerlink" title="图像的微分"></a>图像的微分</h1><p>在图像中，边缘可以看做一阶导数较大的像素处，因此我们可以使用图像的一阶导数来确定图像的边缘，像sobel等一系列算子都是基于这个思想的。<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191658.png" alt="函数图像"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191740.png" alt="一阶导"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110191808.png" alt="二阶导"></p>
+<p>上图的总结：<br>一阶微分：</p>
+<ul>
+<li>在恒定灰度值区域的微分值为零</li>
+<li>在灰度台阶或斜坡微分值为零</li>
+<li>沿着斜坡的微分值非零</li>
+</ul>
+<p>二阶微分：</p>
+<ul>
+<li>在恒定灰度区域的微分值为零</li>
+<li>在灰度台阶或斜坡起点微分值为非零</li>
+<li>沿着斜坡的微分值为零。</li>
+</ul>
+<p>总结:</p>
+<ul>
+<li>一阶导数在图像边缘产生较粗的边缘。如果是边缘的话，那么它的值变化不是如噪声那么大，这样一阶导数之间的差别不会很大，会产生一个缓坡，那么此处的二阶导数会更加平滑，意义不大。</li>
+<li>二阶导数对于精细细节，如细线、孤立点、和噪声有较强的响应。譬如，如果是噪声的话，一阶导数在此处的值会比周围一定范围的内的值大很多，会产生一个高峰，因此其二阶导也会很大。</li>
+<li>二阶导数在灰度斜坡和灰度台阶过度处产生双边响应，解释：由于一阶导数会有一个高峰，那么在高峰的底部其导数会非常大，因此会产生一个很明显的双边。</li>
+<li>一阶导数的符号可以确定边缘的过渡是从亮到暗还是从暗到亮。解释：从亮到暗，它的一阶导数是负数，但是其负数变化</li>
+<li>选导数提取边沿之前最好提取对图片做平滑，导数对噪声比较敏感。（譬如我们可以采取高斯滤波进行平滑操作）。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112184617.png" alt=""></p>
+<h1 id="图像一阶导的application"><a href="#图像一阶导的application" class="headerlink" title="图像一阶导的application"></a>图像一阶导的application</h1><h2 id="梯度计算"><a href="#梯度计算" class="headerlink" title="梯度计算"></a>梯度计算</h2><p>梯度方向是图像上某个像素点增长最快的方向，即方向导数中取最大值的方向。</p>
+<p>梯度计算是图像边缘提取的重要中间步骤，根据x，y方向向量值，可以得到如下的重要参数振幅magnitude,角度theta,。</p>
+<p>图像的梯度计算如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195112.png" alt=""></p>
+<p>magnitude计算如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195152.png" alt=""></p>
+<p>但是为了节约计算资源，我们通常将上述公式省略为：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110195238.png" alt=""></p>
+<p> Theta = tan-1(yGradient/xGradient) </p>
+<p>magnitude表示边缘强度信息。</p>
+<p>theta预言边缘方向走势。相对于水平方向的角度值。</p>
+<p>当我们有一幅图像时，将某个像素点的对应值与其magnitude相加，则图像的边缘将被大大加强，轮廓会更加明显，是一个很典型的shape filter 的效果。</p>
+<h2 id="梯度图像"><a href="#梯度图像" class="headerlink" title="梯度图像"></a>梯度图像</h2><p>由图像上各点梯度值所构成的图像成为梯度图像，往往在另一个矩阵中就是一个轮廓图。</p>
+<h2 id="Roberts算子"><a href="#Roberts算子" class="headerlink" title="Roberts算子"></a>Roberts算子</h2><h3 id="1-基本原理"><a href="#1-基本原理" class="headerlink" title="1.基本原理"></a>1.基本原理</h3><p>Roberts算子又称为交叉微分算法，它是基于交叉差分的梯度算法，通过局部差分计算检测边缘线条。常用来处理具有陡峭的低噪声图像，当图像边缘接近于正45度或负45度时，该算法处理效果更理想。其缺点是对边缘的定位不太准确，提取的边缘线条较粗。</p>
+<p>Roberts算子的模板分为水平方向和垂直方向，如下式所示，从其模板可以看出，Roberts算子能较好的增强正负45度的图像边缘。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif.gif" alt=""></p>
+<p> 例如，下面给出<strong>Roberts算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong> <img src="https://private.codecogs.com/gif.latex?x" alt="x"> 和 <img src="https://private.codecogs.com/gif.latex?y" alt="y"> 方向上的梯度大小 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7Bx%7D%7D" alt="{g}_{x}}"> 和 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7By%7D%7D" alt="{g}_{y}}"> 分别计算为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112212103.png" alt=""></p>
+<p>![](<a href="https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif" target="_blank" rel="noopener">https://raw.githubusercontent.com/jontyhuang/PicGo/master/gif</a> (1).gif)</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213140.png" alt=""></p>
+<h2 id="2-Prewitt算子"><a href="#2-Prewitt算子" class="headerlink" title="2.Prewitt算子"></a>2.Prewitt算子</h2><p>Prewitt算子是一种图像边缘检测的微分算子，其原理是利用特定区域内像素灰度值产生的差分实现边缘检测。由于Prewitt算子采用 3*3 模板对区域内的像素值进行计算，而Robert算子的模板为 2*2，故Prewitt算子的边缘检测结果在水平方向和垂直方向均比Robert算子更加明显。Prewitt算子适合用来识别噪声较多、灰度渐变的图像，其计算公式如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213337.png" alt=""></p>
+<p>例如，下面给出<strong>Prewitt算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong>x 和 y方向上的梯度大小gx和gy分别计算为:<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213354.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213413.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213424.png" alt=""></p>
+<h2 id="Sobel算子"><a href="#Sobel算子" class="headerlink" title="Sobel算子"></a>Sobel算子</h2><h3 id="1-基本原理-1"><a href="#1-基本原理-1" class="headerlink" title="1.基本原理"></a>1.基本原理</h3><p>Sobel算子是一种用于边缘检测的离散微分算子，它结合高斯平滑和微分求导。 该算子用于计算图像明暗程度近似值，根据图像边缘旁边明暗程度把该区域内超过某个数的特定点记为边缘。Sobel算子在Prewitt算子的基础上增加了权重的概念，认为相邻点的距离远近对当前像素点的影响是不同的，距离越近的像素点对应当前像素的影响越大，从而实现图像锐化并突出边缘轮廓。 </p>
+<p> Sobel算子根据像素点上下、左右邻点灰度加权差，在边缘处达到极值这一现象检测边缘。对噪声具有平滑作用，提供较为精确的边缘方向信息。因为Sobel算子结合了高斯平滑和微分求导（分化），因此结果会具有更多的抗噪性，当对精度要求不是很高时，Sobel算子是一种较为常用的边缘检测方法。 </p>
+<p> Sobel算子的边缘定位更准确，常用于噪声较多、灰度渐变的图像。其算法模板如下面的公式所示，其中 <img src="https://private.codecogs.com/gif.latex?%7B%7Bd%7D_%7Bx%7D%7D" alt=""> 表示水平方向，<img src="https://private.codecogs.com/gif.latex?%7B%7Bd%7D_%7By%7D%7D" alt=""> 表示垂直方向。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213732.png" alt=""></p>
+<p> 例如，下面给出<strong>Sobel算子</strong>的<strong>模板</strong>，在<strong>像素点P5处</strong> <img src="https://private.codecogs.com/gif.latex?x" alt="x"> 和 <img src="https://private.codecogs.com/gif.latex?y" alt="y"> 方向上的梯度大小 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7Bx%7D%7D" alt="{g}_{x}}"> 和 <img src="https://private.codecogs.com/gif.latex?%7Bg%7D_%7By%7D%7D" alt="{g}_{y}}"> 分别计算为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213807.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213818.png" alt=""></p>
+<p> <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112213843.png" alt=""> </p>
+<h1 id="二阶导数应用：拉普拉斯"><a href="#二阶导数应用：拉普拉斯" class="headerlink" title="二阶导数应用：拉普拉斯"></a>二阶导数应用：拉普拉斯</h1><h1 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h1><h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>用于检测团块，边缘检测，突出图像中的孤立点、孤立线或者线端点为目的的场合；图像的锐化操作（L3拉普拉斯变换后的图像与原图叠加）</p>
+<h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程"></a>基本流程</h2><ul>
+<li><p>1）判断图像中心像素灰度值与它周围其他像素的灰度值，如果中心像素的灰度值更高，则提升中心像素的灰度；反之降低中心像素的灰度，从而实现图像的锐化操作。</p>
+</li>
+<li><p>2）在算法实现过程中，Laplacian算子通过对邻域中心像素的四方向或八方向求梯度，再将梯度相加起来判断中心像素灰度与邻域内其他像素灰度的关系； </p>
+</li>
+<li><p>3） 最后通过梯度运算的结果对像素灰度进行调整。 </p>
+<p>其中，Laplacian算子<strong>四邻域</strong>模板如下所示： </p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112214318.png" alt=""></p>
+<p> Laplacian算子的<strong>八邻域</strong>模板如下所示： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112214338.png" alt=""></p>
+<p>通过Laplacian算子的模板可以发现：</p>
+<ul>
+<li><p>1）当邻域内像素灰度相同时，模板的卷积运算结果为0；</p>
+</li>
+<li><p>2）当中心像素灰度高于邻域内其他像素的平均灰度时，模板的卷积运算结果为正数；</p>
+</li>
+<li><p>3）当中心像素的灰度低于邻域内其他像素的平均灰度时，模板的卷积为负数。对卷积运算的结果用适当的衰弱因子处理并加在原中心像素上，就可以实现图像的锐化处理。</p>
+</li>
+</ul>
+<h2 id="基本理论"><a href="#基本理论" class="headerlink" title="基本理论"></a>基本理论</h2><p>拉普拉斯算子是最简单的各向同性微分算子，具有旋转不变性。</p>
+<p>一个二维图像f(x,y)的拉普拉斯微分算子的定义如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111224851.png" alt=""></p>
+<p>将（2）和（3）式带入（1)得到（4）式：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111224906.png" alt=""></p>
+<p>写成权系数矩阵模板为（卷积形式）：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225044.png" alt=""></p>
+<p><strong>从模板我们可以看出，如果图像中一个较暗的区域出现一个亮点，用拉普拉斯变换会使这个亮点变得更亮。</strong></p>
+<p>一般的增强技术对于陡峭的边缘和缓慢变换的边缘很难确定其边缘线的位置。但此算子却可用二微分正峰和负峰之间的过零点来确定，对孤立点或端点更为敏感。</p>
+<p>还有其他几种拉普拉斯算子：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225131.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225155.png" alt=""></p>
+<h3 id="图像的锐化"><a href="#图像的锐化" class="headerlink" title="图像的锐化"></a>图像的锐化</h3><p>图像的锐化操作实际就是</p>
+<p>使灰度反差增强，从而使模糊图像变得更加清晰。图像模糊的实质就是图像受到平均运算或积分运算，因此可以对图像进行逆运算，如微分运算能够突出图像细节，使图像变得更为清晰。由于拉普拉斯是一种微分算子，它的应用可增强图像中灰度突变的区域，减弱灰度的缓慢变化区域。因此，锐化处理可选择拉普拉斯算子对原图像进行处理，产生描述灰度突变的图像，再将拉普拉斯图像与原始图像叠加而产生锐化图像。拉普拉斯锐化的基本方法可以由下式表示：</p>
+<p>这种简单的锐化方法既可以产生拉普拉斯锐化处理的效果，同时又能保留背景信息，将原始图像叠加到拉普拉斯变换的处理结果中去，可以使图像中的各灰度值得到保留，使灰度突变处的对比度得到增强，最终结果是在保留图像背景的前提下，突现出图像中小的细节信息。</p>
+<p>卷积实现如下:</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191111225204.png" alt=""></p>
+<h1 id="各类算子的优缺点"><a href="#各类算子的优缺点" class="headerlink" title="各类算子的优缺点"></a>各类算子的优缺点</h1><h2 id="Roberts"><a href="#Roberts" class="headerlink" title="Roberts"></a>Roberts</h2><p>Robers算子利用局部差分算子寻找边缘，边缘定位精度较高，但是容易缺失一部分边缘，不具备抑制噪声的作用。该算子对具有陡峭边缘且含噪声少的图像效果会很好，尤其是边缘正负45度较多的图像，但是定位准确率较差。</p>
+<h2 id="Sobel-算子"><a href="#Sobel-算子" class="headerlink" title="Sobel 算子"></a>Sobel 算子</h2><p>Sobel算子考虑了综合因素，对噪声较多的图像处理效果更好，Sobel 算子边缘定位效果不错，但检测出的边缘容易出现多像素宽度。</p>
+<h2 id="Prewitt-算子"><a href="#Prewitt-算子" class="headerlink" title="Prewitt 算子"></a>Prewitt 算子</h2><p>Prewitt算子对灰度渐变的图像边缘提取效果较好，而没有考虑相邻点的距离远近对当前像素点的影响，与Sobel 算子类似，不同的是在平滑部分的权重大小有些差异；</p>
+<h2 id="Laplacian-算子"><a href="#Laplacian-算子" class="headerlink" title="Laplacian 算子"></a>Laplacian 算子</h2><p>Laplacian 算子不依赖于边缘方向的二阶微分算子，对图像中的阶跃型边缘点定位准确，该算子对噪声非常敏感，它使噪声成分得到加强，这两个特性使得该算子容易丢失一部分边缘的方向信息，造成一些不连续的检测边缘，同时抗噪声能力比较差，由于其算法可能会出现双像素边界，常用来判断边缘像素位于图像的明区或暗区，很少用于边缘检测；</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/13/cv-image-differentiation/" data-id="ck2xd9zws000nooolhrh16byh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/13/hello-world/" class="article-date">
+  <time datetime="2019-11-13T14:05:09.669Z" itemprop="datePublished">2019-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/13/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/13/hello-world/" data-id="ck2xd9zww000roool3hxf9san" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cv-Harris-Corner" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/12/cv-Harris-Corner/" class="article-date">
+  <time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished">2019-11-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
+<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
+<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
+<ul>
+<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
+<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
+<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
+</ul>
+<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
+<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
+<p> 利用二维泰勒展开式我们有 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
+<p>所以其中一阶可以近似为</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
+<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
+<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
+<p> 其中M为2*2矩阵如下 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
+<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
+<p>根据λ1，λ2的值我们可以把其分为三类：</p>
+<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
+<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
+<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
+<p>下图是一个例子：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
+<p>如图所示：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
+<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
+<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
+<p> 算法步骤： </p>
+<p> 1.计算图像x,y方向的梯度Ix，Iy </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
+<p> 2.计算每个像素点的梯度平方 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
+<p> 3.计算梯度在每个像素点的和 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
+<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
+<p> 5.计算每个像素的角点响应 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
+<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/12/cv-Harris-Corner/" data-id="ck2xd9zwa000eooolcalzfa9r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cv-week1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/cv-week1/" class="article-date">
+  <time datetime="2019-11-09T12:17:50.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/09/cv-week1/">cv-week1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>本文原图像的长度为n,卷积核长度为f，卷积核步长为s。</strong></p>
+<h1 id="为什么卷积核是奇数-奇数"><a href="#为什么卷积核是奇数-奇数" class="headerlink" title="为什么卷积核是奇数*奇数"></a>为什么卷积核是奇数*奇数</h1><p> 一是padding的原因，如果f是奇数，图像两边的padding是对称的。</p>
+<p>第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。 </p>
+<p>另：</p>
+<p>举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像长度为4-2+1.</p>
+<p>通用公式为n-f+1。</p>
+<p>我的理解是最后输出的结果其实卷积核的计算次数，n-f是卷积核接下来的操作次数，1是卷积核未滑动之前的次数。</p>
+<p>我们为了获得和原图像大小相同的输出图像，进行padding操作。因此padding等于（f-1）/2。</p>
+<h2 id="为什么需要padding"><a href="#为什么需要padding" class="headerlink" title="为什么需要padding"></a>为什么需要padding</h2><ul>
+<li>图像会越来越小，再多次卷积之后，图像可能变的极小</li>
+<li>图像的边界信息丢失，即图像的边界和角落的信息发挥作用比较少。</li>
+</ul>
+<p>因此为了解决上诉问题，我们在进行卷积操作之前填充这幅图像。</p>
+<p>我们假设padding的长度为p。</p>
+<p>当我们对图像进行填充之后，图像的长度变为（n+2p），那么最后输出的公式变为(n+2p-f+1)。而我们需要的是输入和输出的相同的，所以p= (f-1)/2。所以当f为奇数时，我们只需要填充相应的尺寸p即可。</p>
+<h1 id="卷积步长不同计算公式"><a href="#卷积步长不同计算公式" class="headerlink" title="卷积步长不同计算公式"></a>卷积步长不同计算公式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110144843.png" alt=""></p>
+<p>总结：</p>
+<p>实际上，从技术的角度来说，图像的卷积操作其实互相关而不是卷积。数学上的卷积是存在一个镜像的操作，而图像的卷积则跳过了这个操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/cv-week1/" data-id="ck2xd9zwo000joool18sq71to" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine-learning-of-Cross-validation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/machine-learning-of-Cross-validation/" class="article-date">
+  <time datetime="2019-11-09T02:57:22.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、训练集 vs. 测试集</strong></p>
+<p>在模式识别（pattern recognition）与机器学习（machine learning）的相关研究中，经常会将数据集（dataset）分为训练集（training set）跟测试集（testing set）这两个子集，前者用以建立模型（model），后者则用来评估该模型对未知样本进行预测时的精确度，正规的说法是泛化能力（generalization ability）。怎么将完整的数据集分为训练集跟测试集，必须遵守如下要点：</p>
+<p><strong>1、只有训练集才可以用在模型的训练过程中，测试集则必须在模型完成之后才被用来评估模型优劣的依据。<br>2、训练集中样本数量必须够多，一般至少大于总样本数的50%。<br>3、两组子集必须从完整集合中均匀取样。</strong><br>    其中最后一点特别重要，均匀取样的目的是希望减少训练集/测试集与完整集合之间的偏差（bias），但却也不易做到。一般的作法是随机取样，当样本数量足 够时，便可达到均匀取样的效果，然而随机也正是此作法的盲点，也是经常是可以在数据上做手脚的地方。举例来说，当辨识率不理想时，便重新取样一组训练集/ 测试集，直到测试集的识别率满意为止，但严格来说这样便算是作弊了。</p>
+<p>CV是用来验证分类器的性能一种统计分析方法,基本思想是把在某种意义下将原始数据(dataset)进行分组,一部分做为训练集(train set),另一部分做为验证集(validation set),首先用训练集对分类器进行训练,在利用验证集来测试训练得到的模型(model),以此来做为评价分类器的性能指标.常见CV的方法如下:</p>
+<h1 id="二交叉验证"><a href="#二交叉验证" class="headerlink" title="二交叉验证"></a>二交叉验证</h1><p>1).Hold-Out Method</p>
+<p> 将原始数据随机分为两组,一组做为训练集,一组做为验证集,利用训练集训练分类器,然后利用验证集验证模型,记录最后的分类准确率为此Hold-OutMethod下分类器的性能指标.此种方法的好处的处理简单,只需随机把原始数据分为两组即可,其实严格意义来说Hold-Out Method并不能算是CV,因为这种方法没有达到交叉的思想,由于是随机的将原始数据分组,所以最后验证集分类准确率的高低与原始数据的分组有很大的关系,所以这种方法得到的结果其实并不具有说服性. </p>
+<p>2).K-fold Cross Validation(记为K-CV)</p>
+<p>将原始数据分成K组(一般是均分),将每个子集数据分别做一次验证集,其余的K-1组子集数据作为训练集,这样会得到K个模型,用这K个模型最终的验证集的分类准确率的平均数作为此K-CV下分类器的性能指标.K一般大于等于2,实际操作时一般从3开始取,只有在原始数据集合数据量小的时候才会尝试取2.K-CV可以有效的避免过学习以及欠学习状态的发生,最后得到的结果也比较具有说服性.</p>
+<p> 3).Leave-One-Out Cross Validation(记为LOO-CV) </p>
+<p>如果设原始数据有N个样本,那么LOO-CV就是N-CV,即每个样本单独作为验证集,其余的N-1个样本作为训练集,所以LOO-CV会得到N个模型,用这N个模型最终的验证集的分类准确率的平均数作为此下LOO-CV分类器的性能指标.相比于前面的K-CV,LOO-CV有两个明显的优点:<br>a.每一回合中几乎所有的样本皆用于训练模型,因此最接近原始样本的分布,这样评估所得的结果比较可靠。<br>b.实验过程中没有随机因素会影响实验数据,确保实验过程是可以被复制的。</p>
+<p>  <strong>三、使用Cross-Validation时常犯的错误</strong> </p>
+<p>由于实验室许多研究都有用到 evolutionary algorithms（EA）与 classifiers，所使用的 fitness function 中通常都有用到 classifier 的辨识率，然而把cross-validation 用错的案例还不少。前面说过，只有 training data 才可以用于 model 的建构，所以只有 training data 的辨识率才可以用在 fitness function 中。而 EA 是训练过程用来调整 model 最佳参数的方法，所以只有在 EA结束演化后，model 参数已经固定了，这时候才可以使用 test data。那 EA 跟 cross-validation 要如何搭配呢？Cross-validation 的本质是用来估测(estimate)某个 classification method 对一组 dataset 的 generalization error，不是用来设计 classifier 的方法，所以 cross-validation 不能用在 EA的 fitness function 中，因为与 fitness function 有关的样本都属于 training set，那试问哪些样本才是 test set 呢？如果某个 fitness function 中用了cross-validation 的 training 或 test 辨识率，那么这样的实验方法已经不能称为 cross-validation 了。 </p>
+<p>​    EA 与 k-CV 正确的搭配方法，是将 dataset 分成 k 等份的 subsets 后，每次取 1份 subset 作为 test set，其余 k-1 份作为 training set，并且将该组 training set 套用到 EA 的 fitness function 计算中(至于该 training set 如何进一步利用则没有限制)。因此，正确的 k-CV 会进行共 k 次的 EA 演化，建立 k 个classifiers。而 k-CV 的 test 辨识率，则是 k 组 test sets 对应到 EA 训练所得的 k 个 classifiers 辨识率之平均值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/machine-learning-of-Cross-validation/" data-id="ck2xd9zx6000zooolg7h83o9h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine-learning-of-logistic-regression" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/machine-learning-of-logistic-regression/" class="article-date">
+  <time datetime="2019-11-08T17:09:03.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/09/machine-learning-of-logistic-regression/">machine learning of logistic regression</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="线性回归原理（linear-Regression"><a href="#线性回归原理（linear-Regression" class="headerlink" title="线性回归原理（linear Regression)"></a>线性回归原理（linear Regression)</h1><p>线性回归是一种通过属性的线性组合来进行预测的线性模型，其目的是找到一条直线或者一个平面或者更高维的超平面，使得预测值与真实值之间的误差最小化。</p>
+<p>线性回归：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109121452.png" alt=""></p>
+<p>其中b是偏正值。</p>
+<ul>
+<li>当只有一个x时，h(x)是一个直线</li>
+<li>当有两个自变量时，h(x)是一个平面。</li>
+<li>当有更多的变量，h(x)高维的超平面。</li>
+</ul>
+<p>线性回归是通过数据在N维空间找到h(x)来描述这些数据的规律性，这是一个叫拟合的过程，h(x)叫做拟合线。</p>
+<p>h(x) 的预测值会和真实值有所偏差，真实统计和h(X) 预测数据的差叫做残差。残差有正负，为了降低计算的复杂性，我们使用残差的平方进行计算。为了获得最好的h(x),我们保证个点和实际数据的残差平方和最小。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109121956.png" alt=""></p>
+<p>为了获取可以使j最小的w和b。我们的解决方法是：</p>
+<ul>
+<li>偏导法</li>
+<li>正规方程法</li>
+<li>梯度下降法</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>权重w是每个x的权重，通过w的大小可以看出每个x的权重大小，可以看出因子的重要性。</li>
+<li>有很好的 解释性</li>
+</ul>
+<p>缺点：</p>
+<p>非线性的拟合不好。</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>从前面的h(X)的预测值是连续的，所以这是一个回归模型。如果我们希望我们输出值的离散的 ，我们需要将h(x)进行一次函数变换，通过Sigmoid函数将连续的值映射为离散的（说的更为准确一些就是0和1），g(Y) =1的某些值属于类别1，另一些值属于类别0，这样的模型称为二分类模型。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124928.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109123956.png" alt=""></p>
+<p>有了这个sigmoid函数之后，如果有一个测试点x,那么就可以用sigmoid算出的函数值作为该点数类别1 的概率大小。</p>
+<p> 我们把Sigmoid fuction计算得到的值大于等于0.5的归为类别1，小于0.5的归为类别0。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124326.png" alt=""></p>
+<p>同时逻辑回归和自适应线性网络非常相似，两者的区别在于逻辑回归的激活函数是Sigmiod function 而自适应线性网络的激活函数是y =x，两者的网络结构如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124618.png" alt="自适应线性网络"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124640.png" alt=""></p>
+<p>#逻辑回归的代价函数</p>
+<p>要想解出w和b，我们就需要定义出一个目标函数，或者成为代价函数。</p>
+<h2 id="按照回归的思想"><a href="#按照回归的思想" class="headerlink" title="按照回归的思想"></a>按照回归的思想</h2><p>模仿线性回归的代价函数，利用误差平方和来当代价函数。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160718.png" alt=""></p>
+<p>上式的完整如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160751.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160950.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161247.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161542.png" alt=""></p>
+<h1 id="利用梯度下降求参数"><a href="#利用梯度下降求参数" class="headerlink" title="利用梯度下降求参数"></a>利用梯度下降求参数</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161856.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161827.png" alt=""></p>
+<h1 id="加入正则项"><a href="#加入正则项" class="headerlink" title="加入正则项"></a>加入正则项</h1><p> 对于<strong>线性回归模型</strong>，使用<strong>L1正则化</strong>的模型建叫做<strong>Lasso回归</strong>，使用L2正则化的模型叫做<strong>Ridge回归（岭回归）</strong>。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109163823.png" alt=""></p>
+<p>加入正则化，是为了解决过拟合的问题。</p>
+<p>下图是Python中Lasso回归的损失函数，式中加号后面一项<img src="https://img-blog.csdnimg.cn/20181213113937853.png" alt="img">即为<strong>L1正则化项</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164058.png" alt=""></p>
+<p> 下图是Python中<strong>Ridge回归</strong>的损失函数，式中加号后面一项<img src="https://img-blog.csdnimg.cn/20181213113948341.png" alt="img">即为<strong>L2正则化项</strong>。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164125.png" alt=""></p>
+<p> 一般回归分析中回归w表示特征的系数，从上式可以看到<strong>正则化项</strong>是对系数<strong>做了处理（限制）</strong>。<strong>L1正则化和L2正则化的说明如下：</strong> </p>
+<ul>
+<li><p>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164402.png" alt=""></p>
+</li>
+<li><p>L2正则化是值权值向量w中各个元素的平方和然后再求平方根， （可以看到Ridge回归的L2正则化项有平方符号），通常表示为<img src="https://img-blog.csdnimg.cn/20181213114018242.png" alt="img"> </p>
+</li>
+</ul>
+<p>一般都会在正则化项之前添加一个系数，Python中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
+<p>那添加L1和L2正则化有什么用？下面是L1正则化和L2正则化的作用，这些表述可以在很多文章中找到。</p>
+<ul>
+<li><p>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</p>
+</li>
+<li><p>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</p>
+<h2 id="L1和L2正则化的直观理解"><a href="#L1和L2正则化的直观理解" class="headerlink" title="L1和L2正则化的直观理解"></a>L1和L2正则化的直观理解</h2><h3 id="L1正则化和特征选择"><a href="#L1正则化和特征选择" class="headerlink" title="L1正则化和特征选择"></a>L1正则化和特征选择</h3></li>
+</ul>
+<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
+<p> 假设有如下带<strong>L1正则化</strong>的损失函数：  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109165254.png" alt=""></p>
+<p>  其中J0是原始的损失函数，加号后面的一项是L1正则化项，α是正则化系数。注意到L1正则化是权值的绝对值之和，J是带有绝对值符号的函数，因此J是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J0后添加L1正则化项时，相当于对J0做了一个约束。令L=，则J=J0+LJ，此时我们的任务变成在L约束下求出J0取最小值的解。考虑二维的情况，即只有两个权值w1和w2，此时L=|w1|+|w2|对于梯度下降法，求解J0的过程可以画出等值线，同时L1正则化的函数L也可以在w1、w2的二维平面上画出来。如下图：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109165336.png" alt=""></p>
+<p> 图中等值线是J0的等值线，黑色方形是L函数的图形。在图中，当J0等值线与L图形首次相交的地方就是最优解。上图中0J与L在L的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是(w1,w2)=(0,w)。可以直观想象，因为L函数有很多『突出的角』（二维情况下四个，多维情况下更多），J0与这些角接触的机率会远大于与L其它部位接触的机率，而在这些角上，会有很多权值等于0，这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
+<p>​        而正则化前面的系数α，可以控制L图形的大小。α越小，L的图形越大（上图中的黑色方框）；α越大，L的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值(w1,w2)=(0,w)中的w可以取到很小的值。</p>
+<p>综上所诉，由于w的解可能其某些方向向量为空，所以这些方向的w值为0，所以会产生一个稀疏矩阵。</p>
+<h3 id="L2正则化和过拟合"><a href="#L2正则化和过拟合" class="headerlink" title="L2正则化和过拟合"></a>L2正则化和过拟合</h3><p>假设如下带有L2正则化的损失函数：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109170713.png" alt=""></p>
+<p>同时可以画出其在二维平面上的图形：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109170801.png" alt=""></p>
+<p>二维平面下L2正则化的函数图形是个圆，与方形相比，被磨去了棱角。因此J0与L相交时使得w1或w2等于零的机率小了许多，这就是为什么L2正则化不具有稀疏性的原因。</p>
+<p>拟合过程中通常都倾向于让权值尽可能小，最后构造一个所有参数都比较小的模型。因为一般认为参数值小的模型比较简单，能适应不同的数据集，也在一定程度上避免了过拟合现象。可以设想一下对于一个线性回归方程，若参数很大，那么只要数据偏移一点点，就会对结果造成很大的影响；但如果参数足够小，数据偏移得多一点也不会对结果造成什么影响，专业一点的说法是『抗扰动能力强』。</p>
+<p>那为什么L2正则化可以获得值很小的参数？</p>
+<p>以线性回归中的梯度下降法为例。假设要求的参数为θ，hθ(x)是我们的假设函数，那么线性回归的代价函数如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171025.png" alt=""></p>
+<p>那么在梯度下降法中，最终使用迭代计算参数 θ的迭代式为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171221.png" alt=""></p>
+<p> 在添加了L2正则化迭代公式之后，迭代公式如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171526.png" alt=""></p>
+<p>从上师可以看出，λ越大，θj衰减得越快。另一个理解，λ越大，L2圆的半径越小，最后求得代价函数最值时各参数也会变得很小。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/machine-learning-of-logistic-regression/" data-id="ck2xd9zxg0017ooole3g4fckb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-numpy&#39;s-argpartition" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/numpy's-argpartition/" class="article-date">
+  <time datetime="2019-11-08T16:55:13.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/numpy/">numpy</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/09/numpy's-argpartition/">numpy&#39;s argpartition</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="argpartition"><a href="#argpartition" class="headerlink" title="argpartition"></a>argpartition</h1><p> numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None) </p>
+<p> 使用<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.argpartition.html" target="_blank" rel="noopener"><code>np.argpartition</code></a>.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([<span class="number">1</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">17</span>, <span class="number">17</span>, <span class="number">1.5</span>])</span><br><span class="line">k = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">idx = np.argpartition(A, k)</span><br><span class="line">print(idx)</span><br><span class="line"><span class="comment"># [4 0 7 3 1 2 6 5]</span></span><br></pre></td></tr></table></figure>
+
+<p>这将返回k个最小值.请注意,这些可能不是按排序顺序.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(A[idx[:k]])</span><br><span class="line"># [ 0.1  1.   1.5]</span><br></pre></td></tr></table></figure>
+
+<p>要获得k最大值使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">idx = np.argpartition(A, -k)</span><br><span class="line"># [4 0 7 3 1 2 6 5]</span><br><span class="line"></span><br><span class="line">A[idx[-3:]]</span><br><span class="line"># [  9.  17.  17.]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/numpy's-argpartition/" data-id="ck2xd9zx70010oooleiib6xgq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-machine-learning-of-LabelEncoder-and-OneHotEncode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" class="article-date">
+  <time datetime="2019-11-07T04:21:47.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/">machine learning of LabelEncoder and OneHotEncode</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabelEncoder标准化标签"><a href="#LabelEncoder标准化标签" class="headerlink" title="LabelEncoder标准化标签"></a>LabelEncoder标准化标签</h1><p>labelEncoder是对<strong>不连续的数字或者文本</strong>进行编号。</p>
+<ul>
+<li>sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder()</span><br><span class="line">le = LabelEncoder()</span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码</span></span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码，并返回标准化之后的数组</span></span><br><span class="line">le.transform([<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>,<span class="number">67</span>,<span class="number">5</span>])</span><br><span class="line"><span class="comment"># 输出： array([0,0,3,2,1])</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="独热码oneHotEncode"><a href="#独热码oneHotEncode" class="headerlink" title="独热码oneHotEncode"></a>独热码oneHotEncode</h1><p> 独热码，在英文文献中称做 one-hot code, 直观来说就是有多少个状态就有多少比特，而且只有一个比特为1，其他全为0的一种码制。 </p>
+<p>假如有三种颜色特征：红、黄、蓝。 在利用机器学习的算法时一般需要进行向量化或者数字化。那么你可能想令 红=1，黄=2，蓝=3. 那么这样其实实现了标签编码，即给不同类别以标签。然而这意味着机器可能会学习到“红&lt;黄&lt;蓝”，但这并不是我们的让机器学习的本意，<strong>只是想让机器区分它们，并无大小比较之意</strong>。所以这时标签编码是不够的，需要进一步转换。因为有三种颜色状态，所以就有3个比特。即红色：1 0 0 ，黄色: 0 1 0，蓝色：0 0 1 。<strong>如此一来每两个向量之间的距离都是根号2，在向量空间距离都相等</strong>，所以这样<strong>不会出现偏序性</strong>，基本不会影响基于向量空间度量算法的效果。</p>
+<p>编码过程</p>
+<p>假如只有一个特征是离散值：{sex：{male， female，other}}</p>
+<p>该特征总共有3个不同的分类值，此时需要3个bit位表示该特征是什么值，对应bit位为1的位置对应原来的特征的值（一般情况下可以将原始的特征的取值进行排序，以便于后期使用），此时得到独热码为{100}男性 ，{010}女性，{001}其他</p>
+<p>假如多个特征需要独热码编码，那么久按照上面的方法依次将每个特征的独热码拼接起来：<br> 　　　{sex：{male， female，other}}<br> 　　　{grade：{一年级， 二年级，三年级， 四年级}}<br> 此时对于输入为{sex：male； grade： 四年级}进行独热编码，可以首先将sex按照上面的进行编码得到{100}，然后按照grade进行编码为{0001}，那么两者连接起来得到最后的独热码{1000001}；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"></span><br><span class="line">one_hot = preprocessing.OneHotEncoder()</span><br><span class="line">one_hot.fit([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>]])  <span class="comment">#fit用来学习编码</span></span><br><span class="line">one_hot.transform([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>]]).toarray()  <span class="comment">#进行编码</span></span><br><span class="line"><span class="comment"># array([[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]])</span></span><br></pre></td></tr></table></figure>
+
+<p>数据矩阵是4*3，即4个数据，3个特征维度。</p>
+<p>观察左边的数据矩阵，第一列为第一个特征维度，有两种取值0\1. 所以对应编码方式为10 、01</p>
+<p> 同理，第二列为第二个特征维度，有三种取值0\1\2，所以对应编码方式为100、010、001</p>
+<p>同理，第三列为第三个特征维度，有四中取值0\1\2\3，所以对应编码方式为1000、0100、0010、0001</p>
+<p>再来看要进行编码的参数[0 , 1, 3]， 0作为第一个特征编码为10, 1作为第二个特征编码为010， 3作为第三个特征编码为0001. 故此编码结果为 1 0 0 1 0 0 0 0 1</p>
+<h1 id="独热编码意义何在"><a href="#独热编码意义何在" class="headerlink" title="独热编码意义何在"></a>独热编码意义何在</h1><p>独热编码（哑变量 dummy variable）是因为<strong>大部分算法是基于向量空间</strong>中的度量来进行计算的，为了使<strong>非偏序关系的变量取值不具有偏序性</strong>，并且到圆点是等距的。使用one-hot编码，将离散特征的取值扩展到了欧式空间，离散特征的某个取值就对应欧式空间的某个点。将离散型特征使用one-hot编码，会让特征之间的距离计算更加合理。离散特征进行one-hot编码后，编码后的特征，其实每一维度的特征都可以看做是连续的特征。就可以跟对连续型特征的归一化方法一样，对每一维特征进行归一化。比如归一化到[-1,1]或归一化到均值为0,方差为1。</p>
+<h2 id="特征向量映射到欧式空间"><a href="#特征向量映射到欧式空间" class="headerlink" title="特征向量映射到欧式空间"></a>特征向量映射到欧式空间</h2><p>将离散特征通过one-hot编码映射到欧式空间，是因为，在回归，分类，聚类等机器学习算法中，特征之间距离的计算或相似度的计算是非常重要的，而我们常用的距离或相似度的计算都是在欧式空间的相似度计算，计算余弦相似性，基于的就是欧式空间。</p>
+<h2 id="独热编码优缺点"><a href="#独热编码优缺点" class="headerlink" title="独热编码优缺点"></a>独热编码优缺点</h2><ul>
+<li>优点：独热编码解决了分类器不好处理属性数据的问题，在一定程度上也起到了扩充特征的作用。它的值只有0和1，不同的类型存储在垂直的空间。</li>
+<li>缺点：当类别的数量很多时，特征空间会变得非常大。在这种情况下，一般可以用PCA来减少维度。而且OneHotEncode+PCA这种组合在实际中也非常有用。</li>
+</ul>
+<h2 id="什么情况下-不-用独热编码"><a href="#什么情况下-不-用独热编码" class="headerlink" title="什么情况下(不)用独热编码"></a>什么情况下(不)用独热编码</h2><ul>
+<li>用：独热编码用来解决类别型数据的离散值问题</li>
+<li>不用：将离散型特征进行one-hot编码的作用，是为了让距离计算更合理，但如果特征是离散的，并且不用one-hot编码就可以很合理的计算出距离，那么就没必要进行one-hot编码。 有些基于树的算法在处理变量时，并不是基于向量空间度量，数值只是个类别符号，即没有偏序关系，所以不用进行独热编码。  Tree Model不太需要one-hot编码： 对于决策树来说，one-hot的本质是增加树的深度。</li>
+</ul>
+<h2 id="什么情况下-不-需要归一化"><a href="#什么情况下-不-需要归一化" class="headerlink" title="什么情况下(不)需要归一化"></a>什么情况下(不)需要归一化</h2><ul>
+<li>需要： 基于参数的模型或基于距离的模型，都是要进行特征的归一化。</li>
+<li>不需要：基于树的方法是不需要进行特征的归一化，例如随机森林，bagging 和 boosting等。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" data-id="ck2xd9zxb0013oool94n241pd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-blue-cup-Flip-a-coin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/06/blue-cup-Flip-a-coin/" class="article-date">
+  <time datetime="2019-11-06T14:09:41.000Z" itemprop="datePublished">2019-11-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/06/blue-cup-Flip-a-coin/">blue cup Flip a coin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>问题描述<br>小明正在玩一个“翻硬币”的游戏。桌上放着排成一排的若干硬币。我们用 * 表示正面，用 o 表示反面（是小写字母，不是零）。比如，可能情形是：**oo***oooo<br>如果同时翻转左边的两个硬币，则变为：oooo***oooo<br>现在小明的问题是：如果已知了初始状态和要达到的目标状态，每次只能同时翻转相邻的两个硬币,那么对特定的局面，最少要翻动多少次呢？<br>我们约定：把翻动相邻的两个硬币叫做一步操作，那么要求：<br>输入格式<br>两行等长的字符串，分别表示初始状态和要达到的目标状态。每行的长度&lt;1000<br>输出格式<br>一个整数，表示最小操作步数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">样例输入</span><br><span class="line"> **********</span><br><span class="line"> o****o****</span><br><span class="line">样例输出</span><br><span class="line">5</span><br><span class="line">样例输入</span><br><span class="line"> *o**o***o***</span><br><span class="line"> *o***o**o***</span><br><span class="line">样例输出</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.lang.Math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.omg.PortableInterceptor.SYSTEM_EXCEPTION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1000000</span>]; </span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		String a = in.next();</span><br><span class="line">		<span class="keyword">char</span> arr[] = a.toCharArray();</span><br><span class="line">		String b =in.next();</span><br><span class="line">		<span class="keyword">char</span> brr[] = b.toCharArray();</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i  =<span class="number">0</span>;i&lt;a.length()-<span class="number">1</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(arr[i] == brr[i])&#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">if</span>(arr[i] == <span class="string">'*'</span>)&#123;</span><br><span class="line">					arr[i] = <span class="string">'o'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					arr[i] = <span class="string">'*'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(arr[i+<span class="number">1</span>] == <span class="string">'*'</span>)&#123;</span><br><span class="line">					arr[i+<span class="number">1</span>] = <span class="string">'o'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">else</span>&#123;</span><br><span class="line">					arr[i+<span class="number">1</span>] = <span class="string">'*'</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				count ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(count);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/06/blue-cup-Flip-a-coin/" data-id="ck2xd9zv80002oool034wfocl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-blue-cup-The-amount-that-can-t-be-bought" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/" class="article-date">
+  <time datetime="2019-11-05T03:17:02.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/">blue cup The amount that can not be bought</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>小明开了一家糖果店。他别出心裁：把水果糖包成4颗一包和7颗一包的两种。糖果不能拆包卖。 小朋友来买糖的时候，他就用这两种包装来组合。当然有些糖果数目是无法组合出来的，比如要买 10 颗糖。 你可以用计算机测试一下，在这种包装情况下，最大不能买到的数量是17。大于17的任何数字都可以用4和7组合出来。 本题的要求就是在已知两个包装的数量时，求最大不能组合出的数字。<br>输入格式<br>两个正整数，表示每种包装中糖的颗数(都不多于1000)<br>输出格式<br>一个正整数，表示最大不能买到的糖数<br>样例输入<br>4 7<br>样例输出<br>17<br>样例输入<br>3 5<br>样例输出<br>7</p>
+<h1 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h1><p>方法一：自然数a,b互质,则不能表示成ax+by（x,y为非负整数）的最大整数是ab-a-b.<br>证明：<br>a或者b是1的情况下容易证明.<br>以下情况都是a&gt;1且b&gt;1的情况.<br>首先证明ab-a-b不能表示成ax+by<br>假设ab-a-b=ax+by,那么ab=am+bn (m,n都大于等于1)<br>左边是a的倍数,右边am是a的倍数,那么要求bn也要是a的倍数<br>b不是a的倍数,只能要求n是a的倍数,这样的话,bn=bn’a&gt;=ba<br>那么am=ab-bn&lt;=0就与am&gt;1矛盾.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.lang.Math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> a = in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> b = in.nextInt();</span><br><span class="line">		in.close();</span><br><span class="line">		System.out.println(a*b-a-b);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="方法二（动态规划）"><a href="#方法二（动态规划）" class="headerlink" title="方法二（动态规划）"></a>方法二（动态规划）</h1><p>我们使用count来记录可以连续被a和b表示的数字个数。</p>
+<p>当count大于等于a和b之间较小的数时，则之后的数字都可以被a和b表示出来。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.lang.Math;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.omg.PortableInterceptor.SYSTEM_EXCEPTION;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">1000000</span>]; </span><br><span class="line">	 <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> a = in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> b =in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> count = Math.min(a, b);</span><br><span class="line">		ans[a] =<span class="number">1</span>;</span><br><span class="line">		ans[b] =<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> n =<span class="number">0</span>;   <span class="comment">// 记录可以连续表示对个数</span></span><br><span class="line">		<span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(n &lt;Math.min(a, b))&#123;</span><br><span class="line">			<span class="keyword">if</span>(ans[count] == <span class="number">1</span>)&#123;   <span class="comment">//ans[count] 为1 ，表示其可以被a和b表示出来</span></span><br><span class="line">				ans[count+b] =<span class="number">1</span>;</span><br><span class="line">				ans[count + a] = <span class="number">1</span>;</span><br><span class="line">				n ++;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				n =<span class="number">0</span>;</span><br><span class="line">				result = count;</span><br><span class="line">			&#125;</span><br><span class="line">			count ++;</span><br><span class="line">		&#125;;</span><br><span class="line">		System.out.print(result);</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/" data-id="ck2xd9zve0005oool1q2d6sqe" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

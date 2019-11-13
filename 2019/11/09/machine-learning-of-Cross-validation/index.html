@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>machine learning of Cross validation | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、训练集 vs. 测试集 在模式识别（pattern recognition）与机器学习（machine learning）的相关研究中，经常会将数据集（dataset）分为训练集（training set）跟测试集（testing set）这两个子集，前者用以建立模型（model），后者则用来评估该模型对未知样本进行预测时的精确度，正规的说法是泛化能力（generalization abili">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning of Cross validation">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;machine-learning-of-Cross-validation&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、训练集 vs. 测试集 在模式识别（pattern recognition）与机器学习（machine learning）的相关研究中，经常会将数据集（dataset）分为训练集（training set）跟测试集（testing set）这两个子集，前者用以建立模型（model），后者则用来评估该模型对未知样本进行预测时的精确度，正规的说法是泛化能力（generalization abili">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-09T03:07:11.522Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-machine-learning-of-Cross-validation" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/machine-learning-of-Cross-validation/" class="article-date">
+  <time datetime="2019-11-09T02:57:22.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      machine learning of Cross validation
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>一、训练集 vs. 测试集</strong></p>
+<p>在模式识别（pattern recognition）与机器学习（machine learning）的相关研究中，经常会将数据集（dataset）分为训练集（training set）跟测试集（testing set）这两个子集，前者用以建立模型（model），后者则用来评估该模型对未知样本进行预测时的精确度，正规的说法是泛化能力（generalization ability）。怎么将完整的数据集分为训练集跟测试集，必须遵守如下要点：</p>
+<p><strong>1、只有训练集才可以用在模型的训练过程中，测试集则必须在模型完成之后才被用来评估模型优劣的依据。<br>2、训练集中样本数量必须够多，一般至少大于总样本数的50%。<br>3、两组子集必须从完整集合中均匀取样。</strong><br>    其中最后一点特别重要，均匀取样的目的是希望减少训练集/测试集与完整集合之间的偏差（bias），但却也不易做到。一般的作法是随机取样，当样本数量足 够时，便可达到均匀取样的效果，然而随机也正是此作法的盲点，也是经常是可以在数据上做手脚的地方。举例来说，当辨识率不理想时，便重新取样一组训练集/ 测试集，直到测试集的识别率满意为止，但严格来说这样便算是作弊了。</p>
+<p>CV是用来验证分类器的性能一种统计分析方法,基本思想是把在某种意义下将原始数据(dataset)进行分组,一部分做为训练集(train set),另一部分做为验证集(validation set),首先用训练集对分类器进行训练,在利用验证集来测试训练得到的模型(model),以此来做为评价分类器的性能指标.常见CV的方法如下:</p>
+<h1 id="二交叉验证"><a href="#二交叉验证" class="headerlink" title="二交叉验证"></a>二交叉验证</h1><p>1).Hold-Out Method</p>
+<p> 将原始数据随机分为两组,一组做为训练集,一组做为验证集,利用训练集训练分类器,然后利用验证集验证模型,记录最后的分类准确率为此Hold-OutMethod下分类器的性能指标.此种方法的好处的处理简单,只需随机把原始数据分为两组即可,其实严格意义来说Hold-Out Method并不能算是CV,因为这种方法没有达到交叉的思想,由于是随机的将原始数据分组,所以最后验证集分类准确率的高低与原始数据的分组有很大的关系,所以这种方法得到的结果其实并不具有说服性. </p>
+<p>2).K-fold Cross Validation(记为K-CV)</p>
+<p>将原始数据分成K组(一般是均分),将每个子集数据分别做一次验证集,其余的K-1组子集数据作为训练集,这样会得到K个模型,用这K个模型最终的验证集的分类准确率的平均数作为此K-CV下分类器的性能指标.K一般大于等于2,实际操作时一般从3开始取,只有在原始数据集合数据量小的时候才会尝试取2.K-CV可以有效的避免过学习以及欠学习状态的发生,最后得到的结果也比较具有说服性.</p>
+<p> 3).Leave-One-Out Cross Validation(记为LOO-CV) </p>
+<p>如果设原始数据有N个样本,那么LOO-CV就是N-CV,即每个样本单独作为验证集,其余的N-1个样本作为训练集,所以LOO-CV会得到N个模型,用这N个模型最终的验证集的分类准确率的平均数作为此下LOO-CV分类器的性能指标.相比于前面的K-CV,LOO-CV有两个明显的优点:<br>a.每一回合中几乎所有的样本皆用于训练模型,因此最接近原始样本的分布,这样评估所得的结果比较可靠。<br>b.实验过程中没有随机因素会影响实验数据,确保实验过程是可以被复制的。</p>
+<p>  <strong>三、使用Cross-Validation时常犯的错误</strong> </p>
+<p>由于实验室许多研究都有用到 evolutionary algorithms（EA）与 classifiers，所使用的 fitness function 中通常都有用到 classifier 的辨识率，然而把cross-validation 用错的案例还不少。前面说过，只有 training data 才可以用于 model 的建构，所以只有 training data 的辨识率才可以用在 fitness function 中。而 EA 是训练过程用来调整 model 最佳参数的方法，所以只有在 EA结束演化后，model 参数已经固定了，这时候才可以使用 test data。那 EA 跟 cross-validation 要如何搭配呢？Cross-validation 的本质是用来估测(estimate)某个 classification method 对一组 dataset 的 generalization error，不是用来设计 classifier 的方法，所以 cross-validation 不能用在 EA的 fitness function 中，因为与 fitness function 有关的样本都属于 training set，那试问哪些样本才是 test set 呢？如果某个 fitness function 中用了cross-validation 的 training 或 test 辨识率，那么这样的实验方法已经不能称为 cross-validation 了。 </p>
+<p>​    EA 与 k-CV 正确的搭配方法，是将 dataset 分成 k 等份的 subsets 后，每次取 1份 subset 作为 test set，其余 k-1 份作为 training set，并且将该组 training set 套用到 EA 的 fitness function 计算中(至于该 training set 如何进一步利用则没有限制)。因此，正确的 k-CV 会进行共 k 次的 EA 演化，建立 k 个classifiers。而 k-CV 的 test 辨识率，则是 k 组 test sets 对应到 EA 训练所得的 k 个 classifiers 辨识率之平均值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/machine-learning-of-Cross-validation/" data-id="ck2xd9zx6000zooolg7h83o9h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/09/cv-week1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cv-week1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/09/machine-learning-of-logistic-regression/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">machine learning of logistic regression</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

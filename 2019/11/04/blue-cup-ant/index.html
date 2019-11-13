@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>blue cup ant | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="问题描述长100厘米的细长直杆子上有n只蚂蚁。它们的头有的朝左，有的朝右。每只蚂蚁都只能沿着杆子向前爬，速度是1厘米&#x2F;秒。当两只蚂蚁碰面时，它们会同时掉头往相反的方向爬行。这些蚂蚁中，有1只蚂蚁感冒了。并且在和其它蚂蚁碰面时，会把感冒传染给碰到的蚂蚁。请你计算，当所有蚂蚁都爬离杆子时，有多少只蚂蚁患上了感冒。 输入格式第一行输入一个整数n (1 &amp;lt; n &amp;lt; 50), 表示蚂蚁的总数。接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blue cup ant">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;blue-cup-ant&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="问题描述长100厘米的细长直杆子上有n只蚂蚁。它们的头有的朝左，有的朝右。每只蚂蚁都只能沿着杆子向前爬，速度是1厘米&#x2F;秒。当两只蚂蚁碰面时，它们会同时掉头往相反的方向爬行。这些蚂蚁中，有1只蚂蚁感冒了。并且在和其它蚂蚁碰面时，会把感冒传染给碰到的蚂蚁。请你计算，当所有蚂蚁都爬离杆子时，有多少只蚂蚁患上了感冒。 输入格式第一行输入一个整数n (1 &amp;lt; n &amp;lt; 50), 表示蚂蚁的总数。接">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-05T02:48:27.071Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-blue-cup-ant" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/04/blue-cup-ant/" class="article-date">
+  <time datetime="2019-11-04T05:54:52.000Z" itemprop="datePublished">2019-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      blue cup ant
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>问题描述<br>长100厘米的细长直杆子上有n只蚂蚁。它们的头有的朝左，有的朝右。每只蚂蚁都只能沿着杆子向前爬，速度是1厘米/秒。当两只蚂蚁碰面时，它们会同时掉头往相反的方向爬行。这些蚂蚁中，有1只蚂蚁感冒了。并且在和其它蚂蚁碰面时，会把感冒传染给碰到的蚂蚁。请你计算，当所有蚂蚁都爬离杆子时，有多少只蚂蚁患上了感冒。</p>
+<p>输入格式<br>第一行输入一个整数n (1 &lt; n &lt; 50), 表示蚂蚁的总数。接着的一行是n个用空格分开的整数 Xi (-100 &lt; Xi &lt; 100), Xi的绝对值，表示蚂蚁离开杆子左边端点的距离。正值表示头朝右，负值表示头朝左，数据中不会出现0值，也不会出现两只蚂蚁占用同一位置。其中，第一个数据代表的蚂蚁感冒了。<br>输出格式<br>要求输出1个整数，表示最后感冒蚂蚁的数目。<br>样例输入<br>3 5 -2 8<br>样例输出<br>1<br>样例输入<br>5 -10 8 -20 12 25<br>样例输出<br>3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.lang.Math;</span><br><span class="line"><span class="comment">/*两只蚂蚁相遇掉头，和各走各的其实没区别。</span></span><br><span class="line"><span class="comment">由于速度一样，感冒蚂蚁永远传染不了开始时与它同向在前面，或反向在后面的蚂蚁。</span></span><br><span class="line"><span class="comment">而是否有在前面反向的蚂蚁决定了是否传染在后面同向的蚂蚁</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> N = in.nextInt(); <span class="comment">//获得蚂蚁的数量</span></span><br><span class="line">		<span class="keyword">int</span> ant ;</span><br><span class="line">		<span class="keyword">int</span>[] num = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">		<span class="keyword">int</span> lr= <span class="number">0</span>,rl =<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> cold = in.nextInt();</span><br><span class="line">		<span class="keyword">int</span> temp =Math.abs(cold);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>;i&lt;N;i++)&#123;</span><br><span class="line">			ant = in.nextInt();</span><br><span class="line">			<span class="keyword">if</span>(ant &lt; temp &amp;&amp; ant&gt;<span class="number">0</span>)&#123;</span><br><span class="line">				lr++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (Math.abs(ant) &gt; temp  &amp;&amp; ant&lt;<span class="number">0</span>) &#123;</span><br><span class="line">				rl ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>((temp &lt;<span class="number">0</span> &amp;&amp; lr &gt;<span class="number">0</span>) || (temp &gt;<span class="number">0</span> &amp;&amp; rl&gt;<span class="number">0</span>))&#123;   <span class="comment">//如果temp向右，那么右边要存在往左的蚂蚁，这样才会感染temp左边往右走的蚂蚁。同理temp向左。</span></span><br><span class="line">			System.out.print(lr+rl+<span class="number">1</span>);	</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/04/blue-cup-ant/" data-id="ck2xd9zvf0006ooolh9tfhfyt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/04/java-basic-grammar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          java basic grammar
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/03/blue-cup-sweet/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">the blue cup sweet</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

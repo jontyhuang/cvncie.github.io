@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>machine learning of LabelEncoder and OneHotEncode | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LabelEncoder标准化标签labelEncoder是对不连续的数字或者文本进行编号。  sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内   123456from sklearn.preprocessing import LabelEncoder()le = LabelEncoder()le.fit(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning of LabelEncoder and OneHotEncode">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;07&#x2F;machine-learning-of-LabelEncoder-and-OneHotEncode&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LabelEncoder标准化标签labelEncoder是对不连续的数字或者文本进行编号。  sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内   123456from sklearn.preprocessing import LabelEncoder()le = LabelEncoder()le.fit(">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-07T04:46:26.493Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-machine-learning-of-LabelEncoder-and-OneHotEncode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" class="article-date">
+  <time datetime="2019-11-07T04:21:47.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      machine learning of LabelEncoder and OneHotEncode
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="LabelEncoder标准化标签"><a href="#LabelEncoder标准化标签" class="headerlink" title="LabelEncoder标准化标签"></a>LabelEncoder标准化标签</h1><p>labelEncoder是对<strong>不连续的数字或者文本</strong>进行编号。</p>
+<ul>
+<li>sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder()</span><br><span class="line">le = LabelEncoder()</span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码</span></span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码，并返回标准化之后的数组</span></span><br><span class="line">le.transform([<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>,<span class="number">67</span>,<span class="number">5</span>])</span><br><span class="line"><span class="comment"># 输出： array([0,0,3,2,1])</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="独热码oneHotEncode"><a href="#独热码oneHotEncode" class="headerlink" title="独热码oneHotEncode"></a>独热码oneHotEncode</h1><p> 独热码，在英文文献中称做 one-hot code, 直观来说就是有多少个状态就有多少比特，而且只有一个比特为1，其他全为0的一种码制。 </p>
+<p>假如有三种颜色特征：红、黄、蓝。 在利用机器学习的算法时一般需要进行向量化或者数字化。那么你可能想令 红=1，黄=2，蓝=3. 那么这样其实实现了标签编码，即给不同类别以标签。然而这意味着机器可能会学习到“红&lt;黄&lt;蓝”，但这并不是我们的让机器学习的本意，<strong>只是想让机器区分它们，并无大小比较之意</strong>。所以这时标签编码是不够的，需要进一步转换。因为有三种颜色状态，所以就有3个比特。即红色：1 0 0 ，黄色: 0 1 0，蓝色：0 0 1 。<strong>如此一来每两个向量之间的距离都是根号2，在向量空间距离都相等</strong>，所以这样<strong>不会出现偏序性</strong>，基本不会影响基于向量空间度量算法的效果。</p>
+<p>编码过程</p>
+<p>假如只有一个特征是离散值：{sex：{male， female，other}}</p>
+<p>该特征总共有3个不同的分类值，此时需要3个bit位表示该特征是什么值，对应bit位为1的位置对应原来的特征的值（一般情况下可以将原始的特征的取值进行排序，以便于后期使用），此时得到独热码为{100}男性 ，{010}女性，{001}其他</p>
+<p>假如多个特征需要独热码编码，那么久按照上面的方法依次将每个特征的独热码拼接起来：<br> 　　　{sex：{male， female，other}}<br> 　　　{grade：{一年级， 二年级，三年级， 四年级}}<br> 此时对于输入为{sex：male； grade： 四年级}进行独热编码，可以首先将sex按照上面的进行编码得到{100}，然后按照grade进行编码为{0001}，那么两者连接起来得到最后的独热码{1000001}；</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"></span><br><span class="line">one_hot = preprocessing.OneHotEncoder()</span><br><span class="line">one_hot.fit([[<span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>]])  <span class="comment">#fit用来学习编码</span></span><br><span class="line">one_hot.transform([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>]]).toarray()  <span class="comment">#进行编码</span></span><br><span class="line"><span class="comment"># array([[ 1.,  0.,  0.,  1.,  0.,  0.,  0.,  0.,  1.]])</span></span><br></pre></td></tr></table></figure>
+
+<p>数据矩阵是4*3，即4个数据，3个特征维度。</p>
+<p>观察左边的数据矩阵，第一列为第一个特征维度，有两种取值0\1. 所以对应编码方式为10 、01</p>
+<p> 同理，第二列为第二个特征维度，有三种取值0\1\2，所以对应编码方式为100、010、001</p>
+<p>同理，第三列为第三个特征维度，有四中取值0\1\2\3，所以对应编码方式为1000、0100、0010、0001</p>
+<p>再来看要进行编码的参数[0 , 1, 3]， 0作为第一个特征编码为10, 1作为第二个特征编码为010， 3作为第三个特征编码为0001. 故此编码结果为 1 0 0 1 0 0 0 0 1</p>
+<h1 id="独热编码意义何在"><a href="#独热编码意义何在" class="headerlink" title="独热编码意义何在"></a>独热编码意义何在</h1><p>独热编码（哑变量 dummy variable）是因为<strong>大部分算法是基于向量空间</strong>中的度量来进行计算的，为了使<strong>非偏序关系的变量取值不具有偏序性</strong>，并且到圆点是等距的。使用one-hot编码，将离散特征的取值扩展到了欧式空间，离散特征的某个取值就对应欧式空间的某个点。将离散型特征使用one-hot编码，会让特征之间的距离计算更加合理。离散特征进行one-hot编码后，编码后的特征，其实每一维度的特征都可以看做是连续的特征。就可以跟对连续型特征的归一化方法一样，对每一维特征进行归一化。比如归一化到[-1,1]或归一化到均值为0,方差为1。</p>
+<h2 id="特征向量映射到欧式空间"><a href="#特征向量映射到欧式空间" class="headerlink" title="特征向量映射到欧式空间"></a>特征向量映射到欧式空间</h2><p>将离散特征通过one-hot编码映射到欧式空间，是因为，在回归，分类，聚类等机器学习算法中，特征之间距离的计算或相似度的计算是非常重要的，而我们常用的距离或相似度的计算都是在欧式空间的相似度计算，计算余弦相似性，基于的就是欧式空间。</p>
+<h2 id="独热编码优缺点"><a href="#独热编码优缺点" class="headerlink" title="独热编码优缺点"></a>独热编码优缺点</h2><ul>
+<li>优点：独热编码解决了分类器不好处理属性数据的问题，在一定程度上也起到了扩充特征的作用。它的值只有0和1，不同的类型存储在垂直的空间。</li>
+<li>缺点：当类别的数量很多时，特征空间会变得非常大。在这种情况下，一般可以用PCA来减少维度。而且OneHotEncode+PCA这种组合在实际中也非常有用。</li>
+</ul>
+<h2 id="什么情况下-不-用独热编码"><a href="#什么情况下-不-用独热编码" class="headerlink" title="什么情况下(不)用独热编码"></a>什么情况下(不)用独热编码</h2><ul>
+<li>用：独热编码用来解决类别型数据的离散值问题</li>
+<li>不用：将离散型特征进行one-hot编码的作用，是为了让距离计算更合理，但如果特征是离散的，并且不用one-hot编码就可以很合理的计算出距离，那么就没必要进行one-hot编码。 有些基于树的算法在处理变量时，并不是基于向量空间度量，数值只是个类别符号，即没有偏序关系，所以不用进行独热编码。  Tree Model不太需要one-hot编码： 对于决策树来说，one-hot的本质是增加树的深度。</li>
+</ul>
+<h2 id="什么情况下-不-需要归一化"><a href="#什么情况下-不-需要归一化" class="headerlink" title="什么情况下(不)需要归一化"></a>什么情况下(不)需要归一化</h2><ul>
+<li>需要： 基于参数的模型或基于距离的模型，都是要进行特征的归一化。</li>
+<li>不需要：基于树的方法是不需要进行特征的归一化，例如随机森林，bagging 和 boosting等。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" data-id="ck2xd9zxb0013oool94n241pd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/09/numpy's-argpartition/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          numpy&#39;s argpartition
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/06/blue-cup-Flip-a-coin/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">blue cup Flip a coin</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

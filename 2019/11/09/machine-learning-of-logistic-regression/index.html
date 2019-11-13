@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>machine learning of logistic regression | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="线性回归原理（linear Regression)线性回归是一种通过属性的线性组合来进行预测的线性模型，其目的是找到一条直线或者一个平面或者更高维的超平面，使得预测值与真实值之间的误差最小化。 线性回归：  其中b是偏正值。  当只有一个x时，h(x)是一个直线 当有两个自变量时，h(x)是一个平面。 当有更多的变量，h(x)高维的超平面。  线性回归是通过数据在N维空间找到h(x)来描述这些数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning of logistic regression">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;machine-learning-of-logistic-regression&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="线性回归原理（linear Regression)线性回归是一种通过属性的线性组合来进行预测的线性模型，其目的是找到一条直线或者一个平面或者更高维的超平面，使得预测值与真实值之间的误差最小化。 线性回归：  其中b是偏正值。  当只有一个x时，h(x)是一个直线 当有两个自变量时，h(x)是一个平面。 当有更多的变量，h(x)高维的超平面。  线性回归是通过数据在N维空间找到h(x)来描述这些数据">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109121452.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109121956.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109124928.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109123956.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109124326.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109124618.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109124640.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109160718.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109160751.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109160950.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109161247.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109161542.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109161856.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109161827.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109163823.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181213113937853.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109164058.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181213113948341.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109164125.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109164402.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20181213114018242.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109165254.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109165336.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109170713.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109170801.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171025.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171221.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171526.png">
+<meta property="og:updated_time" content="2019-11-09T09:16:18.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109121452.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-machine-learning-of-logistic-regression" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/machine-learning-of-logistic-regression/" class="article-date">
+  <time datetime="2019-11-08T17:09:03.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/machine-learning/">machine learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      machine learning of logistic regression
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="线性回归原理（linear-Regression"><a href="#线性回归原理（linear-Regression" class="headerlink" title="线性回归原理（linear Regression)"></a>线性回归原理（linear Regression)</h1><p>线性回归是一种通过属性的线性组合来进行预测的线性模型，其目的是找到一条直线或者一个平面或者更高维的超平面，使得预测值与真实值之间的误差最小化。</p>
+<p>线性回归：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109121452.png" alt=""></p>
+<p>其中b是偏正值。</p>
+<ul>
+<li>当只有一个x时，h(x)是一个直线</li>
+<li>当有两个自变量时，h(x)是一个平面。</li>
+<li>当有更多的变量，h(x)高维的超平面。</li>
+</ul>
+<p>线性回归是通过数据在N维空间找到h(x)来描述这些数据的规律性，这是一个叫拟合的过程，h(x)叫做拟合线。</p>
+<p>h(x) 的预测值会和真实值有所偏差，真实统计和h(X) 预测数据的差叫做残差。残差有正负，为了降低计算的复杂性，我们使用残差的平方进行计算。为了获得最好的h(x),我们保证个点和实际数据的残差平方和最小。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109121956.png" alt=""></p>
+<p>为了获取可以使j最小的w和b。我们的解决方法是：</p>
+<ul>
+<li>偏导法</li>
+<li>正规方程法</li>
+<li>梯度下降法</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>权重w是每个x的权重，通过w的大小可以看出每个x的权重大小，可以看出因子的重要性。</li>
+<li>有很好的 解释性</li>
+</ul>
+<p>缺点：</p>
+<p>非线性的拟合不好。</p>
+<h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>从前面的h(X)的预测值是连续的，所以这是一个回归模型。如果我们希望我们输出值的离散的 ，我们需要将h(x)进行一次函数变换，通过Sigmoid函数将连续的值映射为离散的（说的更为准确一些就是0和1），g(Y) =1的某些值属于类别1，另一些值属于类别0，这样的模型称为二分类模型。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124928.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109123956.png" alt=""></p>
+<p>有了这个sigmoid函数之后，如果有一个测试点x,那么就可以用sigmoid算出的函数值作为该点数类别1 的概率大小。</p>
+<p> 我们把Sigmoid fuction计算得到的值大于等于0.5的归为类别1，小于0.5的归为类别0。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124326.png" alt=""></p>
+<p>同时逻辑回归和自适应线性网络非常相似，两者的区别在于逻辑回归的激活函数是Sigmiod function 而自适应线性网络的激活函数是y =x，两者的网络结构如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124618.png" alt="自适应线性网络"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124640.png" alt=""></p>
+<p>#逻辑回归的代价函数</p>
+<p>要想解出w和b，我们就需要定义出一个目标函数，或者成为代价函数。</p>
+<h2 id="按照回归的思想"><a href="#按照回归的思想" class="headerlink" title="按照回归的思想"></a>按照回归的思想</h2><p>模仿线性回归的代价函数，利用误差平方和来当代价函数。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160718.png" alt=""></p>
+<p>上式的完整如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160751.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160950.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161247.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161542.png" alt=""></p>
+<h1 id="利用梯度下降求参数"><a href="#利用梯度下降求参数" class="headerlink" title="利用梯度下降求参数"></a>利用梯度下降求参数</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161856.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161827.png" alt=""></p>
+<h1 id="加入正则项"><a href="#加入正则项" class="headerlink" title="加入正则项"></a>加入正则项</h1><p> 对于<strong>线性回归模型</strong>，使用<strong>L1正则化</strong>的模型建叫做<strong>Lasso回归</strong>，使用L2正则化的模型叫做<strong>Ridge回归（岭回归）</strong>。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109163823.png" alt=""></p>
+<p>加入正则化，是为了解决过拟合的问题。</p>
+<p>下图是Python中Lasso回归的损失函数，式中加号后面一项<img src="https://img-blog.csdnimg.cn/20181213113937853.png" alt="img">即为<strong>L1正则化项</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164058.png" alt=""></p>
+<p> 下图是Python中<strong>Ridge回归</strong>的损失函数，式中加号后面一项<img src="https://img-blog.csdnimg.cn/20181213113948341.png" alt="img">即为<strong>L2正则化项</strong>。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164125.png" alt=""></p>
+<p> 一般回归分析中回归w表示特征的系数，从上式可以看到<strong>正则化项</strong>是对系数<strong>做了处理（限制）</strong>。<strong>L1正则化和L2正则化的说明如下：</strong> </p>
+<ul>
+<li><p>L1正则化是指权值向量w中各个元素的绝对值之和，通常表示为<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109164402.png" alt=""></p>
+</li>
+<li><p>L2正则化是值权值向量w中各个元素的平方和然后再求平方根， （可以看到Ridge回归的L2正则化项有平方符号），通常表示为<img src="https://img-blog.csdnimg.cn/20181213114018242.png" alt="img"> </p>
+</li>
+</ul>
+<p>一般都会在正则化项之前添加一个系数，Python中用α表示，一些文章也用λ表示。这个系数需要用户指定。</p>
+<p>那添加L1和L2正则化有什么用？下面是L1正则化和L2正则化的作用，这些表述可以在很多文章中找到。</p>
+<ul>
+<li><p>L1正则化可以产生稀疏权值矩阵，即产生一个稀疏模型，可以用于特征选择</p>
+</li>
+<li><p>L2正则化可以防止模型过拟合（overfitting）；一定程度上，L1也可以防止过拟合</p>
+<h2 id="L1和L2正则化的直观理解"><a href="#L1和L2正则化的直观理解" class="headerlink" title="L1和L2正则化的直观理解"></a>L1和L2正则化的直观理解</h2><h3 id="L1正则化和特征选择"><a href="#L1正则化和特征选择" class="headerlink" title="L1正则化和特征选择"></a>L1正则化和特征选择</h3></li>
+</ul>
+<p>稀疏矩阵指的是很多元素为0，只有少数元素是非零值的矩阵，即得到的线性回归模型的大部分系数都是0. 通常机器学习中特征数量很多，例如文本处理时，如果将一个词组（term）作为一个特征，那么特征数量会达到上万个（bigram）。在预测或分类时，那么多特征显然难以选择，但是如果代入这些特征得到的模型是一个稀疏模型，表示只有少数特征对这个模型有贡献，绝大部分特征是没有贡献的，或者贡献微小（因为它们前面的系数是0或者是很小的值，即使去掉对模型也没有什么影响），此时我们就可以只关注系数是非零值的特征。这就是稀疏模型与特征选择的关系。</p>
+<p> 假设有如下带<strong>L1正则化</strong>的损失函数：  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109165254.png" alt=""></p>
+<p>  其中J0是原始的损失函数，加号后面的一项是L1正则化项，α是正则化系数。注意到L1正则化是权值的绝对值之和，J是带有绝对值符号的函数，因此J是不完全可微的。机器学习的任务就是要通过一些方法（比如梯度下降）求出损失函数的最小值。当我们在原始损失函数J0后添加L1正则化项时，相当于对J0做了一个约束。令L=，则J=J0+LJ，此时我们的任务变成在L约束下求出J0取最小值的解。考虑二维的情况，即只有两个权值w1和w2，此时L=|w1|+|w2|对于梯度下降法，求解J0的过程可以画出等值线，同时L1正则化的函数L也可以在w1、w2的二维平面上画出来。如下图：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109165336.png" alt=""></p>
+<p> 图中等值线是J0的等值线，黑色方形是L函数的图形。在图中，当J0等值线与L图形首次相交的地方就是最优解。上图中0J与L在L的一个顶点处相交，这个顶点就是最优解。注意到这个顶点的值是(w1,w2)=(0,w)。可以直观想象，因为L函数有很多『突出的角』（二维情况下四个，多维情况下更多），J0与这些角接触的机率会远大于与L其它部位接触的机率，而在这些角上，会有很多权值等于0，这就是为什么L1正则化可以产生稀疏模型，进而可以用于特征选择。</p>
+<p>​        而正则化前面的系数α，可以控制L图形的大小。α越小，L的图形越大（上图中的黑色方框）；α越大，L的图形就越小，可以小到黑色方框只超出原点范围一点点，这是最优点的值(w1,w2)=(0,w)中的w可以取到很小的值。</p>
+<p>综上所诉，由于w的解可能其某些方向向量为空，所以这些方向的w值为0，所以会产生一个稀疏矩阵。</p>
+<h3 id="L2正则化和过拟合"><a href="#L2正则化和过拟合" class="headerlink" title="L2正则化和过拟合"></a>L2正则化和过拟合</h3><p>假设如下带有L2正则化的损失函数：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109170713.png" alt=""></p>
+<p>同时可以画出其在二维平面上的图形：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109170801.png" alt=""></p>
+<p>二维平面下L2正则化的函数图形是个圆，与方形相比，被磨去了棱角。因此J0与L相交时使得w1或w2等于零的机率小了许多，这就是为什么L2正则化不具有稀疏性的原因。</p>
+<p>拟合过程中通常都倾向于让权值尽可能小，最后构造一个所有参数都比较小的模型。因为一般认为参数值小的模型比较简单，能适应不同的数据集，也在一定程度上避免了过拟合现象。可以设想一下对于一个线性回归方程，若参数很大，那么只要数据偏移一点点，就会对结果造成很大的影响；但如果参数足够小，数据偏移得多一点也不会对结果造成什么影响，专业一点的说法是『抗扰动能力强』。</p>
+<p>那为什么L2正则化可以获得值很小的参数？</p>
+<p>以线性回归中的梯度下降法为例。假设要求的参数为θ，hθ(x)是我们的假设函数，那么线性回归的代价函数如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171025.png" alt=""></p>
+<p>那么在梯度下降法中，最终使用迭代计算参数 θ的迭代式为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171221.png" alt=""></p>
+<p> 在添加了L2正则化迭代公式之后，迭代公式如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171526.png" alt=""></p>
+<p>从上师可以看出，λ越大，θj衰减得越快。另一个理解，λ越大，L2圆的半径越小，最后求得代价函数最值时各参数也会变得很小。 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/machine-learning-of-logistic-regression/" data-id="ck2xd9zxg0017ooole3g4fckb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/09/machine-learning-of-Cross-validation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          machine learning of Cross validation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/09/numpy's-argpartition/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">numpy&#39;s argpartition</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

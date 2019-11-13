@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>cv-week1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。  另： 举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cv-week1">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;09&#x2F;cv-week1&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文原图像的长度为n,卷积核长度为f，卷积核步长为s。 为什么卷积核是奇数*奇数 一是padding的原因，如果f是奇数，图像两边的padding是对称的。 第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。  另： 举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110144843.png">
+<meta property="og:updated_time" content="2019-11-10T07:00:00.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191110144843.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cv-week1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/09/cv-week1/" class="article-date">
+  <time datetime="2019-11-09T12:17:50.000Z" itemprop="datePublished">2019-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cv-week1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>本文原图像的长度为n,卷积核长度为f，卷积核步长为s。</strong></p>
+<h1 id="为什么卷积核是奇数-奇数"><a href="#为什么卷积核是奇数-奇数" class="headerlink" title="为什么卷积核是奇数*奇数"></a>为什么卷积核是奇数*奇数</h1><p> 一是padding的原因，如果f是奇数，图像两边的padding是对称的。</p>
+<p>第二点是奇数的卷积核 有central pixel 可以方便的确定position.  因为使用奇数尺寸的滤波器可简化索引，并更为直观，因为滤波器的中心落在整数值上。 </p>
+<p>另：</p>
+<p>举例，比如我们对4*4的图像进行2*2步长为1的卷积操作，输出图像长度为4-2+1.</p>
+<p>通用公式为n-f+1。</p>
+<p>我的理解是最后输出的结果其实卷积核的计算次数，n-f是卷积核接下来的操作次数，1是卷积核未滑动之前的次数。</p>
+<p>我们为了获得和原图像大小相同的输出图像，进行padding操作。因此padding等于（f-1）/2。</p>
+<h2 id="为什么需要padding"><a href="#为什么需要padding" class="headerlink" title="为什么需要padding"></a>为什么需要padding</h2><ul>
+<li>图像会越来越小，再多次卷积之后，图像可能变的极小</li>
+<li>图像的边界信息丢失，即图像的边界和角落的信息发挥作用比较少。</li>
+</ul>
+<p>因此为了解决上诉问题，我们在进行卷积操作之前填充这幅图像。</p>
+<p>我们假设padding的长度为p。</p>
+<p>当我们对图像进行填充之后，图像的长度变为（n+2p），那么最后输出的公式变为(n+2p-f+1)。而我们需要的是输入和输出的相同的，所以p= (f-1)/2。所以当f为奇数时，我们只需要填充相应的尺寸p即可。</p>
+<h1 id="卷积步长不同计算公式"><a href="#卷积步长不同计算公式" class="headerlink" title="卷积步长不同计算公式"></a>卷积步长不同计算公式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191110144843.png" alt=""></p>
+<p>总结：</p>
+<p>实际上，从技术的角度来说，图像的卷积操作其实互相关而不是卷积。数学上的卷积是存在一个镜像的操作，而图像的卷积则跳过了这个操作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/09/cv-week1/" data-id="ck2xd9zwo000joool18sq71to" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/12/cv-Harris-Corner/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          cv Harris Corner
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/09/machine-learning-of-Cross-validation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">machine learning of Cross validation</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Java/">basic learning of Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-Python/">basic learning of Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/basic-learning-of-cv/">basic learning of cv</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machine-learning/">machine learning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/numpy/">numpy</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/the-blue-cup-of-Java/">the blue cup of Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/11/13/cv-image-differentiation/">cv-image-differentiation</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/13/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/12/cv-Harris-Corner/">cv Harris Corner</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/cv-week1/">cv-week1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/09/machine-learning-of-Cross-validation/">machine learning of Cross validation</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
