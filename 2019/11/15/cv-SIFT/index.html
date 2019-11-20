@@ -6,39 +6,103 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>cv SIFT | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+  <meta name="description" content="scale Invariant Feature Transform 1.SIFT综述尺度不变特征变换是一种电脑视觉的算法用来检测与描述影像中的局部性特征，它可在空间尺度寻找极值点，并提取出位置、尺度、旋转不变量，此算法由David Lowe 在1999年发表。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:title" content="cv SIFT">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;15&#x2F;cv-SIFT&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+<meta property="og:description" content="scale Invariant Feature Transform 1.SIFT综述尺度不变特征变换是一种电脑视觉的算法用来检测与描述影像中的局部性特征，它可在空间尺度寻找极值点，并提取出位置、尺度、旋转不变量，此算法由David Lowe 在1999年发表。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;SIFT%E7%AE%97%E5%AD%90.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116160118.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116160147.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116155236.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116155253.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116155331.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116155351.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116155426.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116161731.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116161926.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116162814.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116163712.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191116163751767.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116163808.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116163839.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191116164416990.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116164832.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117095734.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116165012.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116165228.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117173216.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191116171123.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117095502.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117095532.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117100242.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117171003.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117100341.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117100747.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101013.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101310.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101513.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101541.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101603.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101651.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117210101.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117101603.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102232.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102232.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102343.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102358.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102637.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117102801.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103031.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103235.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103247.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103437.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103502.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103535.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103624.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103638.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103646.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103723.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103804.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103900.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103929.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117103954.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117104008.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117104036.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117104245.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117104437.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117104524.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110213.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110329.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110709.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110709.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110824.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110854.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117110709.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117111004.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117111013.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117221504.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117111919.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117111938.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117112303.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117112316.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117112403.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117112439.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115458.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115617.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115645.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115702.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115712.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115816.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117211032.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117115912.png">
+<meta property="og:updated_time" content="2019-11-19T16:12:37.233Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;SIFT%E7%AE%97%E5%AD%90.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +238,236 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-cv-SIFT" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      cv SIFT
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/15/cv-SIFT/" class="archive-article-date">
+  	<time datetime="2019-11-15T13:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+        <h1 id="scale-Invariant-Feature-Transform"><a href="#scale-Invariant-Feature-Transform" class="headerlink" title="scale Invariant Feature Transform"></a>scale Invariant Feature Transform</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/SIFT%E7%AE%97%E5%AD%90.jpeg" alt=""></p>
+<h1 id="1-SIFT综述"><a href="#1-SIFT综述" class="headerlink" title="1.SIFT综述"></a>1.SIFT综述</h1><p>尺度不变特征变换是一种电脑视觉的算法用来检测与描述影像中的局部性特征，它可在空间尺度寻找极值点，并提取出位置、尺度、旋转不变量，此算法由David Lowe 在1999年发表。</p>
 <a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
+<p>此算法有其专利，专利拥有者为英属哥伦比亚大学。</p>
+<p>局部影像特征的描述与侦测可以帮助辨识物体，SIFT 特征是基于物体上的一些局部外观的兴趣点而与影像的大小和旋转无关。对于光线、噪声、些微视角改变的容忍度也相当高。基于这些特性，它们是高度显著而且相对容易撷取，在母数庞大的特征数据库中，很容易辨识物体而且鲜有误认。使用 SIFT特征描述对于部分物体遮蔽的侦测率也相当高，甚至只需要3个以上的SIFT物体特征就足以计算出位置与方位。在现今的电脑硬件速度下和小型的特征数据库条件下，辨识速度可接近即时运算。SIFT特征的信息量大，适合在海量数据库中快速准确匹配。</p>
+<p>SIFT算法的特点有：</p>
+<ol>
+<li>SIFT特征是图像的局部特征，其对旋转、尺度缩放、亮度变化保持不变性，对视角变化、仿射变换、噪声也保持一定程度的稳定性；</li>
+<li>独特性（Distinctiveness）好，信息量丰富，适用于在海量特征数据库中进行快速、准确的匹配；</li>
+<li>多量性，即使少数的几个物体也可以产生大量的SIFT特征向量；</li>
+<li>高速性，经优化的SIFT匹配算法甚至可以达到实时的要求；</li>
+<li>可扩展性，可以很方便的与其他形式的特征向量进行联合。</li>
+</ol>
+<h1 id="2-高斯模糊"><a href="#2-高斯模糊" class="headerlink" title="2. 高斯模糊"></a>2. 高斯模糊</h1><p> SIFT算法是在不同的尺度空间上查找关键点，而尺度空间的获取需要使用高斯模糊来实现，Lindeberg等人已证明高斯卷积核是实现尺度变换的唯一变换核，并且是唯一的线性核。本节先介绍高斯模糊算法。</p>
+<h2 id="2-1-二维高斯模糊"><a href="#2-1-二维高斯模糊" class="headerlink" title="2.1 二维高斯模糊"></a>2.1 二维高斯模糊</h2><p>高斯模糊是一种图像滤波器，利用正态模板计算模糊计算。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116160118.png" alt=""></p>
+<p> 在二维空间中，这个公式生成的曲面的等高线是从中心开始呈正态分布的同心圆，如图2.1所示。分布不为零的像素组成的卷积矩阵与原始图像做变换。每个像素的值都是周围相邻像素值的加权平均。原始像素的值有最大的高斯分布值，所以有最大的权重，相邻像素随着距离原始像素越来越远，其权重也越来越小。这样进行模糊处理比其它的均衡模糊滤波器更高地保留了边缘效果。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116160147.png" alt=""></p>
+<p> 理论上来讲，图像中每点的分布都不为零，这也就是说每个像素的计算都需要包含整幅图像。在实际应用中，在计算高斯函数的离散近似时，在大概3σ距离之外的像素都可以看作不起作用，这些像素的计算也就可以忽略。通常，图像处理程序只需要计算$(6\times\sigma +1 )\times(6\times\sigma + 1)$矩阵就可以把保证相关像素的影响。 </p>
+<h2 id="2-2-快速计算高斯卷积"><a href="#2-2-快速计算高斯卷积" class="headerlink" title="2.2 快速计算高斯卷积"></a>2.2 快速计算高斯卷积</h2><p>由于高斯模糊会在$\sigma$越大时，图像边缘缺失越严重。高斯卷积可以写成分离形式，所以我们可以先对行卷积再对列卷积。这样计算的时间复杂度可以 从O(M*M*N*N)降到O(2*M*M*N) , M和N为滤波器的窗口大小。</p>
+<p>同时分离计算可以避免二维高斯计算带来的黑边，当进行一维计算时，在图像的边界位置，高斯卷积核会退化到相应的核数。</p>
+<h1 id="3-尺度空间"><a href="#3-尺度空间" class="headerlink" title="3. 尺度空间"></a>3. 尺度空间</h1><h2 id="3-1-尺度空间理论"><a href="#3-1-尺度空间理论" class="headerlink" title="3.1 尺度空间理论"></a>3.1 尺度空间理论</h2><p> 尺度空间理论的基本思想是：在图像信息处理模型中引入一个被视为尺度的参数，通过连续变化尺度参数获得多尺度下的尺度空间表示序列，对这些序列进行尺度空间主轮廓的提取，并以该主轮廓作为一种特征向量，实现边缘、角点检测和不同分辨率上的特征提取等。 </p>
+<p> 尺度空间方法将传统的单尺度图像信息处理技术纳入尺度不断变化的动态分析框架中，更容易获取图像的本质特征。尺度空间中各尺度图像的模糊程度逐渐变大，能够<strong>模拟人在距离目标由近到远时目标在视网膜上的形成过程</strong>。</p>
+<p> 尺度空间满足视觉不变性。该不变性的视觉解释如下：当我们用眼睛观察物体时，一方面当物体所处背景的光照条件变化时，视网膜感知图像的亮度水平和对比度是不同的，因此要求尺度空间算子对图像的分析不受图像的灰度水平和对比度变化的影响，即满足<strong>灰度不变性和对比度不变性</strong>。另一方面，相对于某一固定坐标系，当观察者和物体之间的相对位置变化时，视网膜所感知的图像的位置、大小、角度和形状是不同的，因此要求尺度空间算子对图像的分析和图像的位置、大小、角度以及仿射变换无关，即<strong>满足平移不变性、尺度不变性、欧几里德不变性以及仿射不变性。</strong></p>
+<h2 id="3-2-尺度空间的表示"><a href="#3-2-尺度空间的表示" class="headerlink" title="3.2 尺度空间的表示"></a>3.2 尺度空间的表示</h2><p>一个图像的尺度空间，<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116155236.png" alt="">)定义为一个变化尺度的高斯函数<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116155253.png" alt="">)与原图像<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116155331.png" alt="">的卷积。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116155351.png" alt=""></p>
+<p>其中* 表示卷积运算,(x,y)是空间坐标，$\sigma$是尺度坐标。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116155426.png" alt=""></p>
+<p>与上述高斯模糊一样，$(6 \times\sigma +1 )\times (6 \times\sigma + 1)$σ是尺度空间因子，值越小表示图像被平滑的越少，相应的尺度也就越小。大尺度对应于图像的相貌特征，小尺度对应于图像的细节特征。</p>
+<h2 id="3-3-高斯金字塔的构建"><a href="#3-3-高斯金字塔的构建" class="headerlink" title="3.3 高斯金字塔的构建"></a>3.3 高斯金字塔的构建</h2><p>尺度空间在实现时使用高斯金字塔表示，高斯金字塔的构建分为两部分：</p>
 <ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
+<li>对图像做不同尺度的高斯模糊</li>
+<li>对图像做降采样（隔点采样）</li>
 </ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116161731.png" alt=""></p>
+<p>图像的金字塔模型是指，将原始图像不断降采样， 得到一系列大小不一的图像，由小到大，由下到上构建塔状模型。 原图像为金子塔的第一层，每次降采样所得到的新图像为金字塔的一层(每层一张图像)，每个金字塔共n层。金字塔的层数根据图像的原始大小和塔顶图像的大小共同决定，其计算公式如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116161926.png" alt="">)(3-3)</p>
+<p>其中，M，N为原图像的大小，t为塔顶图像的最小维数的对数值。</p>
+<p> 如，对于大小为512*512的图像，金字塔上各层图像的大小如表3.1所示，当塔顶图像为4*4时，n=7，当塔顶图像为2*2时，n=8。</p>
+<p>为了体现查看都连续性，高斯金字塔在简单采样的基础上加了高斯滤波。如图3.1所示，将图像金字塔每层的一张图像使用不同参数做高斯模糊，使得高斯金字塔的每层含有多张高斯模糊的图像，将金字塔每层图像合称为一组(Octave), 金字塔每层只有一组图像，组数和层数相同。<strong>另外，在降采样时，高斯金字塔上面一组图像的初始图像（底层图像）是由前一组图像的倒数第三张图像降采样得到的。</strong></p>
+<p> 注：由于组内的多张图像按层次叠放，因此组内的多张图像也称做多层，为避免与金字塔层的概念混淆，本文以下内容中，若不特别说明是金字塔层数，层一般指组内各层图像。 </p>
+<h2 id="3-4-高斯差分金字塔"><a href="#3-4-高斯差分金字塔" class="headerlink" title="3.4 高斯差分金字塔"></a>3.4 高斯差分金字塔</h2><p> 2002年Mikolajczyk在详细的实验比较中发现尺度归一化的高斯拉普拉斯函数<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116162814.png" alt="">的极大值和极小值同其它的特征提取函数，例如：梯度，Hessian或Harris角特征比较，能够产生最稳定的图像特征。 </p>
+<p> 而Lindeberg早在1994年就发现高斯差分函数（Difference of Gaussian ，简称DOG算子）与尺度归一化的高斯拉普拉斯函数 $\sigma^2 \nabla^2G$非常近似。其中$D(x, y, \sigma)$ 和$\sigma^2 \nabla^2G$的关系从如下公式推导。</p>
+<p>二维高斯函数如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116163712.png" alt=""></p>
+<p>对二维高斯函数的$\sigma$求导:</p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191116163751767.png" alt="image-20191116163751767"></p>
+<p>因此：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116163808.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116163839.png" alt=""></p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191116164416990.png" alt="image-20191116164416990"></p>
+<p>这表明DOG算子可以近似LOG算子。</p>
+<p> 其中k-1是个常数，并不影响极值点位置的求取。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116164832.png" alt=""></p>
+<p>如图3.2所示，DOG算子完全可以代替LOG算子，进行极值检测。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117095734.png" alt="">（3-4） </p>
+<p>在实际计算中，使用高斯金字塔每组中相邻上下图像相减。得到的就是高斯差分图像。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116165012.png" alt=""></p>
+<h2 id="3-5-空间极值点的检测"><a href="#3-5-空间极值点的检测" class="headerlink" title="3.5 空间极值点的检测"></a>3.5 空间极值点的检测</h2><p>关键点是由DOG空间的局部极值点组成的，关键点的初步探查是<strong>通过同一组内各DoG相邻两层图像之间比较完成的</strong>。为了寻找DoG函数的极值点，每一个像素点要和它所有的相邻点比较，看其是否比它的图像域和尺度域的相邻点大或者小。如图3.4所示，中间的检测点和它同尺度的8个相邻点和上下相邻尺度对应的9×2个点共26个点比较，以确保在尺度空间和二维图像空间都检测到极值点。一个点如果在DOG空间本层以及上下两层的26个邻域中都是最大值或者是最小值，就认为该点是图像在该尺度下的一个特征点。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116165228.png" alt=""></p>
+<p>高斯差分金字塔层数为S+ 2 的原因：</p>
+<ul>
+<li><p>为了满足高斯差分金字塔可以提取出S个特征点的要求。由于要在相邻尺度进行比较，如图3.3右侧每组含4层的高斯差分金子塔，只能在中间两层中进行两个尺度的极值点检测，其它尺度则只能在不同组中进行。为了在每组中检测S个尺度的极值点，则DOG金字塔每组需S+2层图像，而DOG金字塔由高斯金字塔相邻两层相减得到，则高斯金字塔每组需S+3层图像，实际计算时S在3到5之间。</p>
+</li>
+<li><p>为了满足尺度变化的连续性。假设s=3，也就是每个塔里有3层，则k=21/s=21/3，那么按照上图可得Gauss Space和DoG space 分别有3个（s个）和2个（s-1个）分量，在DoG space中，1st-octave两项分别是σ,kσ; 2nd-octave两项分别是2σ,2kσ;由于无法比较极值，我们必须在高斯空间继续添加高斯模糊项，使得形成σ,kσ,k2σ,k3σ,k4σ这样就可以选择DoG space中的中间三项kσ,k2σ,k3σ（只有左右都有才能有极值），那么下一octave中（由上一层降采样获得）所得三项即为2kσ,2$k^2$σ,2$k^3$σ，其首项2kσ=$2^{4/3}$。刚好与上一octave末项$k^3$σ=$2^{3/3}$尺度变化连续起来，所以每次要在Gaussian space添加3项，每组（塔）共S+3层图像，相应的DoG金字塔有S+2层图像。</p>
+</li>
+</ul>
+<p>  <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117173216.png" alt="s = 3情况"></p>
+<p>当然这样产生的极值点并不全都是稳定的特征点，因为某些极值点响应较弱，而且DOG算子会产生较强的边缘响应。</p>
+<h2 id="3-6-构建尺度空间需确定的参数"><a href="#3-6-构建尺度空间需确定的参数" class="headerlink" title="3.6 构建尺度空间需确定的参数"></a>3.6 构建尺度空间需确定的参数</h2><p>$\sigma$ ——尺度空间坐标</p>
+<p>$O$ —— 组(Octave)数</p>
+<p>$S$ —— 组内初始层数，实际组内为了满足高斯差分的会再增加3层</p>
+<p>在上述尺度空间中,$O$ 和S， $\sigma$ 的关系如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191116171123.png" alt="">)(3-5)</p>
+<p> 其中$\sigma_0$是基准层尺度，O为组octave的索引，s为组内层的索引。*<em>关键点的尺度坐标$\sigma$就是按关键点所在的组和组内的层，利用公式(3-5)计算而来。 *</em></p>
+<p> 在最开始建立高斯金字塔时，要预先模糊输入图像来作为第0个组的第0层的图像，这时相当于丢弃了最高的空域的采样率。因此通常的做法是先将图像的尺度扩大一倍来生成第-1组。我们假定初始的输入图像为了抗击混淆现象，已经对其进行<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117095502.png" alt="">)的高斯模糊，如果输入图像的尺寸用双线性插值扩大一倍，那么相当于<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117095532.png" alt="">。</p>
+<p> 取式(3-4)中的k为组内总层数的倒数，即 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117100242.png" alt="">)(3-6)</p>
+<p>尺度空间的所有取值如下，i为octave的组数，s为每组层数 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117171003.png" alt=""></p>
+<p>我们发现，不同组之间越往上，尺度越大，直观上看，越往上越模糊，同一组内越往上越大。</p>
+<p> 在构建高斯金字塔时，组内每层的尺度坐标按如下公式计算： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117100341.png" alt="">)(3-7)</p>
+<p>其中$\sigma_0$ 是组内初始尺度，第一层lowe取$\sigma_0$=1.6，$S$=3,s为组内索引，不同组相同层的组内尺度坐标$\sigma(s)$是一样的。 组内下一层图像是由前一层图像按$\sigma(s)$进行高斯模糊所得。式(3-7)用于一次生成组内不同尺度的高斯图像，而在计算组内某一层图像的尺度时，直接使用如下公式进行计算： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117100747.png" alt="">)(3-8)</p>
+<p> 该组内尺度在方向分配和特征描述时确定采样窗口的大小。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101013.png" alt=""></p>
+<p> 图3.5为构建DOG金字塔的示意图，原图采用128*128的jobs图像，扩大一倍后构建金字塔。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101310.png" alt=""></p>
+<h1 id="4-极值点定位（尺度不变性）"><a href="#4-极值点定位（尺度不变性）" class="headerlink" title="4. 极值点定位（尺度不变性）"></a>4. 极值点定位（尺度不变性）</h1><p> 以上方法检测到的极值点是离散空间的极值点，以下通过拟合三维二次函数来精确确定关键点的位置和尺度，同时去除低对比度的关键点和不稳定的边缘响应点(因为DoG算子会产生较强的边缘响应)，以增强匹配稳定性、提高抗噪声能力。 </p>
+<h2 id="4-1-关键点的精确定位"><a href="#4-1-关键点的精确定位" class="headerlink" title="4.1 关键点的精确定位"></a>4.1 关键点的精确定位</h2><p> 离散空间的极值点并不是真正的极值点，图4.1显示了二维函数离散空间得到的极值点与连续空间极值点的差别。利用已知的离散空间点插值得到的连续空间极值点的方法叫做子像素插值（Sub-pixel Interpolation）。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101513.png" alt=""></p>
+<p> 为了提高关键点的稳定性，需要对尺度空间DoG函数进行曲线拟合。利用DoG函数在尺度空间的Taylor展开式(拟合函数)为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101541.png" alt=""></p>
+<p>其中，<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101603.png" alt=""> 。求导并让方程等于零，可以得到极值点的偏移量为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101651.png" alt=""></p>
+<p> 对应极值点，方程的值为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117210101.png" alt=""></p>
+<p> 其中, <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117101603.png" alt="">代表相对插值中心的偏移量。 当它在任一维度上的偏移量大于0.5时 </p>
+<p>（即x或y或$\sigma$），意味着插值中心已经偏移到它的邻近点上，所以必须改变当前关键点的位置。同时在新的位置上反复插值直到收敛；也有可能超出所设定的迭代次数或者超出图像边界的范围，此时这样的点应该删除，在Lowe中进行了5次迭代。另外，<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102232.png" alt="">)过小的点易受噪声的干扰而变得不稳定，所以将<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102232.png" alt="">小于某个经验值(Lowe论文中使用0.03，Rob Hess等人实现时使用0.04/S)的极值点删除。同时，在此过程中获取特征点的精确位置(原位置加上拟合的偏移量)以及尺度($\sigma(o. s) 和 \sigma_oct(s)$)。</p>
+<h2 id="4-2-消除边缘响应"><a href="#4-2-消除边缘响应" class="headerlink" title="4.2 消除边缘响应"></a>4.2 消除边缘响应</h2><p><strong>这一步本质上要去掉DOG局部曲率非常不对称的像素。</strong></p>
+<p> 一个定义不好的高斯差分算子的极值在横跨边缘的地方有较大的主曲率，而在垂直边缘的方向有较小的主曲率。 </p>
+<p> DOG算子会产生较强的边缘响应，需要剔除不稳定的边缘响应点。获取特征点处的Hessian矩阵，主曲率通过一个2x2 的Hessian矩阵H求出： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102343.png" alt=""></p>
+<p> H的特征值α和β代表x和y方向的梯度， </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102358.png" alt=""></p>
+<p> 表示矩阵H对角线元素之和，表示矩阵H的行列式。假设是α较大的特征值，而是β较小的特征值，令$\alpha = r\beta$，则 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102637.png" alt=""></p>
+<p>导数由采样点相邻差估计得到,在下一节中说明。</p>
+<p>D的主曲率和H的特征值成正比，令为α最大特征值，β为最小的特征值，则公式的值在两个特征值相等时最小，随着的增大而增大。值越大，说明两个特征值的比值越大，即在某一个方向的梯度值越大，而在另一个方向的梯度值越小，而边缘恰恰就是这种情况。所以为了剔除边缘响应点，需要让该比值小于一定的阈值，因此，为了检测<strong>主曲率是否在某域值r下</strong>，只需检测</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117102801.png" alt="">)(4-7)</p>
+<p>(4-7)式成立的时候将关键点保留。</p>
+<p>在Lowe的文章中，取r＝10。图4.2右侧为消除边缘响应后的关键点分布图。</p>
+<p> <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103031.png" alt=""></p>
+<h2 id="4-3-有限差分求导"><a href="#4-3-有限差分求导" class="headerlink" title="4.3 有限差分求导"></a>4.3 有限差分求导</h2><p>有限差分法以变量离散取值后对应的函数值来近似微分方程中独立变量的连续取值。在有限差分方法中，我们放弃了微分方程中独立变量可以取连续值的特征，而关注独立变量离散取值后对应的函数值。但是从原则上说，这种方法仍然可以达到任意满意的计算精度。因为方程的连续数值解可以通过减小独立变量离散取值的间格，或者通过离散点上的函数值插值计算来近似得到。这种方法是随着计算机的诞生和应用而发展起来的。其计算格式和程序的设计都比较直观和简单，因而，它在计算数学中使用广泛。</p>
+<p>有限差分法的具体操作分为两个部分：</p>
+<ol>
+<li><p>用差分代替微分方程中的微分，将连续变化的变量离散化，从而得到差分方程组的数学形式；</p>
+</li>
+<li><p>求解差分方程组。</p>
+<p>一个函数在x点上的一阶和二阶微商，可以近似地用它所临近的两点上的函数值的差分来表示。如对一个单变量函数f(x)，x为定义在区间[a,b]上的连续变量，以步长<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103235.png" alt="">将区间[a,b]离散化，我们会得到一系列节点， </p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103247.png" alt=""></p>
+<p> 然后求出f(x)在这些点上的近似值。显然步长h越小，近似解的精度就越好。与节点$x_i$相邻的节点有$x_i-h$和$x_i+h$，所以在节点$x_i$处可构造如下形式的差值： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103437.png" alt="">节点的一阶向前差分</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103502.png" alt="">节点的一阶向后差分</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103535.png" alt="">节点的一阶中心差分</p>
+<p> 本文使用中心差分法利用泰勒展开式求解第四节所使用的导数，现做如下推导。 </p>
+<p> 函数f(x)在$x_i$处的泰勒展开式为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103624.png" alt="">)（4-8)</p>
+<p>而</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103638.png" alt="">（4-9）</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103646.png" alt="">（4-10）</p>
+<p> 忽略h平方之后的项，联立式(4-9)，(4-10)解方程组得： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103723.png" alt="">)(4-11)</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103804.png" alt="">)(4-12)</p>
+<p>二元函数的泰勒展开式：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103900.png" alt=""></p>
+<p>将<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103929.png" alt="">展开后 忽略次要项联立解方程得二维混合偏导如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117103954.png" alt="">)(4-13)</p>
+<p> 综上，推导了4.1,4.2遇到的所有导数计算。同理，利用多元泰勒展开式，可得任意偏导的近似差分表示。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117104008.png" alt=""></p>
+<p> 在图像处理中，取h=1，在图4.2所示的图像中，将像素0的基本中点导数公式整理如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117104036.png" alt=""></p>
+<h2 id="4-4-三阶矩阵求逆公式"><a href="#4-4-三阶矩阵求逆公式" class="headerlink" title="4.4 三阶矩阵求逆公式"></a>4.4 三阶矩阵求逆公式</h2><p>高阶矩阵的求逆算法主要有归一法和消元法两种，现将三阶矩阵求逆公式总结如下：</p>
+<p>若矩阵</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117104245.png" alt=""></p>
+<p>|A| $\neq$ 0,则可逆。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117104437.png" alt="">)(4-14)</p>
+<h1 id="5-关键点方向分配-方向不变性"><a href="#5-关键点方向分配-方向不变性" class="headerlink" title="5. 关键点方向分配(方向不变性)"></a>5. 关键点方向分配(方向不变性)</h1><p> 为了使描述符具有旋转不变性，需要利用图像的局部特征为给每一个关键点分配一个基准方向。使用图像梯度的方法求取局部结构的稳定方向。对于在DOG金字塔中检测出的关键点点，采集其所在高斯金字塔图像3σ邻域窗口内像素的梯度和方向分布特征。梯度的模值和方向如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117104524.png" alt="">)(5-1)</p>
+<p> L为关键点所在的尺度空间值，按Lowe的建议，梯度的模值m(x,y)按$\sigma = 1.5\sigma_oct$的高斯分布加成，按尺度采样的3σ原则，邻域窗口半径为$3 * 1.5\sigma_oct$。</p>
+<p> 在完成关键点的梯度计算后，使用直方图统计邻域内像素的梯度和方向。梯度直方图将0~360度的方向范围分为36个柱(bins)，其中每柱10度。如图5.1所示，直方图的峰值方向代表了关键点的主方向，(为简化，图中只画了八个方向的直方图)。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110213.png" alt=""></p>
+<p>方向直方图的峰值则代表了该特征点处邻域梯度的方向，以直方图中最大值作为该关键点的主方向。为了增强匹配的鲁棒性，只保留峰值大于主方向峰值80％的方向作为该关键点的辅方向。因此，对于同一梯度值的多个峰值的关键点位置，在相同位置和尺度将会有多个关键点被创建但方向不同。仅有15％的关键点被赋予多个方向，但可以明显的提高关键点匹配的稳定性。实际编程实现中，就是把该关键点复制成多份关键点，并将方向值分别赋给这些复制后的关键点，并且，离散的梯度方向直方图要进行插值拟合处理，来求得更精确的方向角度值，检测结果如图5.2所示。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110329.png" alt=""></p>
+<p> 至此，将检测出的含有位置、尺度和方向的关键点即是该图像的SIFT特征点。</p>
+<h1 id="6-关键点的特征描述-（SIFT描述子）"><a href="#6-关键点的特征描述-（SIFT描述子）" class="headerlink" title="6. 关键点的特征描述 （SIFT描述子）"></a>6. 关键点的特征描述 （SIFT描述子）</h1><p>通过以上步骤，对于每一个关键点，拥有三个信息：位置、尺度以及方向。接下来就是为每个关键点建立一个描述符，用一组向量将这个关键点描述出来，使其不随各种变化而改变，比如光照变化、视角变化等等。这个描述子不但包括关键点，也包含关键点周围对其有贡献的像素点，并且描述子应该有较高的独特性，以便于提高特征点正确匹配的概率。 </p>
+<p>SIFT描述子是关键点邻域高斯图像梯度统计结果的一种表示。通过对关键点周围图像区域分块，计算块内梯度直方图，生成具有独特性的向量，这个向量是该区域图像信息的一种抽象，具有唯一性。</p>
+<p>Lowe建议描述子使用在关键点尺度空间内4*4的窗口中计算的8个方向的梯度信息，共4*4*8=128维向量表。表示步骤如下：</p>
+<ol>
+<li>确定计算描述子所需的图像区域</li>
+</ol>
+<p>特征描述子与特征点所在的尺度有关，因此，对梯度的求取应在特征点对应的高斯图像上进行。将关键点附近的邻域划分为d*d(Lowe建议d=4)个子区域，每个子区域做为一个种子点，每个种子点有8个方向。每个子区域的大小与关键点方向分配时相同，即每个区域有个<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110709.png" alt="">)子像素，为每个子区域分配边长<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110709.png" alt="">的矩形区域进行采样(个子像素实际用边长为 <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110824.png" alt=""> 的矩形区域即可包含，但由式(3-8)，<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110854.png" alt="">不大， 为了简化计算取其边长为 <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117110709.png" alt="">并且采样点宜多不宜少）。 考虑到实际计算时，需要采用双线性插值，所需图像窗口边长为<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117111004.png" alt="">)。在考虑到旋转因素(方便下一步将坐标轴旋转到关键点的方向)，如下图6.1所示，实际计算所需的图像区域半径为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117111013.png" alt="">（6-1）</p>
+<p>计算结果四舍五入取整。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117221504.png" alt=""> </p>
+<ol start="2">
+<li>将坐标轴旋转为关键点的方向，以确保旋转不变性，如6.2所示。  </li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117111919.png" alt=""></p>
+<p> 旋转后邻域内采样点的新坐标为： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117111938.png" alt="">)(6-2)</p>
+<ol start="3">
+<li>将邻域内的采样点分配到对应的子区域内，将子区域内的梯度值分配到8个方向上，计算其权值。</li>
+</ol>
+<p>旋转后的采样点坐标在半径为radius的圆内被分配到d*d的子区域，计算影响子区域的采样点的梯度和方向，分配到8个方向上。</p>
+<p>旋转后的采样点<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117112303.png" alt="">落在子区域的下标为</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117112316.png" alt="">)(6-3)</p>
+<p> Lowe建议子区域的像素的梯度大小按$\sigma = 0.5 d$的高斯加权计算，即 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117112403.png" alt="">)(6-4)</p>
+<p> 其中a，b为关键点在高斯金字塔图像中的位置坐标。 </p>
+<p>4.插值计算每个种子点八个方向的梯度。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117112439.png" alt=""></p>
+<p>如图6.3所示，将由式(6-3)所得采样点在子区域中的下标<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115458.png" alt="">)(图中蓝色窗口内红色点)线性插值，计算其对每个种子点的贡献。如图中的红色点，落在第0行和第1行之间，对这两行都有贡献。对第0行第3列种子点的贡献因子为dr，对第1行第3列的贡献因子为1-dr，同理，对邻近两列的贡献因子为dc和1-dc，对邻近两个方向的贡献因子为do和1-do。则最终累加在每个方向上的梯度大小为：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115617.png" alt=""></p>
+<p> 其中k，m，n为0或为1。 </p>
+<p>5.如上统计的4*4*8=128个梯度信息即为该关键点的特征向量。特征向量形成后，为了除光照变化的影响，需要对它们进行归一化处理，对于图像灰度值整体漂移，图像各点的梯度是邻域像素相减得到，所以也能去除。得到的描述子向量为<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115645.png" alt="">)，归一化后的特征向量为<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115702.png" alt="">,则 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115712.png" alt="">)(6-7)</p>
+<p>6.描述子向量门限。非线性光照，相机饱和度变化对造成某些方向的梯度值过大，而对方向的影响微弱。因此设置门限值(向量归一化后，一般取0.2)截断较大的梯度值。然后，再进行一次归一化处理，提高特征的鉴别性。</p>
+<ol start="7">
+<li>按特征点的尺度对特征描述向量进行排序。</li>
+</ol>
+<p>至此，SIFT特征描述向量生成。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115816.png" alt=""></p>
+<p>关键点描述子的生成步骤</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117211032.png" alt=""></p>
+<h1 id="7-SIFT的缺点"><a href="#7-SIFT的缺点" class="headerlink" title="7. SIFT的缺点"></a>7. SIFT的缺点</h1><p>7、SIFT的缺点<br>SIFT在图像的不变特征提取方面拥有无与伦比的优势，但并不完美，仍然存在：</p>
+<ol>
+<li><p>实时性不高。</p>
+</li>
+<li><p>有时特征点较少。</p>
+</li>
+<li><p>对边缘光滑的目标无法准确提取特征点。</p>
+</li>
+</ol>
+<p>等缺点，如下图7.1所示，对模糊的图像和边缘平滑的图像，检测出的特征点过少，对圆更是无能为力。近来不断有人改进，其中最著名的有SURF和CSIFT。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117115912.png" alt=""></p>
 
       
 
@@ -279,17 +498,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +547,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/15/cv-SIFT/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +561,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/16/machine-learning-decision-making-tree/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ReID what is it
+          machine learning decision-making tree
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">machine learning of k-Nearest Neighbor</div>
       <i class="icon-circle-right"></i>
     </a>
   

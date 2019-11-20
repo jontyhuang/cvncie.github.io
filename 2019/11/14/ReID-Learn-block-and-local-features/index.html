@@ -6,39 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>ReID Learn block and local features | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+  <meta name="description" content="1. 局部特征学习方法 早期的ReID研究，人们更多的方向的是全局特征，就像上一篇说的baseline一样，将整个图像作为网络的输入，通过学习网络的特征提取得到特征图谱。但是ReID任务的数据集是多样性的，有时候并不能得到完好的全身图像，而全局特征也忽略了图像本身的一些细粒度信息，所以，基于局部特征的ReID也是行人重识别研究的一个重要方向之一。   基于局部特征学习方法的ReID目前主要有两种做">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:title" content="ReID Learn block and local features">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;14&#x2F;ReID-Learn-block-and-local-features&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+<meta property="og:description" content="1. 局部特征学习方法 早期的ReID研究，人们更多的方向的是全局特征，就像上一篇说的baseline一样，将整个图像作为网络的输入，通过学习网络的特征提取得到特征图谱。但是ReID任务的数据集是多样性的，有时候并不能得到完好的全身图像，而全局特征也忽略了图像本身的一些细粒度信息，所以，基于局部特征的ReID也是行人重识别研究的一个重要方向之一。   基于局部特征学习方法的ReID目前主要有两种做">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155821.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155955.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114160539.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114160944.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114161045.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114161155.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic1.zhimg.com&#x2F;80&#x2F;v2-c7197b0a6665a624d3dece0bb10b8c54_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic3.zhimg.com&#x2F;80&#x2F;v2-217f4b7b2f5c9e86561eb27743e3c7be_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic2.zhimg.com&#x2F;80&#x2F;v2-2547fbadada1df2c32b749200d49e289_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic1.zhimg.com&#x2F;80&#x2F;v2-6c779df9af9e424ca5e3ae1f6f1017a0_hd.jpg">
+<meta property="og:updated_time" content="2019-11-14T08:17:28.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155821.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +163,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ReID-Learn-block-and-local-features" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      ReID Learn block and local features
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/" class="archive-article-date">
+  	<time datetime="2019-11-14T07:55:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+        <h1 id="1-局部特征学习方法"><a href="#1-局部特征学习方法" class="headerlink" title="1. 局部特征学习方法"></a>1. 局部特征学习方法</h1><p> 早期的ReID研究，人们更多的方向的是全局特征，就像上一篇说的baseline一样，将整个图像作为网络的输入，通过学习网络的特征提取得到特征图谱。但是ReID任务的数据集是多样性的，有时候并不能得到完好的全身图像，而全局特征也忽略了图像本身的一些细粒度信息，所以，基于局部特征的ReID也是行人重识别研究的一个重要方向之一。 </p>
+<p> 基于局部特征学习方法的ReID目前主要有两种做法，一种是利用人体的关键点定位，通过区域联结获取行人的姿态特征。Spindle Net是这种做法的一个代表网络，如图所示。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155821.png" alt=""></p>
 <a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
-<ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
-</ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+<p>图中，蓝色部分为已经预训练好的RPN网络，用于获得人体的14个关键点，同时由14个关键点得到7个ROI块，完整的图像通过CNN网络提取特征，同时7个ROI块也通过相同的网络来提取特征，CNN网络之间参数共享。最终得到的8个特征以不同的尺度结合在一起，以这种融合特征的方式去做ReID的任务。</p>
+<p>另一种主要的做法是区域分块，一般通过水平分块切分一个图像，每个part部分分别提取特征，最终也是联结到一起，去训练网络使得损失loss降低，模型的网络参数不断更新。区域分块的方式可以关注行人图片上的细节特征，相比于做关键点定位的姿态估计网络，有些图像数据并没有清晰的人像，因此很难做到关键点的定位，即使是定位了也可能不准确，导致模型的识别产生较大的误差。</p>
+<h1 id="2-网络"><a href="#2-网络" class="headerlink" title="2. 网络"></a>2. 网络</h1><p> 基于卷积基线网络的分块(Part-based Convolutional Baseline，PCB) 网络来自于2018年ECCV的一篇论文：<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1711.09349.pdf">原文链接</a>。该模型属于上面介绍的均匀切块方法，论文中将整个图像水平切成6块，6个部分被别用不同的loss来训练网络。PCB网络的结构如下图所示。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155955.png" alt=""></p>
+<p> PCB网络的backbone 网络的选择有很多，在后面的实验中，backbone 网络采用上一篇构建的baseline网络。 由上图可以看到，经过骨干网络提取的特征后，原来的均值池化层和全连接层被移除，将特征图水平分成6个部分，再分别对每个部分做全均值池化，此时每个部分的维度为2048，再经过一个1*1的卷积核降维得到的特征块维度为256。最后，对6个softmax分类器进行了训练，分类的数量取决于训练集ID个数。测试时的向量为降维前的2048维向量串接降维后的256维向量。该网络使用交叉熵代价函数作为损失函数，而去掉最后一次的全均值池化，是为了增加细粒度的特征。 </p>
+<h1 id="3-计算结果分析-（完整代码见作者GitHub）"><a href="#3-计算结果分析-（完整代码见作者GitHub）" class="headerlink" title="3. 计算结果分析(（完整代码见作者GitHub）)"></a>3. 计算结果分析(（完整代码见作者<a href="https://link.zhihu.com/?target=https%3A//github.com/lixiangwang/Person-ReID">GitHub</a>）)</h1><p> 实验的环境和前面一样，基于PyTorch框架，数据加载同样使用ImageFolder和 torch.utils.data.DataLoader接口，每个batch包装前的数据是打乱的，使用8个CPU线程来加载。预处理的方式按照论文给出的方式，如下： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">transform_train_list = [</span><br><span class="line">        transforms.Resize((<span class="number">384</span>,<span class="number">192</span>), interpolation=<span class="number">3</span>),</span><br><span class="line">        transforms.RandomHorizontalFlip(),</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize([<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])</span><br><span class="line">        ]</span><br><span class="line">    transform_val_list = [</span><br><span class="line">        transforms.Resize(size=(<span class="number">384</span>,<span class="number">192</span>),interpolation=<span class="number">3</span>), <span class="comment">#Image.BICUBIC</span></span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize([<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>所有的图像被resize为384*192大小，train set采用随机水平翻转的方式增强数据，将格式转换为tensor之后，对所有图像数据做正则化。</p>
+<p>我们基于前面的baseline，按照论文思路做出PCB分块：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PCB</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, class_num )</span>:</span></span><br><span class="line">        super(PCB, self).__init__()</span><br><span class="line"></span><br><span class="line">        self.part = <span class="number">6</span> </span><br><span class="line">        model_ft = models.resnet50(pretrained=<span class="literal">True</span>)</span><br><span class="line">        self.model = model_ft</span><br><span class="line">        self.avgpool = nn.AdaptiveAvgPool2d((self.part,<span class="number">1</span>))</span><br><span class="line">        self.dropout = nn.Dropout(p=<span class="number">0.5</span>)</span><br><span class="line">        self.model.layer4[<span class="number">0</span>].downsample[<span class="number">0</span>].stride = (<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">        self.model.layer4[<span class="number">0</span>].conv2.stride = (<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.part):</span><br><span class="line">            name = <span class="string">'classifier'</span>+str(i)</span><br><span class="line">            setattr(self, name, ClassBlock(<span class="number">2048</span>, class_num, droprate=<span class="number">0.5</span>, relu=<span class="literal">False</span>, bnorm=<span class="literal">True</span>, num_bottleneck=<span class="number">256</span>))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.model.conv1(x)</span><br><span class="line">        x = self.model.bn1(x)</span><br><span class="line">        x = self.model.relu(x)</span><br><span class="line">        x = self.model.maxpool(x)</span><br><span class="line"></span><br><span class="line">        x = self.model.layer1(x)</span><br><span class="line">        x = self.model.layer2(x)</span><br><span class="line">        x = self.model.layer3(x)</span><br><span class="line">        x = self.model.layer4(x)</span><br><span class="line">        x = self.avgpool(x)</span><br><span class="line">        x = self.dropout(x)</span><br><span class="line">        part = &#123;&#125;</span><br><span class="line">        predict = &#123;&#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.part):</span><br><span class="line">            part[i] = torch.squeeze(x[:,:,i])</span><br><span class="line">            name = <span class="string">'classifier'</span>+str(i)</span><br><span class="line">            c = getattr(self,name)</span><br><span class="line">            predict[i] = c(part[i])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        y = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.part):</span><br><span class="line">            y.append(predict[i])</span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PCB_test</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,model)</span>:</span></span><br><span class="line">        super(PCB_test,self).__init__()</span><br><span class="line">        self.part = <span class="number">6</span></span><br><span class="line">        self.model = model.model</span><br><span class="line">        self.avgpool = nn.AdaptiveAvgPool2d((self.part,<span class="number">1</span>))</span><br><span class="line">        <span class="comment"># remove the final downsample</span></span><br><span class="line">        self.model.layer4[<span class="number">0</span>].downsample[<span class="number">0</span>].stride = (<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">        self.model.layer4[<span class="number">0</span>].conv2.stride = (<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.model.conv1(x)</span><br><span class="line">        x = self.model.bn1(x)</span><br><span class="line">        x = self.model.relu(x)</span><br><span class="line">        x = self.model.maxpool(x)</span><br><span class="line"></span><br><span class="line">        x = self.model.layer1(x)</span><br><span class="line">        x = self.model.layer2(x)</span><br><span class="line">        x = self.model.layer3(x)</span><br><span class="line">        x = self.model.layer4(x)</span><br><span class="line">        x = self.avgpool(x)</span><br><span class="line">        y = x.view(x.size(<span class="number">0</span>),x.size(<span class="number">1</span>),x.size(<span class="number">2</span>))</span><br><span class="line">        <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 在运行一个epoch的时间上比较如下表（基于Market-1501） </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114160539.png" alt=""></p>
+<p> 可以看出，PCB方法的训练时间远比基线网络的要长，这是由于局部特征的分块计算。每一个part损失函数都不一样，计算量更大，同时，加入了几个策略，REA为数据扩展方法，增加了数据，而dropout等策略则增加了计算量，因而耗费了更多的训练时间。 </p>
+<p> 对模型参数的实验是ReID任务的重要步骤，原论文中并没有给出所有的参数设置，所以需要我们的实验和调整。由于GPU显存为8G，所以我们的batchsize规定为32，对于epochs,我们做了多组实验，以top1和mAP作为主要指标，结果如图。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114160944.png" alt=""></p>
+<p> 对于分块参数P的讨论，实验结果如下(基于Market-1501)。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114161045.png" alt=""></p>
+<p> 对于指标mAP和Rank-1，分别做了两组实验，一个是基于基本骨干网络的PCB，即没有加入第三章的策略，一个是加入了第三章的训练策略。由于Re-ranking可以较大幅度的提高mAP，而我们更关注的是训练算法和模型本身，所以计算结果并没有做重排序。 </p>
+<p> 从图可以看出，我们的tricks对模型的性能是有着较大提升的，同时，分块参数P=6时，模型的性能最佳。也就是说，原始的行人照片被分成六等份。从直观上的理解来看，6等份恰好可以适当的表示行人的6部分特征，而再细分的话，可能在语义上就重复了，比如一个人的小腿都被划成了几小块，实际上，小腿作为一个特征去训练似乎是最合理的。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114161155.png" alt=""></p>
+<p> 上图为在Market-1501数据集上，训练过程的可视化，我们训练了80个epochs的数据，初始学习率为0.05，在第30个epochs时的学习率降为0.005，可以看到，loss有个突降，当学习率被调小时，相当于梯度下降的步长变得更小，寻找最优解变得更仔细，说明模型进入了更为细致的学习。在第60个epochs时候降为0.0005，可以看出,loss已经基本不变了，说明了模型的学习到了极限。观察train loss和val loss,<strong>整个过程中，无论tran loss是下降还是不变，val loss都没有上升，说明了模型没有发生过拟合，我们的tricks是有效的。</strong> </p>
+<p> 模型在三个数据集上的评测结果如下： </p>
+<p> <img src="https://pic1.zhimg.com/80/v2-c7197b0a6665a624d3dece0bb10b8c54_hd.jpg" alt="img"> </p>
+<p>从上表可以看出，基于局部特征的PCB方法相对于基线网络的全局特征学习，具有更好的搜索效果，局部特征更关注图像的细节，而在PCB方法中，我们在测试的时候结合了降维前的特征分块和降维后的特征分块，而不是仅仅用降维后的特征分块训练，也保证了特征图谱中细粒度的特征不会被丢失。从表中还可以看出，我们的tricks对model性能的改进也很有帮助。</p>
+<p>下面给出基于我们的baseline的PCB模型在三个数据集（Market-1501、DukeMTMC-reID和CUHK-03）上搜索目标行人的一个demo。</p>
+<p> <img src="https://pic3.zhimg.com/80/v2-217f4b7b2f5c9e86561eb27743e3c7be_hd.jpg" alt="img"> </p>
+<p> <img src="https://pic2.zhimg.com/80/v2-2547fbadada1df2c32b749200d49e289_hd.jpg" alt="img"> </p>
+<p> <img src="https://pic1.zhimg.com/80/v2-6c779df9af9e424ca5e3ae1f6f1017a0_hd.jpg" alt="img"> </p>
 
       
 
@@ -279,17 +252,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +301,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/14/ReID-Learn-block-and-local-features/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +315,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ReID what is it
+          ReID Fine-grained multi-feature fusion
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ReID  construct baseline</div>
       <i class="icon-circle-right"></i>
     </a>
   

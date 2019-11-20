@@ -6,39 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>ReID Fine-grained multi-feature fusion | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+  <meta name="description" content="前面，我们基于一个优化的ResNet-50网络作为一个 baseline，学习的是图像数据的全局特征。然后我们基于baseline网络，使用了PCB分块方法，学习的是图像数据的局部特征。这里，将使用一个更复杂的模型来学习全局和局部特征，并训练一个细粒度多特征融合网络。  单一全局特征与局部特征学习存在的问题 下图是一幅行人图像学习全局特征和局部特征的特征响应图，左边部分是全局特征，右边部分是局部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:title" content="ReID Fine-grained multi-feature fusion">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;14&#x2F;ReID-Fine-grained-multi-feature-fusion&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+<meta property="og:description" content="前面，我们基于一个优化的ResNet-50网络作为一个 baseline，学习的是图像数据的全局特征。然后我们基于baseline网络，使用了PCB分块方法，学习的是图像数据的局部特征。这里，将使用一个更复杂的模型来学习全局和局部特征，并训练一个细粒度多特征融合网络。  单一全局特征与局部特征学习存在的问题 下图是一幅行人图像学习全局特征和局部特征的特征响应图，左边部分是全局特征，右边部分是局部">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114162116.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114162305.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114162605.png">
+<meta property="og:updated_time" content="2019-11-14T08:27:28.835Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114162116.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +156,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ReID-Fine-grained-multi-feature-fusion" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      ReID Fine-grained multi-feature fusion
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/" class="archive-article-date">
+  	<time datetime="2019-11-14T08:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+        <p> 前面，我们基于一个优化的ResNet-50网络作为一个 baseline，学习的是图像数据的全局特征。然后我们基于baseline网络，使用了PCB分块方法，学习的是图像数据的局部特征。这里，将使用一个更复杂的模型来学习全局和局部特征，并训练一个细粒度多特征融合网络。 </p>
+<h1 id="单一全局特征与局部特征学习存在的问题"><a href="#单一全局特征与局部特征学习存在的问题" class="headerlink" title="单一全局特征与局部特征学习存在的问题"></a>单一全局特征与局部特征学习存在的问题</h1><p> 下图是一幅行人图像学习全局特征和局部特征的特征响应图，左边部分是全局特征，右边部分是局部特征。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114162116.png" alt=""></p>
 <a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
-<ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
-</ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+<p>全局特征的目的是学习到最显著的外观表现，但是，一些细节性的特征在全局特征学习时是被忽略的，比如人身上或者衣服上有个标志，当是这并不是所有的样本都有的，从上图的左边可以看到，全局特征会做特征均匀化，从而忽略掉一些细粒度的特征表现。</p>
+<p>局部特征可以关注更多的细节，但是无论是做关键点定位后的姿态估计还是图像的水平分块，都有很多先验知识在里面，在很多的场景中，我们获得的图像数据并没有那么完整（比如大面积被障碍物遮挡，姿态的大幅度变化，行人在图像中的不同占比，以及分块特征没有对齐校准等等）。所以，局部特征的学习鲁棒性还是不够高，在做数据集的迁移时，模型往往适应性比较差。</p>
+<p>所以，单一做全局特征或者局部特征的学习产生的效果还是不理想的。</p>
+<h1 id="2-细粒度多特征融合网络"><a href="#2-细粒度多特征融合网络" class="headerlink" title="2. 细粒度多特征融合网络"></a>2. 细粒度多特征融合网络</h1><h2 id="2-1-设计思路和原理"><a href="#2-1-设计思路和原理" class="headerlink" title="2.1 设计思路和原理"></a>2.1 设计思路和原理</h2><p> 既然单一的学习全局特征和局部特征都存在着问题，一个简单的思路是将其组合起来 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114162305.png" alt=""></p>
+<p> 上图为一种组合特征的划分方法。最左边为整张图像，我们学习的是局部特征，因此也是最粗的一级粒度特征。中间为每幅图像水平划分为2份，最右边为每幅图像水平划分为三份。中间和最右边的粒度等级依次为二级和三级。这三级的粒度特征可以作为我们网络学习的三个支路，最终可以整合为一个融合的特征。 </p>
+<h2 id="2-2-网络结构分析"><a href="#2-2-网络结构分析" class="headerlink" title="2.2 网络结构分析"></a>2.2 网络结构分析</h2><p> 多粒度的网络模型（Multiple Granularities Network,MGN）是云从科技2018年提出来的网络架构，它属于结合了两种特征，具有细粒度多特征融合特性的模型，并且在主流数据集上取得了最领先的成果。下图是它的网络结构，首先，它的backbone网络也是ResNet-50，只不过只取了前3组卷积层做初步的特征提取。初步提取之后，三个分支正如上节中提到的三级粒度，最上面的一个分支提取的是全局特征，也就是学习的第一级粒度，中间和最下面的两个分支提取的是局部特征，分别学习第二级和第三级的粒度特征。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114162605.png" alt=""></p>
+<p> 在初步的特征提取中，网络的参数是共有的，在后续三个分支的特征提取中，参数是独立的，这一思路也符合人为的观察效果。图中，ResNet-50有三层，分别对应后面的三个分支。在三个分支中可以看到，都有左右两个小方块，这一步实际上就是我们第三章中的特征图扩展，本来ResNet第四层卷积后会有个降采样，也就是stride=2,所以特征图谱尺寸要缩小一倍，也就是最上面那个分支，右边的小方块比左边的小方块小一倍的原因。而在第二个和第三个分支，我们将stride=1,也就是特征图扩张一倍，相当于没有了降采样的步骤，所以它左右方块大小是一样的。在第二个支路中，特征图之后又有两个支路，一个是没有做分割的特征，也就是全局特征（区别于第一支路的一点是这个全局特征已经做了特征图扩张了），另一个是水平分割成两部分，此为第二级粒度，之后，我们做一个最大值池化，得到的特征维度是2048，然后做降维，成256维，方便计算。第三个分支和第二个分支类似，也是独立出一个全局特征块，然后分成三个部分，做了池化和1*1卷积核的降维操作后得到不同的特征分块。 </p>
+<p> 在loss的设计上，使用的是常见的loss：softmax loss和triplet loss。但是各分支对应的loss不同，属于triplet loss的特征图有：第一个分支中，做池化和降维后的256维特征图；第二个和第三个分支中，做了特征图扩张的全局特征，再池化和降维之后的256维特征图。属于triplet loss的特征图块有3个。属于softmax loss的特征图有：第一第二第三分支中的全局特征，在池化之后，降维之前的特征图块，以及第二第三分支各分块特征图的最终图块。属于softmax loss的特征图块有8个。关于分块特征图不给triplet loss训练也是有原因的，因为理想状态下，比如人分成两块，是上半身一块，下半身一块，但是往往分割的上半部分是人的整个图像，而下半部分是其他的物体，这样的分块特征图谱给三元组损失（triplet loss）训练是很容易得出奇怪结果的。 </p>
 
       
 
@@ -279,17 +221,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +270,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/14/ReID-Fine-grained-multi-feature-fusion/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +284,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ReID what is it
+          machine learning of k-Nearest Neighbor
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ReID Learn block and local features</div>
       <i class="icon-circle-right"></i>
     </a>
   

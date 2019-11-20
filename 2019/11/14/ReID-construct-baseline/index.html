@@ -6,39 +6,36 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>ReID  construct baseline | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+  <meta name="description" content="1 baseline的构建及ResNet-50的模型迁移 什么是baseline? 即所谓的基线网络，就是为个性化的模型提供基础框架和算法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:title" content="ReID  construct baseline">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;14&#x2F;ReID-construct-baseline&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+<meta property="og:description" content="1 baseline的构建及ResNet-50的模型迁移 什么是baseline? 即所谓的基线网络，就是为个性化的模型提供基础框架和算法。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114123556.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114123825.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114124019.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114124214.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114124830.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114125455.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;pic3.zhimg.com&#x2F;80&#x2F;v2-2c11aa8316fad61151288377b22f0656_hd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114125556.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114125754.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114154623.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114154757.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114154839.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155022.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155122.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155148.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155247.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155256.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114155312.png">
+<meta property="og:updated_time" content="2019-11-14T07:53:40.579Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114123556.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +171,94 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ReID-construct-baseline" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      ReID  construct baseline
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/" class="archive-article-date">
+  	<time datetime="2019-11-14T03:40:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+        <h1 id="1-baseline的构建及ResNet-50的模型迁移"><a href="#1-baseline的构建及ResNet-50的模型迁移" class="headerlink" title="1 baseline的构建及ResNet-50的模型迁移"></a>1 baseline的构建及ResNet-50的模型迁移</h1><p> 什么是baseline? 即所谓的基线网络，就是为个性化的模型提供基础框架和算法。 </p>
 <a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
-<ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
-</ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+<h2 id="1-1经典CNN的缺陷以及ResNet成因"><a href="#1-1经典CNN的缺陷以及ResNet成因" class="headerlink" title="1.1经典CNN的缺陷以及ResNet成因"></a>1.1经典CNN的缺陷以及ResNet成因</h2><p> 在深度学习中的一个重要思想是模型的深度和模型的准确率有着很大的关系，例如在CV领域中，由卷积层，池化层和全连接构成了经典CNN网络，如LeNet。CNN的网络层数越多，可以学习到更多层的特征。考虑到网络层数的增加，必然会使网络变得更复杂，训练成本也越高。此外，增加网络层数并不一定能达到好的模型效果。何凯明曾做过实验：应用在CIFAR-10的数据集上训练了两个经典CNN网络（由卷积层，池化层，全连接层构成），一个20层，一个56层，实验结果如下： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114123556.png" alt=""></p>
+<p>从结果上可以看出，56-layer的模型性能比20-layer差，且层数加深，效果却变差。并且这不是模型过拟合所导致的，因为如果过拟合导致的测试不理想，那么在训练集上的效果应该是非常好才对。</p>
+<p>造成这种结果的原因有两个：一个是<strong>随着神经网络的层数加深，很可能发生梯度消失或梯度爆炸</strong>，这两种梯度现象均会招致模型在迭代的时候出现错误的梯度引导，结果使模型的收敛存在问题；另一个是<strong>退化现象</strong>，即随着网络的层次加深，假如在之前某一层已经达到了很好的输出效果，那么后续的网络结构会削弱前面的好效果的，也就是网络的学习能力遭受了退化。</p>
+<p>考虑上述第二种原因，如果使得后续的网络不影响前面的最优结果，设计的目的也达到了，这也是ResNet设计的初衷</p>
+<h2 id="1-2-ReNet以及finutune一个初始化参数的网络"><a href="#1-2-ReNet以及finutune一个初始化参数的网络" class="headerlink" title="1.2 ReNet以及finutune一个初始化参数的网络"></a>1.2 ReNet以及finutune一个初始化参数的网络</h2><p> 微软亚研院何凯明博士借助深度残差网络，在众多CV算法比赛中成为冠军，同时其论文也获得了2016年CV顶会的最佳论文，ResNet也获得了很好的声誉，这在很大程度上导致了深度学习的革命。 </p>
+<p> ResNet的重点部件是其残差模块，如图所示。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114123825.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114124019.png" alt=""></p>
+<p> 残差网络单元其中可以分解成上面右图的形式，从图中可以看出，残差网络其实是由多种路径组合的一个网络，直白了说，残差网络其实是很多并行子网络的组合，整个残差网络其实相当于一个多人投票系统（Ensembling）。如果把残差网络理解成一个Ensambling系统，那么网络的一部分就相当于少一些投票的人，如果只是删除一个基本的残差单元，对最后的分类结果应该影响很小；而最后的分类错误率应该适合删除的残差单元的个数成正比的，论文里的结论也印证了这个猜测。 </p>
+<p> ResNet的确可以做到很深，但是从上面的介绍可以看出，网络很深的路径其实很少，大部分的网络路径其实都集中在中间的路径长度上，如下图所示： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114124214.png" alt=""></p>
+<p>我们可以看出大多数的梯度其实都集中在中间的路径上，论文里称为effective path。 从这可以看出其实ResNet只是表面上看起来很深，事实上网络却很浅。 所以ResNet真的解决了深度网络的梯度消失的问题了吗？似乎没有，ResNet其实就是一个多人投票系统。</p>
+<p>在我们的ReID任务中，我们采用50层的深度残差网络ResNet-50作为基线网络，并且在使用ResNet-50的时候需要做一个finetune迁移学习。finetune是一种重要的迁移学习方式，即通过微调，不用对模型的各个参数进行重新训练。finetune一般都是基于一个大数据集预训练下的网络，对于一个数据量不是很大的深度学习任务，finetune也可以比避免因模型复杂而数据不够造成的过拟合学习。</p>
+<p> 在我们的ReID任务中，我们的finetune的是一个ResNet-50网络，它最初是基于一个大数据集的初始训练。PyTorch的模型库中初始训练的ResNet-50的示意图如图。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114124830.png" alt=""></p>
+<p> 模型<strong>需要finetune的是特征图谱和最终全连接层的分类标签</strong>。实验中，我们基于PyTorch，在模型库里面可以加载预训练网络，如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models         <span class="comment">#torchvision库中的models包含了一些常用网络模型以及训练好的参数</span></span><br><span class="line">model_ft = models.resnet50(pretrained=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p> pretrained参数为True则继承了模型库中的模型参数和结构，若为false则只加载模型结构，也就失去了finetune的意义。 </p>
+<h1 id="2-模型的一些trciks"><a href="#2-模型的一些trciks" class="headerlink" title="2. 模型的一些trciks"></a>2. 模型的一些trciks</h1><p>tricks是个很只可言传不可意会的东西，因为很多论文包括一些顶会的论文都用到了一些tricks来提高跑分的分数却在论文中不说。</p>
+<p>这里我们说几个常用的：</p>
+<h2 id="2-1-REA"><a href="#2-1-REA" class="headerlink" title="2.1 REA"></a>2.1 REA</h2><p>数据扩展常作为一种增强训练效果的策略，它可以使有限的数据集经过算法获得更多的数据。</p>
+<p> 随即擦除增广（Random Erasing Augmentation，REA）是一种基于随机擦除的数据扩展方法。算法思路为在图像中随机选择一个区块，掩盖上噪声区块。随机擦除是一种数据扩展的方式，可以降低模型过拟合的程度，因此可以提升模型的性能。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114125455.png" alt=""></p>
+<p> 实验中采用原论文设置的参数，应用在一个batch的Market1501 数据集上的效果如图。 </p>
+<p> <img src="https://pic3.zhimg.com/80/v2-2c11aa8316fad61151288377b22f0656_hd.jpg" alt="img"> </p>
+<h2 id="2-2-动态学习率机制"><a href="#2-2-动态学习率机制" class="headerlink" title="2.2 动态学习率机制"></a>2.2 动态学习率机制</h2><p> 学习率（learning rate，lr）是深度学习的一个关键参数，它参与了优化器下降的步长，决定了网络参数更新的速度。一般而言，lr越大，更容易收敛，但下降步长过大容易错过最优解，学习率越小，下降步长越小，但网络收敛的更慢，同时也更容易陷入局部的最佳解。下图反映来不同学习率对优化器寻找损失最小值的表现。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114125556.png" alt=""></p>
+<p> 在一个ReID任务中，我们设定了动态调整学习率的机制，即随着不同epochs数据的训练，模型的学习率是不同的，具体如何调整学习率需要观测训练过程的loss。一般而言，初始的lr设为较大值，以使模型能快速收敛，且不错过局部最优，等loss不再降低的时候，适当调小学习率，梯度下降的步长更小，使得模型学习的更细致。 </p>
+<p> 罗浩大佬采用的一个warm up策略，<a href="https://link.zhihu.com/?target=http%3A//openaccess.thecvf.com/content_CVPRW_2019/papers/TRMTMCT/Luo_Bag_of_Tricks_and_a_Strong_Baseline_for_Deep_Person_CVPRW_2019_paper.pdf">论文链接（CVPR 2019）</a>。 </p>
+<p> 按作者所说：Warmup学习率并不是一个新颖的东西， 在很多task上面都被证明是有效的，在之前的工作中也有过验证。标准Baseline使用是的常见阶梯下降型学习率，初始学习率为3.5e-4，总共训,120个epoch，在第40和70个epoch进行学习率下降。用一个很大的学习率初始化网路可能使得网络震荡到一个次优空间，因为网络初期的梯度是很大的。Warmup的策略就是初期用一个逐渐递增的学习率去初始化网络，渐渐初始化到一个更优的搜索空间。下图是论文中用最简单的线性策略，即前10个epoch学习从0逐渐增加到初始学习率。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114125754.png" alt=""></p>
+<h2 id="2-3-特征图扩张"><a href="#2-3-特征图扩张" class="headerlink" title="2.3 特征图扩张"></a>2.3 特征图扩张</h2><p> 在使用ResNet-50作为backbone的时候，最后一层卷积层之后会接一个下采样，也就是最后一个卷积层的stride参数为2。在ReID中，输入图像为256*128，经过特征提取网络之后得到的特征图为8*4。考虑到更好的学习特征，一个策略就是扩大特征图的尺寸，也就是将最后一个卷积层的stride参数变为1，这样特征图尺寸就变为16*8。更大的特征图能体现到更多的特征，也就可以提升模型的学习能力。 </p>
+<h1 id="3-计算结果分析代码地址"><a href="#3-计算结果分析代码地址" class="headerlink" title="3. 计算结果分析代码地址"></a>3. 计算结果分析<a href="https://github.com/lixiangwang/Person-ReID">代码地址</a></h1><h2 id="3-1-数据载入和预处理"><a href="#3-1-数据载入和预处理" class="headerlink" title="3.1 数据载入和预处理"></a>3.1 数据载入和预处理</h2><p> 在PyTorch中，ImageFolder和DataLoader函数可以载入指定路径的数据： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">image_datasets = &#123;&#125;</span><br><span class="line"><span class="comment">#ImageFolder 数据加载器，指定路径下加载并执行组合好的transforms操作</span></span><br><span class="line">image_datasets[<span class="string">'train'</span>] = datasets.ImageFolder(os.path.join(data_dir, <span class="string">'train'</span> + train_all),</span><br><span class="line">                                          data_transforms[<span class="string">'train'</span>])</span><br><span class="line">image_datasets[<span class="string">'val'</span>] = datasets.ImageFolder(os.path.join(data_dir, <span class="string">'val'</span>),</span><br><span class="line">                                                data_transforms[<span class="string">'val'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#torch.utils.data.DataLoader：</span></span><br><span class="line"><span class="comment">#该接口主要用来将自定义的数据读取接口的输出或者PyTorch已有的数据读取接口的输入按照batch size封装成Tensor，后续只需要再包装成Variable即可作为模型的输入</span></span><br><span class="line"><span class="comment">#shuffle 是否将图片打乱 / num_workers：使用多少个子进程来导入数据 /pin_memory： 在数据返回前，是否将数据复制到CUDA内存中</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">dataloaders = &#123;x:torch.utils.data.DataLoader(image_datasets[x],batch_size=opt.batchsize, shuffle=<span class="literal">True</span>, num_workers=<span class="number">8</span>, pin_memory=<span class="literal">True</span>)<span class="keyword">for</span> x <span class="keyword">in</span> [<span class="string">'train'</span>, <span class="string">'val'</span>]&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 数据加载进来后需要预处理： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">transform_train_list = [</span><br><span class="line">        <span class="comment">#transforms.RandomResizedCrop(size=128, scale=(0.75,1.0), ratio=(0.75,1.3333), interpolation=3), #Image.BICUBIC)</span></span><br><span class="line">        transforms.Resize((<span class="number">256</span>,<span class="number">128</span>), interpolation=<span class="number">3</span>),    <span class="comment">#重置图像大小（分辨率），interpolation为插值方法</span></span><br><span class="line">        transforms.Pad(<span class="number">10</span>),                               <span class="comment">#填充</span></span><br><span class="line">        transforms.RandomCrop((<span class="number">256</span>,<span class="number">128</span>)),                 <span class="comment">#按指定尺寸随机裁剪图像（中心坐标随机）</span></span><br><span class="line">        transforms.RandomHorizontalFlip(),                <span class="comment">#以0.5概率使图像随机水平翻转  （这些都是增强数据的实际效果，泛化性等）</span></span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize([<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])      <span class="comment">#数据归一化</span></span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">transform_val_list = [</span><br><span class="line">        transforms.Resize(size=(<span class="number">256</span>,<span class="number">128</span>),interpolation=<span class="number">3</span>), <span class="comment">#Image.BICUBIC</span></span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize([<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>], [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>])</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+
+<p>Transform是torchvision中的图像处理库。由于数据集的图像大小可能不同，我们需要统一训练数据的大小，transforms.Resize函数可以重置图像大小。</p>
+<p>transforms.RandomCrop和transforms.RandomHorizontalFlip分别为随机裁剪和水平翻转，均为数据扩展的处理方法。在计算机视觉中，我们计算一副图像需要对其做标准化，即减去均值和除以标准差，在此之前需要将数据转换为tensor的格式才能计算。</p>
+<h2 id="3-2-实验分析"><a href="#3-2-实验分析" class="headerlink" title="3.2 实验分析"></a>3.2 实验分析</h2><p>深度学习的训练需要大量的时间，因次，模型的调参是每个深度学习任务的重要步骤之一。由前文的叙述可知，实验我们采用了finetune的方式加载了一个预训练好的网络，并在此基础上加入了若干组训练策略。</p>
+<p>在训练时间的比较中，我们规定batchsize为32，epoch的个数为80，均在Market-1501上的训练，实验结果如下表。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114154623.png" alt=""></p>
+<p>实验中并没有考虑学习率变化的影响，应为学习率和梯度下降的方法一样，如果模型收敛较慢，只要是还在收敛，只要epochs数量足够，它对最终的训练时间是没有影响的。从表可以看到，几个明显增强训练时间的步骤是dropout和REA，dropout增大了网络的计算量，而REA则是增加了数据，带来了更大的时间开销。</p>
+<p>关于数据预处理阶段图像统一尺寸的讨论：我们实验了几组重置后的尺寸，采用相同的算法(没有做Re-ranking)，在Market-1501上得到如下计算结果：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114154757.png" alt=""></p>
+<p>从上表中可以看到，同一算法和数据集下，图像重置后的尺寸对实的结果影响不大，我们认为图像resize后的具体大小对模型的评测是没有大的影响的，所以为了方便起见，我们所有图像的大小在预处理阶段均resize到256*128的尺寸。实验中，我们实验了三个数据集：Market-1501，DukeMTMC-reID，CUHK-03。</p>
+<p>随机选择Market-1501训练数据集中每个ID的一张图片作为val_set，其余图片作为train_set。批量大小设置为32，ResNet-50主干网络训练60个epochs，加入训练技巧后的网络训练80个epochs。 在增加训练技巧之前，训练过程中的损失曲线和top1误差曲线如下图。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114154839.png" alt=""></p>
+<p> 初始学习率为0.05，前30个epochs的lr为0.05，30-60个epochs的lr为0.005，从train loss和val loss的曲线可以看出，模型收敛是比较快的，train_set的效果低于val_set的学习效果是由于模型本身的不足导致的，可以看到，训练后续学习平稳，且没有产生过拟合的现象。下图为加入训练策略后的训练情况。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155022.png" alt=""></p>
+<p> 加入策略后，由于数据增多，计算变得更复杂，所以数据一共训练了80个epochs，前40个epochs的lr为0.05，后40个epochs的lr为0.005.图中可以明显看到，加入策略后，模型的收敛变慢了，在学习率调整后，模型得到了进一步学习，且train loss和val loss均保持平稳，没有过拟合的现象发生。 </p>
+<p> DukeMTMC-reID和CUHK-03的训练过程和Market-1501类似，train-val组合验证的意义是监测过拟合的发生，而dropout也避免了过拟合。三组数据集在模型下的表现性能如下表： </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155122.png" alt=""></p>
+<p>从表中可以看出，加入的训练策略在三个数据集中均可以明显提高模型的性能。从结果上来看，三个数据集中难度最大的为CUHK-03，而CUHK-03数据集本身就具有很多的挑战性，比如在一个ID的标注框中却不止一个行人。</p>
+<p>下为近两年的流行算法以及我们的基线网络性能上的对比。其中，our baseline是基于backbone为ResNet-50网络加上几个策略，并且没有做Re-ranking。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155148.png" alt=""></p>
+<p> 从上表可以看到，我们的基线网络经过若干优化之后的性能还是很强的，这说明几个策略极大的改善了模型的性能，可以作为更复杂模型的基线网络。 </p>
+<p> 下面三张分别为Market-1501、DukeMTMC-reID和CUHK-03的一组演示demo。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155247.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155256.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155312.png" alt=""></p>
+<p> query为待查询图像，右边列出gallery库中相似度排名前10的图像，绿色的编号表示查找正确，红色的编号表示查询错误。第三张图的CUHK-03的demo可以看到带查询图像特征很不明显，任务不清晰，且一框图片中可能存在多个人，为重识别一个很大的难点，目前来说，CUHK-03仍然是难度很大的数据集之一。 </p>
 
       
 
@@ -279,17 +289,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/14/ReID-construct-baseline/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +352,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ReID what is it
+          ReID Learn block and local features
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ReID what is it</div>
       <i class="icon-circle-right"></i>
     </a>
   

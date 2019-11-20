@@ -6,39 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>machine learning decision-making tree | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+  <meta name="description" content="决策树1. 使用ID3算法构造策树">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+<meta property="og:title" content="machine learning decision-making tree">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;16&#x2F;machine-learning-decision-making-tree&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
+<meta property="og:description" content="决策树1. 使用ID3算法构造策树">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117000649.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117000632.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117000745.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117001102.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117001159.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117084409.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117001944.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117003209.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117084341.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117084732.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117085930.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117091027.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117091111.png">
+<meta property="og:updated_time" content="2019-11-17T01:11:23.143Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191117000649.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +166,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-machine-learning-decision-making-tree" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      machine learning decision-making tree
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/16/machine-learning-decision-making-tree/" class="archive-article-date">
+  	<time datetime="2019-11-16T15:18:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
-<a id="more"></a>
+        <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="1-使用ID3算法构造策树"><a href="#1-使用ID3算法构造策树" class="headerlink" title="1. 使用ID3算法构造策树"></a>1. 使用ID3算法构造策树<img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117000649.png" alt=""></h2><a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117000632.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117000745.png" alt=""></p>
+<h3 id="1-1-信息熵（平均信息量）"><a href="#1-1-信息熵（平均信息量）" class="headerlink" title="1.1 信息熵（平均信息量）"></a>1.1 信息熵（平均信息量）</h3><p>  划分数据集的大原则是：将无序的数据变得更加有序。我们可以使用多种方法划分数据集，但是每种方法都有各自的优缺点。组织杂乱无章数据的一种方法就是使用信息论度量信息，信息论是量化处理信息的分支科学。我们可以在划分数据之前或之后使用信息论量化度量信息的内容。<br> 在划分数据集之前之后信息发生的变化称为信息增益，知道如何计算信息增益，我们就可以计算每个特征值划分数据集获得的信息增益，获得信息增益最高的特征就是最好的选择。<br>在可以评测哪种数据划分方式是最好的数据划分之前，我们必须学习如何计算信息增益。集<br>合信息的度量方式称为香农熵或者简称为熵，这个名字来源于信息论之父克劳德·香农。  </p>
+<p>  熵定义为信息的期望值，在明晰这个概念之前，我们必须知道信息的定义。如果待分类的事务可能划分在多个分类之中，则符号$x_i$的信息定义为<br><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117001102.png" alt=""><br>其中p(xi)是选择该分类的概率。  </p>
+<p>  为了计算熵，我们需要计算所有类别所有可能值包含的信息期望值，通过下面的公式得到：  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117001159.png" alt=""></p>
+<p>  其中n是分类的数目。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcShannonEnt</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">    <span class="string">"""计算信息熵"""</span></span><br><span class="line">    numEntries = len(dataSet)</span><br><span class="line">    labelCounts = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet: <span class="comment">#the the number of unique elements and their occurance</span></span><br><span class="line">        currentLabel = featVec[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> currentLabel <span class="keyword">not</span> <span class="keyword">in</span> labelCounts.keys(): labelCounts[currentLabel] = <span class="number">0</span></span><br><span class="line">        labelCounts[currentLabel] += <span class="number">1</span></span><br><span class="line">    shannonEnt = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> key <span class="keyword">in</span> labelCounts:</span><br><span class="line">        prob = float(labelCounts[key])/numEntries  <span class="comment"># 计算概率</span></span><br><span class="line">        shannonEnt -= prob * log(prob,<span class="number">2</span>) <span class="comment">#log base 2</span></span><br><span class="line">      <span class="comment"># # -----------计算香农熵的第二种实现方式start--------------------------------------------------------------------------------</span></span><br><span class="line">    <span class="comment"># # 统计标签出现的次数</span></span><br><span class="line">    <span class="comment"># label_count = Counter(data[-1] for data in dataSet)</span></span><br><span class="line">    <span class="comment"># # 计算概率</span></span><br><span class="line">    <span class="comment"># probs = [p[1] / len(dataSet) for p in label_count.items()]</span></span><br><span class="line">    <span class="comment"># # 计算香农熵</span></span><br><span class="line">    <span class="comment"># shannonEnt = sum([-p * log(p, 2) for p in probs])</span></span><br><span class="line">    <span class="comment"># # -----------计算香农熵的第二种实现方式end--------------------------------------------------------------------------------</span></span><br><span class="line">    <span class="keyword">return</span> shannonEnt</span><br></pre></td></tr></table></figure>
+
+<p>制作数据集，并计算信息熵</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117084409.png" alt=""></p>
+<p>  熵越高，则混合的数据也越多，我们可以在数据集中添加更多的分类，观察熵是如何变化的。这里我们增加第三个名为maybe的分类，测试熵的变化：  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117001944.png" alt=""></p>
+<p>  得到熵之后，我们就可以按照获取最大信息增益的方法划分数据集，下一节我们将具体学习如何划分数据集以及如何度量信息增益  </p>
+<p>  另一个度量集合无序程度的方法是基尼不纯度（Gini impurity），简单地说就是从一个数据集中随机选取子项，度量其被错误分类到其他分组里的概率。本书不采用基尼不纯度方法，这里就不再做进一步的介绍。下面我们将学习如何划分数据集，并创建决策树。  </p>
+<h3 id="1-2-划分数据集"><a href="#1-2-划分数据集" class="headerlink" title="1.2 划分数据集"></a>1.2 划分数据集</h3><p>  上节我们学习了如何度量数据集的无序程度，分类算法除了需要测量信息熵，还需要划分数据集，度量划分数据集的熵，以便判断当前是否正确地划分了数据集。我们将对每个特征划分数据集的结果计算一次信息熵，然后判断按照哪个特征划分数据集是最好的划分方式。想象一个分布在二维空间的数据散点图，需要在数据之间划条线，将它们分成两部分，我们应该按照x轴还是y轴划线呢？答案就是本节讲述的内容  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">splitDataSet</span><span class="params">(dataSet, axis, value)</span>:</span></span><br><span class="line">    <span class="string">"""dataSet 带划分数据集</span></span><br><span class="line"><span class="string">    	axis 划分数据集的特征</span></span><br><span class="line"><span class="string">    	value 需要返回的特征的值</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    retDataSet = []</span><br><span class="line">    <span class="keyword">for</span> featVec <span class="keyword">in</span> dataSet:</span><br><span class="line">        <span class="keyword">if</span> featVec[axis] == value:</span><br><span class="line">            reducedFeatVec = featVec[:axis]     <span class="comment">#chop out axis used for splitting</span></span><br><span class="line">            reducedFeatVec.extend(featVec[axis+<span class="number">1</span>:])</span><br><span class="line">            retDataSet.append(reducedFeatVec)</span><br><span class="line">     <span class="comment"># # -----------切分数据集的第二种方式 start------------------------------------</span></span><br><span class="line">    <span class="comment"># retDataSet = [data[:index] + data[index + 1:] for data in dataSet for i, v in enumerate(data) if i == index and v == value]</span></span><br><span class="line">    <span class="comment"># # -----------切分数据集的第二种方式 end------------------------------------</span></span><br><span class="line">    <span class="keyword">return</span> retDataSet</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117003209.png" alt=""></p>
+<p>  接下来我们将遍历整个数据集，循环计算香农熵和splitDataSet()函数，找到最好的特征<br>划分方式。熵计算将会告诉我们如何划分数据集是最好的数据组织方式。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">chooseBestFeatureToSplit</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">    <span class="string">"""选择最好的数据集划分方式"""</span></span><br><span class="line">    numFeatures = len(dataSet[<span class="number">0</span>]) - <span class="number">1</span>      <span class="comment">#the last column is used for the labels</span></span><br><span class="line">    baseEntropy = calcShannonEnt(dataSet)  <span class="comment"># 计算初始信息熵</span></span><br><span class="line">    bestInfoGain = <span class="number">0.0</span>; bestFeature = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numFeatures):        <span class="comment">#iterate over all the features</span></span><br><span class="line">        featList = [example[i] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]<span class="comment">#create a list of all the examples of this feature</span></span><br><span class="line">        uniqueVals = set(featList)       <span class="comment">#get a set of unique values</span></span><br><span class="line">        newEntropy = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> value <span class="keyword">in</span> uniqueVals:</span><br><span class="line">            subDataSet = splitDataSet(dataSet, i, value)    <span class="comment"># 得到划分后的数据集</span></span><br><span class="line">            prob = len(subDataSet)/float(len(dataSet))    <span class="comment"># 计算划分后数据集的概率</span></span><br><span class="line">            newEntropy += prob * calcShannonEnt(subDataSet)     <span class="comment"># 计算信息熵</span></span><br><span class="line">        infoGain = baseEntropy - newEntropy     <span class="comment">#calculate the info gain; ie reduction in entropy</span></span><br><span class="line">        <span class="keyword">if</span> (infoGain &gt; bestInfoGain):       <span class="comment">#compare this to the best gain so far</span></span><br><span class="line">            bestInfoGain = infoGain         <span class="comment">#if better than current best, set to best</span></span><br><span class="line">            bestFeature = i</span><br><span class="line">    <span class="keyword">return</span> bestFeature                      <span class="comment">#returns an integer</span></span><br></pre></td></tr></table></figure>
+
+<p>  遍历当前特征中的所有唯一属性值，对每个特征划分一次数据集 ，然后计算数据集的新熵值，并对所有唯一特征值得到的熵求和。信息增益是熵的减少或者是数据无序度的减少，大家肯定对于将熵用于度量数据无序度的减少更容易理解。最后，比较所有特征中的信息增益，返回最好特征划分的索引值 。  </p>
+<h3 id="1-3构建决策树"><a href="#1-3构建决策树" class="headerlink" title="1.3构建决策树"></a>1.3构建决策树</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">majorityCnt</span><span class="params">(classList)</span>:</span></span><br><span class="line">     <span class="string">"""</span></span><br><span class="line"><span class="string">    Desc:</span></span><br><span class="line"><span class="string">        选择出现次数最多的一个结果</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        classList label列的集合</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        bestFeature 最优的特征列</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> vote <span class="keyword">in</span> classList:</span><br><span class="line">        <span class="keyword">if</span> vote <span class="keyword">not</span> <span class="keyword">in</span> classCount.keys(): classCount[vote] = <span class="number">0</span></span><br><span class="line">        classCount[vote] += <span class="number">1</span></span><br><span class="line">     <span class="comment"># 倒叙排列classCount得到一个字典集合，然后取出第一个就是结果（yes/no），即出现次数最多的结果</span></span><br><span class="line">    sortedClassCount = sorted(classCount.iteritems(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">     <span class="comment"># # -----------majorityCnt的第二种方式 start------------------------------------</span></span><br><span class="line">    <span class="comment"># major_label = Counter(classList).most_common(1)[0]</span></span><br><span class="line">    <span class="comment"># return major_label</span></span><br><span class="line">    <span class="comment"># # -----------majorityCnt的第二种方式 end------------------------------------</span></span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createTree</span><span class="params">(dataSet, labels)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Desc:</span></span><br><span class="line"><span class="string">        创建决策树</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        dataSet -- 要创建决策树的训练数据集</span></span><br><span class="line"><span class="string">        labels -- 训练数据集中特征对应的含义的labels，不是目标变量</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        myTree -- 创建完成的决策树</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    classList = [example[<span class="number">-1</span>] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]</span><br><span class="line">    <span class="comment"># 如果数据集的最后一列的第一个值出现的次数=整个集合的数量，也就说只有一个类别，就只直接返回结果就行</span></span><br><span class="line">    <span class="comment"># 第一个停止条件：所有的类标签完全相同，则直接返回该类标签。</span></span><br><span class="line">    <span class="comment"># count() 函数是统计括号中的值在list中出现的次数</span></span><br><span class="line">    <span class="keyword">if</span> classList.count(classList[<span class="number">0</span>]) == len(classList):</span><br><span class="line">        <span class="keyword">return</span> classList[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 如果数据集只有1列，那么最初出现label次数最多的一类，作为结果</span></span><br><span class="line">    <span class="comment"># 第二个停止条件：使用完了所有特征，仍然不能将数据集划分成仅包含唯一类别的分组。</span></span><br><span class="line">    <span class="keyword">if</span> len(dataSet[<span class="number">0</span>]) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> majorityCnt(classList)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 选择最优的列，得到最优列对应的label含义</span></span><br><span class="line">    bestFeat = chooseBestFeatureToSplit(dataSet)</span><br><span class="line">    <span class="comment"># 获取label的名称</span></span><br><span class="line">    bestFeatLabel = labels[bestFeat]</span><br><span class="line">    <span class="comment"># 初始化myTree</span></span><br><span class="line">    myTree = &#123;bestFeatLabel: &#123;&#125;&#125;</span><br><span class="line">    <span class="comment"># 注：labels列表是可变对象，在PYTHON函数中作为参数时传址引用，能够被全局修改</span></span><br><span class="line">    <span class="comment"># 所以这行代码导致函数外的同名变量被删除了元素，造成例句无法执行，提示'no surfacing' is not in list</span></span><br><span class="line">    <span class="keyword">del</span>(labels[bestFeat])</span><br><span class="line">    <span class="comment"># 取出最优列，然后它的branch做分类</span></span><br><span class="line">    featValues = [example[bestFeat] <span class="keyword">for</span> example <span class="keyword">in</span> dataSet]</span><br><span class="line">    uniqueVals = set(featValues)</span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> uniqueVals:</span><br><span class="line">        <span class="comment"># 求出剩余的标签label</span></span><br><span class="line">        subLabels = labels[:]</span><br><span class="line">        <span class="comment"># 遍历当前选择特征包含的所有属性值，在每个数据集划分上递归调用函数createTree()</span></span><br><span class="line">        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataSet, bestFeat, value), subLabels)</span><br><span class="line">        <span class="comment"># print('myTree', value, myTree)</span></span><br><span class="line">    <span class="keyword">return</span> myTree</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117084341.png" alt=""></p>
+<h2 id="2-决策树分类"><a href="#2-决策树分类" class="headerlink" title="2.决策树分类"></a>2.决策树分类</h2><p>  依靠训练数据构造了决策树之后，我们可以将它用于实际数据的分类。在执行数据分类时，需要决策树以及用于构造树的标签向量。然后，程序比较测试数据与决策树上的数值，递归执行该过程直到进入叶子节点；最后将测试数据定义为叶子节点所属的类型。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(inputTree, featLabels, testVec)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Desc:</span></span><br><span class="line"><span class="string">        对新数据进行分类</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        inputTree  -- 已经训练好的决策树模型</span></span><br><span class="line"><span class="string">        featLabels -- Feature标签对应的名称，不是目标变量</span></span><br><span class="line"><span class="string">        testVec    -- 测试输入的数据</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        classLabel -- 分类的结果值，需要映射label才能知道名称</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment"># 获取tree的根节点对于的key值</span></span><br><span class="line">    firstStr = list(inputTree.keys())[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 通过key得到根节点对应的value</span></span><br><span class="line">    secondDict = inputTree[firstStr]</span><br><span class="line">    <span class="comment"># 判断根节点名称获取根节点在label中的先后顺序，这样就知道输入的testVec怎么开始对照树来做分类</span></span><br><span class="line">    featIndex = featLabels.index(firstStr)</span><br><span class="line">    <span class="comment"># 测试数据，找到根节点对应的label位置，也就知道从输入的数据的第几位来开始分类</span></span><br><span class="line">    key = testVec[featIndex]</span><br><span class="line">    valueOfFeat = secondDict[key]</span><br><span class="line">    print(<span class="string">'+++'</span>, firstStr, <span class="string">'xxx'</span>, secondDict, <span class="string">'---'</span>, key, <span class="string">'&gt;&gt;&gt;'</span>, valueOfFeat)</span><br><span class="line">    <span class="comment"># 判断分枝是否结束: 判断valueOfFeat是否是dict类型</span></span><br><span class="line">    <span class="keyword">if</span> isinstance(valueOfFeat, dict):</span><br><span class="line">        classLabel = classify(valueOfFeat, featLabels, testVec)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        classLabel = valueOfFeat</span><br><span class="line">    <span class="keyword">return</span> classLabel</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117084732.png" alt=""></p>
+<h2 id="3-决策树的存储"><a href="#3-决策树的存储" class="headerlink" title="3.决策树的存储"></a>3.决策树的存储</h2><p>将决策树存储起来，以便下次直接调用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">storeTree</span><span class="params">(inputTree, filename)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Desc:</span></span><br><span class="line"><span class="string">        将之前训练好的决策树模型存储起来，使用 pickle 模块</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        inputTree -- 以前训练好的决策树模型</span></span><br><span class="line"><span class="string">        filename -- 要存储的名称</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        None</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">import</span> pickle</span><br><span class="line">    <span class="comment"># -------------- 第一种方法 start --------------</span></span><br><span class="line">    fw = open(filename, <span class="string">'wb'</span>)</span><br><span class="line">    pickle.dump(inputTree, fw)</span><br><span class="line">    fw.close()</span><br><span class="line">    <span class="comment"># -------------- 第一种方法 end --------------</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># -------------- 第二种方法 start --------------</span></span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> fw:</span><br><span class="line">        pickle.dump(inputTree, fw)</span><br><span class="line">    <span class="comment"># -------------- 第二种方法 start --------------</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grabTree</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Desc:</span></span><br><span class="line"><span class="string">        将之前存储的决策树模型使用 pickle 模块 还原出来</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        filename -- 之前存储决策树模型的文件名</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        pickle.load(fr) -- 将之前存储的决策树模型还原出来</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">import</span> pickle</span><br><span class="line">    fr = open(filename, <span class="string">'rb'</span>)</span><br><span class="line">    <span class="keyword">return</span> pickle.load(fr)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="实例：使用决策树预测隐形眼镜类型"><a href="#实例：使用决策树预测隐形眼镜类型" class="headerlink" title="实例：使用决策树预测隐形眼镜类型"></a>实例：使用决策树预测隐形眼镜类型</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117085930.png" alt=""></p>
+<p>我们发现决策树的匹配项过多，这叫做过度匹配，为了解决这一问题，我们可以去掉一些不必要的叶子结点。</p>
+<p>  ID3算法无法直接处理数值型数据，尽管我们可以通过量化的方法将数值型数据转化<br>为标称型数值，但是如果存在太多的特征划分， ID3算法仍然会面临其他问题。  </p>
+<p>过渡匹配的原因有以下几点：</p>
 <ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
+<li>噪音数据：训练数据中存在噪音数据，决策树的某些节点有噪音数据作为分割标准，导致决策树无法代表真实数据。</li>
+<li>缺少代表性数据：训练数据没有包含所有具有代表性的数据，导致某一类数据无法很好的匹配，这一点可以通过观察混淆矩阵（Confusion Matrix）分析得出。</li>
+<li>多重比较（Mulitple Comparition）：举个列子，股票分析师预测股票涨或跌。假设分析师都是靠随机猜测，也就是他们正确的概率是0.5。每一个人预测10次，那么预测正确的次数在8次或8次以上的概率为 <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117091027.png" alt="">，只有5%左右，比较低。但是如果50个分析师，每个人预测10次，选择至少一个人得到8次或以上的人作为代表，那么概率为  <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191117091111.png" alt=""> ，概率十分大，随着分析师人数的增加，概率无限接近1。但是，选出来的分析师其实是打酱油的，他对未来的预测不能做任何保证。上面这个例子就是<strong>多重比较</strong>。这一情况和决策树选取分割点类似，需要在每个变量的每一个值中选取一个作为分割的代表，所以选出一个噪音分割标准的概率是很大的。</li>
 </ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
 
       
 
@@ -279,17 +266,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +315,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/16/machine-learning-decision-making-tree/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +329,9 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ReID what is it
-        
-      </div>
-    </a>
   
-  
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/15/cv-SIFT/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cv SIFT</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -6,39 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>cv Harris Corner | Hexo</title>
+  <title>machine learning of k-Nearest Neighbor | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="cv Harris Corner">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;12&#x2F;cv-Harris-Corner&#x2F;index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="machine learning of k-Nearest Neighbor">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;14&#x2F;machine-learning-of-k-Nearest-Neighbor&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Harris 角检测 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。  那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112225845.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230103.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230023.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230438.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112230645.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002129.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191113002218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231737.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112231746.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232058.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232258.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232431.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112232528.png">
-<meta property="og:updated_time" content="2019-11-13T23:25:15.772Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114204004.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115110540.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114210318.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114211950.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191114212124348.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114214747.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115104115.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115104245.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191115110859239.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115111745.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115112218.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115112834.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191115112759.png">
+<meta property="og:updated_time" content="2019-11-17T06:59:47.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191112222554.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191114204004.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,81 +164,101 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-cv-Harris-Corner" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-machine-learning-of-k-Nearest-Neighbor" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      cv Harris Corner
+      machine learning of k-Nearest Neighbor
     </h1>
   
 
         
-        <a href="/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/" class="archive-article-date">
-  	<time datetime="2019-11-12T14:00:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
+        <a href="/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/" class="archive-article-date">
+  	<time datetime="2019-11-14T12:37:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Harris-角检测"><a href="#Harris-角检测" class="headerlink" title="Harris 角检测"></a>Harris 角检测</h1><p> 在做图像匹配时，常需要对两幅图像中的特征点进行匹配。为了保证匹配的准确性，所选择的特征必须有其独特性，角点可以作为一种不错的特征。 </p>
-<p>那么为什么角点有其独特性呢？角点往往是两条边缘的交点，它是两条边缘方向变换的一种表示，因此其两个方向的梯度变换通常都比较大并且容易检测到。</p>
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114204004.png" alt=""></p>
 <a id="more"></a>
 
-<p>这里我们理解一下Harris Corner 一种角点检测的算法</p>
-<p>角点检测基本原理：  人们通常通过在一个小的窗口区域内观察点的灰度值大小来识别角点，如果往任何方向移动窗口都会引起比较大的灰度变换那么往往这就是我们要找的角点。如下图右</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112222554.png" alt=""></p>
-<ul>
-<li>“FALT”第一幅图像，由于是平坦区域，所以像素值在任何方向都没有变化，</li>
-<li>“EDGE”第二幅图像，由于在边缘上，沿着边界线移动像素值不会有变化</li>
-<li>“CORNER” 第三幅图像，在任何方向都会发生很大的变化。</li>
+<h1 id="1-KNN"><a href="#1-KNN" class="headerlink" title="1. KNN"></a>1. KNN</h1><h2 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h2><ul>
+<li>优点：精度高、对异常值不敏感、无数据输入假定</li>
+<li>缺点：计算复杂度高、空间复杂度高</li>
+<li>适用的数据范围：数值型和标称型</li>
 </ul>
-<p>下面我们看一下Harris的数学公式，对于[x,y]平移[u,v]个单位后强度的变换有下式,I(x+u,y+v)是平移后的强度，I(x,y)是原图像像素。对于括号里面的值，如果是强度恒定的区域，那么它就接近于零，反之如果强度变化剧烈那么其值将非常大，所以我们期望E(u,v)很大。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112225845.png" alt=""></p>
-<p>其中w是窗函数，它可以是加权函数，也可以是高斯函数 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230103.png" alt=""></p>
-<p> 利用二维泰勒展开式我们有 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230023.png" alt=""></p>
-<p>所以其中一阶可以近似为</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230212.png" alt=""></p>
-<p> 于是我们可以给出Harris Corner的如下推导，其中Ix，Iy是x，y方向的Gradient模，乘以位移得到位移后的量 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230235.png" alt=""></p>
-<p> 对于小的位移，我们可以用双线性插值方法近似： </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230325.png" alt=""></p>
-<p> 其中M为2*2矩阵如下 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230438.png" alt=""></p>
-<p> 在本质上我们可以把二次项看成一个椭圆函数，<strong>我们对M进行特征值分析有λ1，λ2 （利用实对称矩阵都可以正交相似对角化）</strong></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112230645.png" alt=""></p>
-<p>根据λ1，λ2的值我们可以把其分为三类：</p>
-<p>1.λ1，λ2都很小且近似，E在所有方向接近于常数；</p>
-<p>2.λ1&gt;&gt;λ2,或者λ2&gt;&gt;λ1, E将在某一方向上很大；</p>
-<p>3.λ1，λ2都很大且近似，E将在所有方向上很大；</p>
-<p>下图是一个例子：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002129.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002209.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191113002218.png" alt=""></p>
-<p>如图所示：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231234.png" alt=""></p>
-<p> 最后我们通过计算角点响应值R来判断其属于哪个区间 ：</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231737.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112231746.png" alt=""></p>
-<p> 其中k一般为常数取在0.04-0.06间。 R超过一定的阈值，则认为该点是角点，阈值设置是Harris角点检测算法的关键， 阈值设置过大会产生伪角点，阈值过小则会漏掉角点。 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232058.png" alt=""></p>
-<p> 算法步骤： </p>
-<p> 1.计算图像x,y方向的梯度Ix，Iy ，使用高斯导数滤波器</p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232215.png" alt=""></p>
-<p> 2.计算每个像素点的梯度平方 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232236.png" alt=""></p>
-<p> 3.计算梯度在每个像素点的和 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232258.png" alt=""></p>
-<p> 4.定义在每个像素点的矩阵H，也就是前面的M </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232431.png" alt=""></p>
-<p> 5.计算每个像素的角点响应 </p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191112232528.png" alt=""></p>
-<p> 6.设置阈值找出可能点并进行非极大值抑制 </p>
+<p>算法缺陷是：无法给出任何数据的基础结构信息，因此我们无法知晓平均实例样本和典型实例样本具有什么特征。</p>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>存在一个样本数据集合，也称为训练样本集，并且样本集中每个数据都存在标签，即我们知道样本集中每个数据所属分类的对应关系。提取出每个新数据的特征，将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据（最近邻）分类标签。一般来说，我们只选择样本数据集中前k个最相似的数据，这就是k-近邻算法中k的出处，通常k是不大于20 的数。最后，选择k个最相似数据中出现次数最多的分类，作为新数据的分类。</p>
+<p>因此，KNN是通过多数表决等方式进行预测，其不具备显式的学习过程。KNN实际上利用训练集对特征向量空间进行划分，并作为其分类的”模型“，<strong>k值的选择、距离度量及分类决策</strong>规则是kNN的三个基本要素。</p>
+<h3 id="k的选择"><a href="#k的选择" class="headerlink" title="k的选择"></a>k的选择</h3><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115110540.png" alt=""></p>
+<h2 id="一般流程"><a href="#一般流程" class="headerlink" title="一般流程"></a>一般流程</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114210318.png" alt=""></p>
+<h1 id="2-python如何使用KNN进行分类"><a href="#2-python如何使用KNN进行分类" class="headerlink" title="2. python如何使用KNN进行分类"></a>2. python如何使用KNN进行分类</h1><h2 id="1-实施KNN算法"><a href="#1-实施KNN算法" class="headerlink" title="1. 实施KNN算法"></a>1. 实施KNN算法</h2><p>伪代码如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114211950.png" alt=""></p>
+<p>程序如下：</p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191114212124348.png" alt="image-20191114212124348"></p>
+<p>程序讲解：</p>
+<ul>
+<li>tile(A, n)函数是将A数组重复n次。当n为元组时，譬如(n,m)，则将A先在第二个维度复制m个，再在第一个维度复制n个刚刚第二个维度的数据。元组扩大，同理。上面程序的意思是将inX数组在第二维复制1个，再在第一个维度复制dataSetSize个。</li>
+<li>程序的距离计算使用是欧式距离。</li>
+</ul>
+<h2 id="2-实例：使用KNN改进约会网站的配对效果"><a href="#2-实例：使用KNN改进约会网站的配对效果" class="headerlink" title="2. 实例：使用KNN改进约会网站的配对效果"></a>2. 实例：使用KNN改进约会网站的配对效果</h2><p>三种类型：</p>
+<ul>
+<li>不喜欢的人</li>
+<li>魅力一般的人</li>
+<li>极具魅力的人</li>
+</ul>
+<p>程序伪代码如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114214747.png" alt=""></p>
+<h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file2matrix</span><span class="params">(filename)</span>:</span></span><br><span class="line">    <span class="string">"""将txt文件的内容转为features mat 和 label"""</span></span><br><span class="line">    fr = open(filename)</span><br><span class="line">    numberOfLines = len(fr.readlines())         <span class="comment">#get the number of lines in the file</span></span><br><span class="line">    returnMat = zeros((numberOfLines,<span class="number">3</span>))        <span class="comment">#prepare matrix to return， 3个特征所以是3列</span></span><br><span class="line">    classLabelVector = []                       <span class="comment">#prepare labels return   </span></span><br><span class="line">    fr = open(filename)</span><br><span class="line">    index = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        line = line.strip()</span><br><span class="line">        listFromLine = line.split(<span class="string">'\t'</span>)</span><br><span class="line">        returnMat[index,:] = listFromLine[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">        classLabelVector.append(int(listFromLine[<span class="number">-1</span>]))</span><br><span class="line">        index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> returnMat,classLabelVector</span><br><span class="line"></span><br><span class="line">datingDataMat, datingLabels = file2matrix(<span class="string">'datingTestSet2.txt'</span>)</span><br><span class="line">fig = plt.figure()</span><br><span class="line">color = [<span class="string">'r'</span>,<span class="string">'g'</span>,<span class="string">'b'</span>]</span><br><span class="line">ax = fig.add_subplot(<span class="number">311</span>)  <span class="comment"># 将画布分为三行一列，该区域为分割后的第一块</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">4</span>):</span><br><span class="line">    index = np.where(np.array(datingLabels) == i)</span><br><span class="line">    ax.scatter(datingDataMat[index, <span class="number">0</span>],datingDataMat[index, <span class="number">1</span>],c=color[i - <span class="number">1</span>], label=i)<span class="comment"># scatter绘制</span></span><br><span class="line">    </span><br><span class="line">plt.xlabel(<span class="string">'col.0'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'col.1'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">bx = fig.add_subplot(<span class="number">312</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">4</span>):</span><br><span class="line">    index = np.where(np.array(datingLabels) == i)</span><br><span class="line">    bx.scatter(datingDataMat[index, <span class="number">0</span>], datingDataMat[index, <span class="number">2</span>], c=color[i - <span class="number">1</span>], label=i)</span><br><span class="line">plt.xlabel(<span class="string">'Col.0'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Col.2'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">cx = fig.add_subplot(<span class="number">313</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">4</span>):</span><br><span class="line">    index = np.where(np.array(datingLabels) == i)</span><br><span class="line">    cx.scatter(datingDataMat[index, <span class="number">1</span>], datingDataMat[index, <span class="number">2</span>], c=color[i - <span class="number">1</span>], label=i)</span><br><span class="line">plt.xlabel(<span class="string">'Col.1'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Col.2'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115104115.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></span><br><span class="line">    <span class="string">"""KNN识别程序，与训练集比较"""</span></span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = tile(inX, (dataSetSize,<span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat**<span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances**<span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()     </span><br><span class="line">    classCount=&#123;&#125;          </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autoNorm</span><span class="params">(dataSet)</span>:</span></span><br><span class="line">    <span class="string">"""对每个特征进行归一化， 返回归一化后的特征矩阵，样本数，特征中最小的值</span></span><br><span class="line"><span class="string">    样本特征值 0.8 400 0.5 </span></span><br><span class="line"><span class="string">    为什么归一化，因为特征的大小不一样，一些特征由于数值过大会给计算带来很大的影响，由于在本问题职中我们简单的将每个特征的权重看做相同"""</span></span><br><span class="line">    minVals = dataSet.min(<span class="number">0</span>)  <span class="comment"># 获取每一列的最小值</span></span><br><span class="line">    maxVals = dataSet.max(<span class="number">0</span>)</span><br><span class="line">    ranges = maxVals - minVals   <span class="comment"># 获取列数据差 ，即一个一行三列的矩阵 </span></span><br><span class="line">    normDataSet = zeros(shape(dataSet))  <span class="comment"># 创建存储矩阵</span></span><br><span class="line">    m = dataSet.shape[<span class="number">0</span>]  <span class="comment"># 获取训练集样本数</span></span><br><span class="line">    normDataSet = dataSet - tile(minVals, (m,<span class="number">1</span>))</span><br><span class="line">    normDataSet = normDataSet/tile(ranges, (m,<span class="number">1</span>))   <span class="comment">#element wise divide</span></span><br><span class="line">    <span class="keyword">return</span> normDataSet, ranges, minVals</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datingClassTest</span><span class="params">()</span>:</span></span><br><span class="line">    hoRatio = <span class="number">0.10</span>      <span class="comment">#hold out 10%</span></span><br><span class="line">    datingDataMat,datingLabels = file2matrix(<span class="string">'datingTestSet2.txt'</span>)       <span class="comment">#load data setfrom file</span></span><br><span class="line">    normMat, ranges, minVals = autoNorm(datingDataMat)</span><br><span class="line">    m = normMat.shape[<span class="number">0</span>]  <span class="comment">#获取样本数</span></span><br><span class="line">    numTestVecs = int(m*hoRatio)    <span class="comment">#设置验证集的索引</span></span><br><span class="line">    errorCount = <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numTestVecs):</span><br><span class="line">        classifierResult = classify0(normMat[i,:],normMat[numTestVecs:m,:],datingLabels[numTestVecs:m],<span class="number">3</span>)</span><br><span class="line">        print(<span class="string">"the classifier came back with: %d, the real answer is: %d"</span> % (classifierResult, datingLabels[i]))</span><br><span class="line">        <span class="keyword">if</span> (classifierResult != datingLabels[i]): errorCount += <span class="number">1.0</span></span><br><span class="line">    print(<span class="string">"the total error rate is: %f"</span> % (errorCount/float(numTestVecs)))</span><br><span class="line">    print(errorCount)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115104245.png" alt=""></p>
+<h2 id="手写数字识别"><a href="#手写数字识别" class="headerlink" title="手写数字识别"></a>手写数字识别</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> listdir   </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify0</span><span class="params">(inX, dataSet, labels, k)</span>:</span></span><br><span class="line">    <span class="string">"""KNN识别程序，与训练集比较"""</span></span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = tile(inX, (dataSetSize,<span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat**<span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.sum(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances**<span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()     </span><br><span class="line">    classCount=&#123;&#125;          </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel,<span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">img2vector</span><span class="params">(filename)</span>:</span></span><br><span class="line">    returnVect = zeros((<span class="number">1</span>,<span class="number">1024</span>))</span><br><span class="line">    fr = open(filename)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">        lineStr = fr.readline()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">            returnVect[<span class="number">0</span>,<span class="number">32</span>*i+j] = int(lineStr[j])</span><br><span class="line">    <span class="keyword">return</span> returnVect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handwritingClassTest</span><span class="params">()</span>:</span></span><br><span class="line">    hwLabels = []</span><br><span class="line">    trainingFileList = listdir(<span class="string">'trainingDigits'</span>)           <span class="comment">#load the training set</span></span><br><span class="line">    m = len(trainingFileList)  <span class="comment">#存储样本数</span></span><br><span class="line">    trainingMat = zeros((m,<span class="number">1024</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">        fileNameStr = trainingFileList[i]</span><br><span class="line">        fileStr = fileNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]     <span class="comment">#take off .txt</span></span><br><span class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</span><br><span class="line">        hwLabels.append(classNumStr)</span><br><span class="line">        trainingMat[i,:] = img2vector(<span class="string">'trainingDigits/%s'</span> % fileNameStr)</span><br><span class="line">    testFileList = listdir(<span class="string">'testDigits'</span>)        <span class="comment">#iterate through the test set</span></span><br><span class="line">    errorCount = <span class="number">0.0</span></span><br><span class="line">    mTest = len(testFileList)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(mTest):</span><br><span class="line">        fileNameStr = testFileList[i]</span><br><span class="line">        fileStr = fileNameStr.split(<span class="string">'.'</span>)[<span class="number">0</span>]     <span class="comment">#take off .txt</span></span><br><span class="line">        classNumStr = int(fileStr.split(<span class="string">'_'</span>)[<span class="number">0</span>])</span><br><span class="line">        vectorUnderTest = img2vector(<span class="string">'testDigits/%s'</span> % fileNameStr)</span><br><span class="line">        classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, <span class="number">3</span>)</span><br><span class="line">        print(<span class="string">"the classifier came back with: %d, the real answer is: %d"</span> % (classifierResult, classNumStr))</span><br><span class="line">        <span class="keyword">if</span> (classifierResult != classNumStr): errorCount += <span class="number">1.0</span></span><br><span class="line">    print(<span class="string">"\nthe total number of errors is: %d"</span> % errorCount)</span><br><span class="line">    print(<span class="string">"\nthe total error rate is: %f"</span> % (errorCount/float(mTest)))</span><br><span class="line">handwritingClassTest()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="3-解决运算量的问题搜索KD树"><a href="#3-解决运算量的问题搜索KD树" class="headerlink" title="3. 解决运算量的问题搜索KD树"></a>3. 解决运算量的问题搜索KD树</h1><h2 id="KD树"><a href="#KD树" class="headerlink" title="KD树"></a>KD树</h2><p>前面我们使用的方法都是线性扫描。当训练集很大时，这种方法是不可取的。</p>
+<p>Kd树是k维空间存储的数据结构。</p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191115110859239.png" alt="image-20191115110859239"></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115111745.png" alt=""></p>
+<h2 id="搜索KD树"><a href="#搜索KD树" class="headerlink" title="搜索KD树"></a>搜索KD树</h2><p>利用KD树进行k近邻搜索，可以省去大部分数据点的搜索。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115112218.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115112834.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191115112759.png" alt=""></p>
+<h1 id="4-实现KNN估值模型"><a href="#4-实现KNN估值模型" class="headerlink" title="4. 实现KNN估值模型"></a>4. 实现KNN估值模型</h1><h2 id="估值案例"><a href="#估值案例" class="headerlink" title="估值案例"></a>估值案例</h2><p>我们使用k最近邻算法来构建白酒的价格模型。这是一个估值模型，不是分类案例。需要预测的回归值为白酒的价格 。</p>
+<h2 id="构造数据集"><a href="#构造数据集" class="headerlink" title="构造数据集"></a>构造数据集</h2><p>我们先考虑一个简单的价格模型。我们知道白酒的价格跟等级、年代有很大的关系。我们需要知道一批白酒的数据作为样本数据集，其中包含每瓶白酒的等级、年代、和价格（输出值）。</p>
+<p>这批数据集你可以使用市场问卷调查，或者网络爬虫获取。为了简单我们自己模拟产生。</p>
+<p>构建一个葡萄酒样本数据集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random,randint</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据等级和年代对价格进行模拟</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wineprice</span><span class="params">(rating,age)</span>:</span></span><br><span class="line">    peak_age=rating<span class="number">-50</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据等级计算价格</span></span><br><span class="line">    price=rating/<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> age&gt;peak_age:</span><br><span class="line">        <span class="comment"># 经过“峰值年”，后续5年里其品质将会变差</span></span><br><span class="line">        price=price*(<span class="number">5</span>-(age-peak_age)/<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 价格在接近“峰值年”时会增加到原值的5倍</span></span><br><span class="line">        price=price*(<span class="number">5</span>*((age+<span class="number">1</span>)/peak_age))</span><br><span class="line">    <span class="keyword">if</span> price&lt;<span class="number">0</span>: price=<span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> price</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成一批数据代表样本数据集</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wineset1</span><span class="params">()</span>:</span></span><br><span class="line">    rows=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">300</span>):</span><br><span class="line">        <span class="comment"># 随机生成年代和等级</span></span><br><span class="line">        rating=random()*<span class="number">50</span>+<span class="number">50</span></span><br><span class="line">        age=random()*<span class="number">50</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 得到一个参考价格</span></span><br><span class="line">        price=wineprice(rating,age)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 添加一些噪音</span></span><br><span class="line">        price*=(random()*<span class="number">0.2</span>+<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 加入数据集</span></span><br><span class="line">        rows.append(&#123;<span class="string">'input'</span>:(rating,age),<span class="string">'result'</span>:price&#125;)</span><br><span class="line">    <span class="keyword">return</span> rows</span><br></pre></td></tr></table></figure>
+
+<h2 id="样本距离"><a href="#样本距离" class="headerlink" title="样本距离"></a>样本距离</h2><p>要使用k最近邻，首先要知道哪些是最近邻，所以我们还要有一个功能，就是要能计算两个对象之间的相似度。我们这里使用欧几里得距离作为数据间的距离，代表相似度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用欧几里得距离，定义距离</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">euclidean</span><span class="params">(v1,v2)</span>:</span></span><br><span class="line">    d=<span class="number">0.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(v1)):</span><br><span class="line">        d+=(v1[i]-v2[i])**<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> math.sqrt(d)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="获取与新数据距离最近的k个样本数据"><a href="#获取与新数据距离最近的k个样本数据" class="headerlink" title="获取与新数据距离最近的k个样本数据"></a>获取与新数据距离最近的k个样本数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 计算待测商品和样本数据集中任一商品间的距离。data样本数据集，vec1待测商品</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getdistances</span><span class="params">(data,vec1)</span>:</span></span><br><span class="line">    distancelist=[]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历样本数据集中的每一项</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(data)):</span><br><span class="line">        vec2=data[i][<span class="string">'input'</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 添加距离到距离列表</span></span><br><span class="line">        distancelist.append((euclidean(vec1,vec2),i))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 距离排序</span></span><br><span class="line">    distancelist.sort()</span><br><span class="line">    <span class="keyword">return</span> distancelist  <span class="comment">#返回距离列表</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="根据距离最近的k个样本数据预测新对象的输出值"><a href="#根据距离最近的k个样本数据预测新对象的输出值" class="headerlink" title="根据距离最近的k个样本数据预测新对象的输出值"></a>根据距离最近的k个样本数据预测新对象的输出值</h2><p> 上面的步骤，我们已经获取了距离最近的k个样本对象。那么如何根据k个样本对象的属性和价格计算待测对象的价格呢？ </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对距离值最小的前k个结果求平均</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">knnestimate</span><span class="params">(data,vec1,k=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="comment"># 得到经过排序的距离值</span></span><br><span class="line">    dlist=getdistances(data,vec1)</span><br><span class="line">    avg=<span class="number">0.0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对前k项结果求平均</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">        idx=dlist[i][<span class="number">1</span>] </span><br><span class="line">        avg+=data[idx][<span class="string">'result'</span>]</span><br><span class="line">    avg=avg/k</span><br><span class="line">    <span class="keyword">return</span> avg</span><br></pre></td></tr></table></figure>
+
+<p>2、求加权平均</p>
+<p>如果使用直接求均值，有可能存在前k个最近邻中，可能会存在距离很远的数据，但是他仍然属于最近的前K个数据。</p>
+<p>比如设定了k=5，距离最近的3个样本对象距离待测对象很近，但是第4、5个样本对象已经非常远离了待测对象。</p>
+<p>当存在这种情况时，对前k个样本数据直接求均值会有偏差，所以使用加权平均，为较远的节点赋予较小的权值，对较近的节点赋予较大的权值。</p>
+<p>那么具体该怎么根据数据间距离分配权值呢？这里使用三种递减函数作为权值分配方法。</p>
+<p>三种权值分配的思想就是距离远的权值小，距离近的权值大。</p>
+<p>2.1 可以使用高斯函数为距离分配权重</p>
 
       
 
@@ -279,17 +289,6 @@
       
       
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-cv//" class="article-tag-list-link color1">basic learning of cv</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -339,7 +338,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/12/cv-Harris-Corner/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://github.com/jontyhuang/blog/2019/11/14/machine-learning-of-k-Nearest-Neighbor/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -353,18 +352,18 @@
   
 <nav id="article-nav">
   
-    <a href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/jontyhuang.github.io/2019/11/15/cv-SIFT/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          ReID what is it
+          cv SIFT
         
       </div>
     </a>
   
   
-    <a href="/jontyhuang.github.io/2019/11/10/cv-image-differentiation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">cv image differentiation</div>
+    <a href="/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ReID Fine-grained multi-feature fusion</div>
       <i class="icon-circle-right"></i>
     </a>
   

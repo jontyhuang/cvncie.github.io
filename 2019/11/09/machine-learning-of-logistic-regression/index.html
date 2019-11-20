@@ -43,7 +43,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171025.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171221.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109171526.png">
-<meta property="og:updated_time" content="2019-11-13T16:00:30.018Z">
+<meta property="og:updated_time" content="2019-11-18T14:00:26.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191109121452.png">
   
@@ -237,13 +237,12 @@
 <p>同时逻辑回归和自适应线性网络非常相似，两者的区别在于逻辑回归的激活函数是Sigmiod function 而自适应线性网络的激活函数是y =x，两者的网络结构如下：</p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124618.png" alt="自适应线性网络"></p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109124640.png" alt=""></p>
-<p>#逻辑回归的代价函数</p>
-<p>要想解出w和b，我们就需要定义出一个目标函数，或者成为代价函数。</p>
+<h1 id="逻辑回归的代价函数"><a href="#逻辑回归的代价函数" class="headerlink" title="逻辑回归的代价函数"></a>逻辑回归的代价函数</h1><p>要想解出w和b，我们就需要定义出一个目标函数，或者成为代价函数。</p>
 <h2 id="按照回归的思想"><a href="#按照回归的思想" class="headerlink" title="按照回归的思想"></a>按照回归的思想</h2><p>模仿线性回归的代价函数，利用误差平方和来当代价函数。</p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160718.png" alt=""></p>
 <p>上式的完整如下：</p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160751.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160950.png" alt=""></p>
+<h2 id="从概率的角度建立loss函数"><a href="#从概率的角度建立loss函数" class="headerlink" title="从概率的角度建立loss函数"></a>从概率的角度建立loss函数</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109160950.png" alt=""></p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161247.png" alt=""></p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161542.png" alt=""></p>
 <h1 id="利用梯度下降求参数"><a href="#利用梯度下降求参数" class="headerlink" title="利用梯度下降求参数"></a>利用梯度下降求参数</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109161856.png" alt=""></p>
@@ -292,6 +291,7 @@
 <p> 在添加了L2正则化迭代公式之后，迭代公式如下：</p>
 <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191109171526.png" alt=""></p>
 <p>从上师可以看出，λ越大，θj衰减得越快。另一个理解，λ越大，L2圆的半径越小，最后求得代价函数最值时各参数也会变得很小。 </p>
+<h1 id="逻辑回归解决多分类问题"><a href="#逻辑回归解决多分类问题" class="headerlink" title="逻辑回归解决多分类问题"></a>逻辑回归解决多分类问题</h1><p>先将问题分为二分类问题，再对已分完的类继续二分类。</p>
 
       
 
