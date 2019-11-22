@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://github.com/jontyhuang/blog">
-  <title>Hexo</title>
+  <title>IU��fans</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="��Ŭ��������single">
+<meta name="keywords" content="����ѧϰ,python,java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IU��fans">
 <meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;page&#x2F;3&#x2F;index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="IU��fans">
+<meta property="og:description" content="��Ŭ��������single">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="IU��fans" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -42,10 +45,10 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/img/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">John Doe</a></h1>
+		  <h1 class="header-author"><a href="/">Jonty Huang</a></h1>
 		</hgroup>
 		
 
@@ -55,6 +58,8 @@
 				<li><a href="/jontyhuang.github.io/">主页</a></li>
 	        
 				<li><a href="/jontyhuang.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+	        
+				<li><a href="/jontyhuang.github.io/categories">分类</a></li>
 	        
 			</ul>
 		</nav>
@@ -100,13 +105,15 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/img/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">John Doe</h1>
+			  <h1 class="header-author js-header-author">Jonty Huang</h1>
 			</hgroup>
 			
 			
+			
+				
 			
 				
 			
@@ -129,12 +136,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/jontyhuang.github.io/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/jontyhuang.github.io/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/jontyhuang.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 33.333333333333336%"><a href="/jontyhuang.github.io/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/jontyhuang.github.io/categories">分类</a></li>
 		        
 				</ul>
 			</nav>
@@ -150,6 +159,74 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-blue-cup-Points-of-chocolate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/jontyhuang.github.io/2019/11/02/blue-cup-Points-of-chocolate/">the blue cup Points of chocolate</a>
+    </h1>
+  
+
+        
+        <a href="/jontyhuang.github.io/2019/11/02/blue-cup-Points-of-chocolate/" class="archive-article-date">
+  	<time datetime="2019-11-02T14:08:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>儿童节那天有K位小朋友到小明家做客。小明拿出了珍藏的巧克力招待小朋友们。  小明一共有N块巧克力，其中第i块是Hi x Wi的方格组成的长方形。为了公平起见，小明需要从这 N 块巧克力中切出K块巧克力分给小朋友们。切出的巧克力需要满足：  </p>
+<ul>
+<li>形状是正方形 ，  </li>
+<li>边长是整数大小相同</li>
+</ul>
+<p>例如一块6x5的巧克力可以切出6块2x2的巧克力或者2块3x3的巧克力。<br>当然小朋友们都希望得到的巧克力尽可能大，你能帮小Hi计算出最大的边长是多少么？<br>输入格式：<br>第一行输入包含两个整数N和K。(1 &lt;= N, K &lt;= 100000)<br>以下N行每行包含两个整数Hi和Wi。(1 &lt;= Hi, Wi &lt;= 100000)<br>输入保证每位小朋友至少能获得一块1x1的巧克力。<br>输出格式：<br>输出切出的正方形巧克力最大可能的边长。<br>样例输入：<br>2 10<br>6 5<br>5 6<br>Sample Output<br>2</p>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/jontyhuang.github.io/2019/11/02/blue-cup-Points-of-chocolate/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-blue-cup-plantation(prev54)" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1083,115 +1160,9 @@
 
 
   
-    <article id="post-decorator" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/jontyhuang.github.io/2019/10/26/decorator/">decorator</a>
-    </h1>
-  
-
-        
-        <a href="/jontyhuang.github.io/2019/10/26/decorator/" class="archive-article-date">
-  	<time datetime="2019-10-26T14:18:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>装饰器本质上是一个Python函数，它可以让其他函数在不需要做任何代码变动的前提下增加额外功能，装饰器的返回值也是一个函数对象。它经常用于有切面需求的场景，比如：插入日志、性能测试、事务处理、缓存、权限校验等场景。装饰器是解决这类问题的绝佳设计，有了装饰器，我们就可以抽离出大量与函数功能本身无关的雷同代码并继续重用。</p>
-<h1 id="内嵌函数的运行"><a href="#内嵌函数的运行" class="headerlink" title="内嵌函数的运行"></a>内嵌函数的运行</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">bar</span><span class="params">()</span>:</span></span><br><span class="line">		print(<span class="string">'bar() called'</span>)</span><br><span class="line">	<span class="keyword">print</span> (<span class="string">'foo() called'</span>)</span><br><span class="line">	<span class="keyword">return</span> bar()</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;foo()</span><br><span class="line">foo() called</span><br><span class="line">bar() called</span><br></pre></td></tr></table></figure>
-<p>我们可以发现，先执行的是外函数，再执行的内嵌函数</p>
-<h1 id="无参数的装饰器"><a href="#无参数的装饰器" class="headerlink" title="无参数的装饰器"></a>无参数的装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
-<p>这个执行过程如果用无装饰器的代码理解，如下:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br><span class="line">say = debug(say)  <span class="comment"># 实际上@debug完成的就是这是操作。</span></span><br><span class="line">say(<span class="string">"hell0"</span>)</span><br></pre></td></tr></table></figure>
-<p>如何理解上述执行的过程：<br>@debug的作用可以理解为say = debug(say)<br><strong>同时我们明白理解装饰函数在被装饰函数定义好后立即执行say = debug(say)的操作。</strong></p>
-<p>整个装饰器实现过程如下：<br><strong>在@debug定义完之后就执行say = debug(say)的操作，由于debug函数存在返回值，那么say就指向了wrapper，接下来的say(“hello”)实际是wrapper(“hello”)函数。</strong>最后返回func函数即say函数 ，最后执行say函数 。其实前面加粗的部分是装饰器所实现的功能，很明显这部分实现的功能和say()定义函数里的代码毫无关系。</p>
-<p>进一步理解：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">"this is debug"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kwargs)</span>:</span>  <span class="comment"># 指定参数</span></span><br><span class="line">        print(<span class="string">"[DEBUG]: enter &#123;&#125;()"</span>.format(func.__name__))</span><br><span class="line">        print(<span class="string">'Prepare and say...'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper  <span class="comment"># 返回</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@debug</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say</span><span class="params">(something)</span>:</span></span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"hello &#123;&#125;!"</span>.format(something))</span><br></pre></td></tr></table></figure>
-<p>结果为：</p>
-<figure class="highlight plain"><figcaption><span>is debug```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">在上面的程序中，我们没有运行函数，但是debug函数却执行了，也就是执行了say= debug(say)这个操作。那么之后say的调用就是调用装饰器内部函数的过程。</span><br><span class="line"></span><br><span class="line"># 带参数的装饰器</span><br><span class="line">有时候，需要装饰器有参数，比如设计一个计时程序，用来测试网络训练和测试的时间，此时需要指定当前执行的是训练或测试过程，为此，需要传入一个状态参数。此处说明一下装饰器传参的方式：@debug(args1,args2)等价于func=debug(args1,args2)(func)，值得说明的是此处所谓的参数是指装饰器的参数而不是被装饰函数的参数，被装饰函数的参数是通过*args和**kwargs自然地传递的。</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">def debug(text):</span><br><span class="line">    def decorator(func):</span><br><span class="line">        def wrapper(*args, **kw):</span><br><span class="line">            print(&quot;[&#123;&#125;] call &#123;&#125; &quot;.format(text, func.__name__))</span><br><span class="line">            return func(*args, **kw)</span><br><span class="line">        return wrapper</span><br><span class="line">    return decorator</span><br><span class="line"></span><br><span class="line">@debug(&quot;train&quot;)</span><br><span class="line">def training():</span><br><span class="line">    print(&quot;traing&quot;)</span><br><span class="line">@debug(&quot;testing&quot;)</span><br><span class="line">def testing():</span><br><span class="line">    print(&quot;testing&quot;)</span><br><span class="line"></span><br><span class="line">training()</span><br><span class="line">testing()</span><br></pre></td></tr></table></figure>
-<p>结果为</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[train] call training </span><br><span class="line">traing</span><br><span class="line">[testing] call testing </span><br><span class="line">testing</span><br></pre></td></tr></table></figure>
-<p>整个执行过程的理解：<br>在定义@debug(“train”)完成之后，立即执行了training = debug(“train”)(training)这个语句，这个句子可以分开理解<code>next = debug(&quot;train&quot;), training = next(training)</code>其中debug(“train”)语句执行debug函数，返回decorator函数，接着执行decorator(training)这个函数，最后就得到了wrapper这个函数，那么其实此时执行的traning()其实就是wrapper()这个函数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">"Train"</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"this is timing"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span>  <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper</span><span class="params">(*args, **kw)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args, **kw)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s'</span>%(status, time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"><span class="meta">@timing()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Training</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">3</span>)</span><br><span class="line">Training()</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">[Train] time: <span class="number">3.000</span> s</span><br></pre></td></tr></table></figure>
-<p>对上述过程分步描述：<br>首先说明，@timing()在此处等价于Training=timing(‘Train’)(Training)</p>
-<ul>
-<li>第一步，打印第一句话，然后Training=timing(‘Train’)(Training)=debug(Training)。</li>
-<li>第二步，打印第二句话，且debug(Training)返回wrapper，即Training=wrapper。（到这一步都只是定义Testing所产生的操作，即即使不调用该函数，上两句话也会被打印）</li>
-<li>调用wrapper函数，记下起始时间start，执行Testing函数，延时2秒，打印所用时间，返回func1。</li>
-</ul>
-<p>值得说明的是，这里返回的func1是None，因为这个返回值实际是Testing函数的返回值，而这个函数我并没有定义返回值。</p>
-<h1 id="多装饰器"><a href="#多装饰器" class="headerlink" title="多装饰器"></a>多装饰器</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@debug1(args)</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@debug3</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span></span><br></pre></td></tr></table></figure>
-<p>这等价于:func = debug1(args)(debug2(debug3(func)))</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">timing</span><span class="params">(status=<span class="string">'Train'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">'this is timing'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">debug</span><span class="params">(func)</span>:</span></span><br><span class="line">        print(<span class="string">'this is debug in timing'</span>)</span><br><span class="line"><span class="meta">        @functools.wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapper3</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">            start = time.time()</span><br><span class="line">            func1 = func(*args,**kwargs)</span><br><span class="line">            print(<span class="string">'[%s] time: %.3f s '</span>%(status,time.time()-start))</span><br><span class="line">            <span class="keyword">return</span> func1</span><br><span class="line">        <span class="keyword">return</span> wrapper3</span><br><span class="line">    <span class="keyword">return</span> debug</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug1</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug1'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper1</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug1'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">debug2</span><span class="params">(func)</span>:</span></span><br><span class="line">    print(<span class="string">'this is debug2'</span>)</span><br><span class="line"><span class="meta">    @functools.wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapper2</span><span class="params">(*args,**kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'this is a wrapper in debug2'</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args,**kwargs)</span><br><span class="line">    <span class="keyword">return</span> wrapper2</span><br><span class="line">    </span><br><span class="line"><span class="meta">@debug1</span></span><br><span class="line"><span class="meta">@debug2</span></span><br><span class="line"><span class="meta">@timing(status='Test')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    time.sleep(<span class="number">2</span>)</span><br><span class="line">fun()</span><br></pre></td></tr></table></figure>
-<p>结果:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">this <span class="keyword">is</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug <span class="keyword">in</span> timing</span><br><span class="line">this <span class="keyword">is</span> debug2</span><br><span class="line">this <span class="keyword">is</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug1</span><br><span class="line">this <span class="keyword">is</span> a wrapper <span class="keyword">in</span> debug2</span><br><span class="line">[Test] time: <span class="number">2.001</span> s</span><br></pre></td></tr></table></figure>
-<p>程序在定义完成后，执行fun = debug1(debug2(timing(‘Test’)(fun)))语句，我们可以得到，wrapper3作用域的func = fun,wrapper2作用域的func = wrapper3，wrapper1作用域的func=wrapper2，最后fun = wrapper1。</p>
-<p>这个可以从里往外进行逻辑推理。</p>
-<p>观察结果，类似于自底向上完成装饰器的定义，自顶向下完成装饰器的功能。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/jontyhuang.github.io/categories/basic-learning-of-Python//" class="article-tag-list-link color5">basic learning of Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/jontyhuang.github.io/2019/10/26/decorator/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/jontyhuang.github.io/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/jontyhuang.github.io/">1</a><a class="page-number" href="/jontyhuang.github.io/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/jontyhuang.github.io/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/jontyhuang.github.io/">1</a><a class="page-number" href="/jontyhuang.github.io/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/jontyhuang.github.io/page/4/">4</a><a class="extend next" rel="next" href="/jontyhuang.github.io/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1203,7 +1174,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 John Doe
+    		&copy; 2019 Jonty Huang
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
