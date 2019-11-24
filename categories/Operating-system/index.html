@@ -79,15 +79,14 @@
 
 
 
-<meta name="description" content="argpartition numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None)   使用np.argpartition.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。 12345678import numpy a">
+<meta name="description" content="不努力，毋宁single">
 <meta name="keywords" content="机器学习,python,java">
-<meta property="og:type" content="article">
-<meta property="og:title" content="numpy&#39;s argpartition">
-<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;09&#x2F;numpy&#39;s-argpartition&#x2F;index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IU的fans">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;categories&#x2F;Operating-system&#x2F;index.html">
 <meta property="og:site_name" content="IU的fans">
-<meta property="og:description" content="argpartition numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None)   使用np.argpartition.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。 12345678import numpy a">
+<meta property="og:description" content="不努力，毋宁single">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-08T17:02:04.307Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/11/09/numpy's-argpartition/"/>
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/categories/Operating-system/"/>
 
 
 
 
 
-  <title>numpy's argpartition | IU的fans</title>
+  <title>分类: Operating system | IU的fans</title>
   
 
 
@@ -143,7 +142,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,174 +226,55 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block category">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Operating system<small>分类</small>
+        </h1>
+      </div>
 
-  
-  
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/09/numpy's-argpartition/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+            <a class="post-title-link" href="/jontyhuang.github.io/2019/10/29/Operating-system-experiments/" itemprop="url">
+              
+                <span itemprop="name">Operating system experiments</span>
+              
+            </a>
         
-          <h1 class="post-title" itemprop="name headline">numpy's argpartition</h1>
-        
+      </h2>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T00:55:13+08:00">
-                2019-11-09
-              </time>
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2019-10-29T10:31:22+08:00"
+              content="2019-10-29" >
+          10-29
+        </time>
+      </div>
 
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="argpartition"><a href="#argpartition" class="headerlink" title="argpartition"></a>argpartition</h1><p> numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None) </p>
-<p> 使用<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.argpartition.html" target="_blank" rel="noopener"><code>np.argpartition</code></a>.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([<span class="number">1</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">17</span>, <span class="number">17</span>, <span class="number">1.5</span>])</span><br><span class="line">k = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">idx = np.argpartition(A, k)</span><br><span class="line">print(idx)</span><br><span class="line"><span class="comment"># [4 0 7 3 1 2 6 5]</span></span><br></pre></td></tr></table></figure>
-
-<p>这将返回k个最小值.请注意,这些可能不是按排序顺序.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(A[idx[:k]])</span><br><span class="line"># [ 0.1  1.   1.5]</span><br></pre></td></tr></table></figure>
-
-<p>要获得k最大值使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">idx = np.argpartition(A, -k)</span><br><span class="line"># [4 0 7 3 1 2 6 5]</span><br><span class="line"></span><br><span class="line">A[idx[-3:]]</span><br><span class="line"># [  9.  17.  17.]</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/jontyhuang.github.io/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" rel="next" title="machine learning of LabelEncoder and OneHotEncode">
-                <i class="fa fa-chevron-left"></i> machine learning of LabelEncoder and OneHotEncode
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/jontyhuang.github.io/2019/11/09/machine-learning-of-logistic-regression/" rel="prev" title="machine learning of logistic regression">
-                machine learning of logistic regression <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -402,10 +282,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -426,17 +302,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -491,22 +358,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#argpartition"><span class="nav-number">1.</span> <span class="nav-text">argpartition</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -640,10 +491,6 @@
   
 
   
-  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
