@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题描述某涉密单位下发了某种票据，并要在年终全部收回。每张票据有唯⼀的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。因为⼯作⼈员疏忽，在录⼊ID号的时候发⽣了⼀处错误，造成了某个ID断号，另外⼀个ID重号。你的任务是通过编程，找出断号的ID和重号的ID。假设断号不可能发⽣在最⼤和最⼩号。输⼊格式要求程序⾸先输⼊⼀个整数N(N&amp;lt;100)表示后⾯数据⾏数。接着读⼊N⾏数">
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blue cup PREV5 错误票据">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;12&#x2F;03&#x2F;blue-cup-PREV5-%E9%94%99%E8%AF%AF%E7%A5%A8%E6%8D%AE&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:description" content="问题描述某涉密单位下发了某种票据，并要在年终全部收回。每张票据有唯⼀的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。因为⼯作⼈员疏忽，在录⼊ID号的时候发⽣了⼀处错误，造成了某个ID断号，另外⼀个ID重号。你的任务是通过编程，找出断号的ID和重号的ID。假设断号不可能发⽣在最⼤和最⼩号。输⼊格式要求程序⾸先输⼊⼀个整数N(N&amp;lt;100)表示后⾯数据⾏数。接着读⼊N⾏数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-12-03T03:00:33.791Z">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/12/03/blue-cup-PREV5-错误票据/"/>
+
+
+
+
+
+  <title>blue cup PREV5 错误票据 | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/03/blue-cup-PREV5-%E9%94%99%E8%AF%AF%E7%A5%A8%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">blue cup PREV5 错误票据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-03T10:18:10+08:00">
+                2019-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/the-blue-cup-of-Java/" itemprop="url" rel="index">
+                    <span itemprop="name">the blue cup of Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>  问题描述<br>某涉密单位下发了某种票据，并要在年终全部收回。<br>每张票据有唯⼀的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。<br>因为⼯作⼈员疏忽，在录⼊ID号的时候发⽣了⼀处错误，造成了某个ID断号，另外⼀个ID重号。<br>你的任务是通过编程，找出断号的ID和重号的ID。<br>假设断号不可能发⽣在最⼤和最⼩号。<br>输⼊格式<br>要求程序⾸先输⼊⼀个整数N(N&lt;100)表示后⾯数据⾏数。<br>接着读⼊N⾏数据。<br>每⾏数据⻓度不等，是⽤空格分开的若⼲个（不⼤于100个）正整数（不⼤于100000），请注意⾏内<br>和⾏末可能有多余的空格，你的程序需要能处理这些空格。<br>每个整数代表⼀个ID号。<br>输出格式<br>要求程序输出1⾏，含两个整数m n，⽤空格分隔。<br>其中， m表示断号ID， n表示重号ID<br>样例输⼊1<br>2<br>5 6 8 11 9<br>10 12 9<br>样例输出1<br>7 9<br>样例输⼊2<br>6<br>164 178 108 109 180 155 141 159 104 182 179 118 137 184 115 124 125 129 168 196<br>172 189 127 107 112 192 103 131 133 169 158<br>128 102 110 148 139 157 140 195 197<br>185 152 135 106 123 173 122 136 174 191 145 116 151 143 175 120 161 134 162 190<br>149 138 142 146 199 126 165 156 153 193 144 166 170 121 171 132 101 194 187 188<br>113 130 176 154 177 120 117 150 114 183 186 181 100 163 160 167 147 198 111 119<br>样例输出2<br>105 120  </p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.JTree;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span>  <span class="keyword">static</span> <span class="keyword">int</span>[][] a;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	    Scanner inScanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">	    <span class="keyword">int</span> n = inScanner.nextInt();</span><br><span class="line">	    inScanner.nextLine();</span><br><span class="line">	    <span class="keyword">int</span>[] corrent = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10000</span>];</span><br><span class="line">	    <span class="keyword">int</span> min =<span class="number">10000</span>;</span><br><span class="line">	    <span class="keyword">int</span> max =<span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">	    	String[] id = inScanner.nextLine().split(<span class="string">" "</span>);</span><br><span class="line">	    	<span class="keyword">for</span>(<span class="keyword">int</span> j =<span class="number">0</span>;j&lt;id.length;j++)&#123;</span><br><span class="line">	    		</span><br><span class="line">	    		</span><br><span class="line">	    		<span class="keyword">int</span> num = Integer.parseInt(id[j]); <span class="comment">// 将字符转为整型</span></span><br><span class="line">	    		corrent[num]++;</span><br><span class="line">	    		<span class="keyword">if</span>(num&lt;min) min =num;</span><br><span class="line">	    		<span class="keyword">if</span>(num &gt;max) max =num;</span><br><span class="line">	    		</span><br><span class="line">	    	&#125;</span><br><span class="line">	    	</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">int</span> y = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=min;i&lt;max+<span class="number">1</span>;i++)&#123;</span><br><span class="line">	    	<span class="keyword">if</span>(corrent[i]==<span class="number">0</span>)&#123;System.out.println(i);x =i;&#125;</span><br><span class="line">	    	<span class="keyword">if</span>(corrent[i]==<span class="number">2</span>)y=i;</span><br><span class="line">	    &#125;</span><br><span class="line">	    System.out.println(x + <span class="string">" "</span> + y);</span><br><span class="line">	    inScanner.close();</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/02/blue-cup-PREV33-%E5%85%B0%E9%A1%BF%E8%9A%82%E8%9A%81/" rel="next" title="blue cup PREV33 兰顿蚂蚁">
+                <i class="fa fa-chevron-left"></i> blue cup PREV33 兰顿蚂蚁
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/04/blue-cup-PREV3-%E5%B8%A6%E5%88%86%E6%95%B0/" rel="prev" title="blue cup PREV3 带分数">
+                blue cup PREV3 带分数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

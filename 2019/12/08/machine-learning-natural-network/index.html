@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning neural network">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;12&#x2F;08&#x2F;machine-learning-natural-network&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208205601.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191208211123684.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208220726.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208220806.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208205816.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208205905.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208205945.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208210039.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208210334.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;109bb60bcaf9de398720dd1ec59c259.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209112412.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208215157.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208215213.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208222501.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208222543.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208225118.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.zhihu.com&#x2F;equation?tex=%5Cvarepsilon">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208225411.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208211410.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;upload-images.jianshu.io&#x2F;upload_images&#x2F;5236230-12cd299a8d571d1e.PNG?imageMogr2&#x2F;auto-orient&#x2F;strip%7CimageView2&#x2F;2&#x2F;w&#x2F;678&#x2F;format&#x2F;webp">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208214543.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208214559.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209152604.png">
+<meta property="og:updated_time" content="2019-12-09T07:29:11.426Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191208205601.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/12/08/machine-learning-natural-network/"/>
+
+
+
+
+
+  <title>machine learning neural network | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/08/machine-learning-natural-network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">machine learning neural network</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-08T20:54:14+08:00">
+                2019-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208205601.png" alt=""></p>
+<a id="more"></a>
+
+<p>细化个神经元，非线性函数通常是sigmoid函数，tanh，reul</p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191208211123684.png" alt="image-20191208211123684"></p>
+<p>这个非线性函数的作用？</p>
+<ul>
+<li>如果不是非线性函数，神经网络的输出都是线性组合，那么祈祷书就是一个常数，与输入无关，就等于一个感知机。</li>
+<li>非线性函数是逼近函数，输出有界。例如，sigmoid函数，从数学上看，中央区信号增益较大，两边的信号增益小。从神经科学上看，中央区酷似神经元的兴奋区，两侧酷似神经元的抑制态。</li>
+</ul>
+<h1 id="激活函数的饱和性"><a href="#激活函数的饱和性" class="headerlink" title="激活函数的饱和性"></a>激活函数的饱和性</h1><h2 id="软饱和"><a href="#软饱和" class="headerlink" title="软饱和"></a>软饱和</h2><p>当一个激活函数$f(x)$满足:</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208220726.png" alt=""></p>
+<p>我们称之为右饱和</p>
+<p>满足：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208220806.png" alt=""></p>
+<p>我们称之为左饱和。</p>
+<p>当一个函数$f(x)$满足上述左右饱和时，我们称之为软包和。</p>
+<h2 id="硬饱和"><a href="#硬饱和" class="headerlink" title="硬饱和"></a>硬饱和</h2><p> 相对应的，对任意的x，如果存在常数c，当x&gt;c时恒有 f′(x)=0则称其为<strong>右硬饱和</strong>，当x比c小时恒 有f′(x)=0则称其为<strong>左硬饱和</strong>。若既满足左硬饱和，又满足右硬饱和，则称这种激活函数为<strong>硬饱和</strong>。 </p>
+<h1 id="简单的神经网络"><a href="#简单的神经网络" class="headerlink" title="简单的神经网络"></a>简单的神经网络</h1><h2 id="与AND"><a href="#与AND" class="headerlink" title="与AND"></a>与AND</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208205816.png" alt=""></p>
+<h2 id="或OR"><a href="#或OR" class="headerlink" title="或OR"></a>或OR</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208205905.png" alt=""></p>
+<h2 id="非NEGATION"><a href="#非NEGATION" class="headerlink" title="非NEGATION"></a>非NEGATION</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208205945.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208210039.png" alt=""></p>
+<h2 id="异或XNOR"><a href="#异或XNOR" class="headerlink" title="异或XNOR"></a>异或XNOR</h2><p><strong>传统的神经网络和经典机器学习方法是无法对异或进行分类的</strong></p>
+<p>两层神经网络</p>
+<p>将其转为<strong>或问题</strong></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208210334.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/109bb60bcaf9de398720dd1ec59c259.jpg" alt=""></p>
+<h1 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h1><p>当我们使用softmax得到了概率之后，选取其中最大概率的事件作为结果，我如何评价我的结果呢？</p>
+<p>我们使用交叉熵去进行评价，其公式如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209112412.png" alt=""></p>
+<ul>
+<li>$M$——类别的数量；</li>
+<li>$y_c$ ——指示变量（0或1）,如果该类别和样本的类别相同就是1，否则是0；</li>
+<li>$P_c$ ——对于观测样本属于类别C的预测概率。 </li>
+</ul>
+<p>当我们对输入进行预测时，输出的结果是第$j$类，则上述公式简化为$Loss = -  \ln  a_j$，其中$y_j$为1</p>
+<p>我们对$a_i$求导可得:$\frac{\delta Loss}{\delta a_i} = -\frac{1}{a_i}$</p>
+<h1 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h1><h2 id="1-双曲正切函数tanh"><a href="#1-双曲正切函数tanh" class="headerlink" title="1.双曲正切函数tanh"></a>1.双曲正切函数tanh</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208215157.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208215213.png" alt=""></p>
+<p>优势：</p>
+<p>1.比Sigmoid函数收敛速度更快。<br>2.相比Sigmoid函数，其输出以0为中心，因此实际应用中 tanh 会比 sigmoid 更好，因为 tanh 的输出均值比 sigmoid 更接近 0，SGD会更接近 natural gradient（一种二次优化技术），从而降低所需的迭代次数。<br>缺点：<br>还是没有改变Sigmoid函数的最大问题——由于饱和性产生的梯度消失。</p>
+<h2 id="2-ReLu函数"><a href="#2-ReLu函数" class="headerlink" title="2.ReLu函数"></a>2.ReLu函数</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208222501.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208222543.png" alt=""></p>
+<p>优点：</p>
+<ul>
+<li>实现单侧抑制，兴奋界相对宽阔，稀疏激活性</li>
+<li>相比于sigmoid，tanh函数，它们都有指数运算，而ReLu计算简单。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>ReLU单元比较脆弱并且可能“死掉”，而且是不可逆的，因此导致了数据多样化的丢失。通过合理设置学习率，会降低神经元“死掉”的概率。 </li>
+</ul>
+<h2 id="3-Leaky-ReLU"><a href="#3-Leaky-ReLU" class="headerlink" title="3.Leaky ReLU"></a>3.Leaky ReLU</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208225118.png" alt=""></p>
+<p> 其中 <img src="https://www.zhihu.com/equation?tex=%5Cvarepsilon" alt="[公式]"> 是很小的负数梯度值，比如0.01，Leaky ReLU非线性函数图像如下图所示。这样做目的是使负轴信息不会全部丢失，解决了ReLU神经元“死掉”的问题。更进一步的方法是PReLU，即把$\varepsilon$当做每个神经元中的一个参数，是可以通过梯度下降求解的。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208225411.png" alt=""></p>
+<h2 id="3-sotfmax函数"><a href="#3-sotfmax函数" class="headerlink" title="3.sotfmax函数"></a>3.sotfmax函数</h2><p>softmax函数常应用于多分类的过程，它将神经元的输出，映射到（0，1）区间。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208211410.png" alt=""></p>
+<p> 代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span><span class="params">(x)</span>:</span></span><br><span class="line">    x = x - np.max(x)  <span class="comment"># 防止x中的数过大，导致超出运算范围，实际操作等于分子分母同除exp(np.max(X))</span></span><br><span class="line">    exps = np.exp(x)</span><br><span class="line">    <span class="keyword">return</span> exps / np.sum(exps)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://upload-images.jianshu.io/upload_images/5236230-12cd299a8d571d1e.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/678/format/webp" alt="img"> </p>
+<p>我们可以发现，越大的数，其softmax之后的值越大。</p>
+<p>为什么需要softmax？</p>
+<p>假如，我们有两个数，a和b，其中a &gt; b，在选择大数时，我们会直接去选a,因此这个会造成不断选择的情况下小数的饥饿。我希望大数可以经常被取到，而小数也可以被取到。如果我使用softmax函数将他们映射为概率。</p>
+<h3 id="对sorftmax求导"><a href="#对sorftmax求导" class="headerlink" title="对sorftmax求导"></a>对sorftmax求导</h3><p>这里导数分为两种情况：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208214543.png" alt=""></p>
+<p> <img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191208214559.png" alt=""></p>
+<h1 id="反向传播的简单例子"><a href="#反向传播的简单例子" class="headerlink" title="反向传播的简单例子"></a>反向传播的简单例子</h1><p>网络如下:</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209152604.png" alt=""></p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="string">"""softmax函数"""</span></span><br><span class="line">    x = x - np.max(x)</span><br><span class="line">    exps = np.exp(x)</span><br><span class="line">    <span class="keyword">return</span> exps / np.sum(exps,axis =<span class="number">1</span>,keepdims = <span class="literal">True</span>)</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot  <span class="keyword">as</span> plt</span><br><span class="line"><span class="string">"""生成样本"""</span></span><br><span class="line">np.random.seed(<span class="number">777</span>)</span><br><span class="line">X,y = sklearn.datasets.make_moons(<span class="number">500</span>, noise = <span class="number">0.1</span>)  <span class="comment"># 生成500个数据，。很明显线性logstic regreation是不行的</span></span><br><span class="line"></span><br><span class="line">plt.scatter(X[:, <span class="number">0</span> ], X[:,<span class="number">1</span>],c=y)</span><br><span class="line">plt.show()</span><br><span class="line">print(y)</span><br><span class="line">trainset_length = len(X)</span><br><span class="line">lr = <span class="number">0.01</span></span><br><span class="line">nn_output_dim =<span class="number">2</span></span><br><span class="line">nn_intput_dim = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calculate_loss</span><span class="params">(model)</span>:</span></span><br><span class="line">    <span class="string">"""计算交叉熵"""</span></span><br><span class="line">    W1,b1,W2,b2 = model[<span class="string">"W1"</span>],model[<span class="string">"b1"</span>],model[<span class="string">"W2"</span>],model[<span class="string">"b2"</span>]</span><br><span class="line">    z1 = X.dot(W1) + b1</span><br><span class="line">    a1 = np.tanh(z1)</span><br><span class="line">    z2 = a1.dot(W2) + b2</span><br><span class="line"><span class="comment">#     exp_scores  = np.exp(z2)</span></span><br><span class="line"><span class="comment">#     probs = exp_scores / np.sum(exp_scores, axis =1,keepdims= True)</span></span><br><span class="line">    probs = softmax(z2)</span><br><span class="line">    log_probs = -np.log(probs[range(trainset_length),y])  <span class="comment"># 因为是0和1，0的交叉熵为0</span></span><br><span class="line">    loss = np.sum(log_probs)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.</span> / trainset_length * loss  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_model</span><span class="params">(nn_hidden_dim, num_psses = <span class="number">200</span>, print_loss = True)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    nn_hidden_dim : 隐藏层的结点数</span></span><br><span class="line"><span class="string">    num_psses : 迭代次数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    W1 = np.random.randn(nn_intput_dim, nn_hidden_dim) / np.sqrt(nn_intput_dim)</span><br><span class="line">    b1 = np.zeros((<span class="number">1</span>,nn_hidden_dim))</span><br><span class="line">    W2 = np.random.randn(nn_hidden_dim, nn_output_dim) / np.sqrt(nn_intput_dim)</span><br><span class="line">    b2 = np.zeros((<span class="number">1</span>, nn_output_dim))</span><br><span class="line">   </span><br><span class="line">    model  =&#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_psses):</span><br><span class="line">        <span class="comment"># 正向传播</span></span><br><span class="line">        z1 = X.dot(W1) + b1</span><br><span class="line">        a1  =np.tanh(z1)   <span class="comment">#激活函数</span></span><br><span class="line">        z2 = a1.dot(W2) + b2   <span class="comment">#dot是矩阵乘法</span></span><br><span class="line">        probs = softmax(z2)</span><br><span class="line"></span><br><span class="line">        delta3 = probs</span><br><span class="line">        delta3[range(trainset_length),y] -= <span class="number">1</span>  <span class="comment"># 交叉熵对z2层的导数</span></span><br><span class="line">        dW2 = (a1.T).dot(delta3)  <span class="comment"># 交叉熵对w2的导数      </span></span><br><span class="line">        db2 = np.sum(delta3, axis =<span class="number">0</span>, keepdims = <span class="literal">True</span>)  <span class="comment"># # 交叉熵对b2的导数</span></span><br><span class="line">        delta2 = delta3.dot(W2.T) * (<span class="number">1</span> - np.power(a1, <span class="number">2</span>))   <span class="comment"># 交叉熵对z1的导数</span></span><br><span class="line">        dW1  =np.dot(X.T, delta2)  <span class="comment"># 交叉熵对w1的导数b</span></span><br><span class="line">        db1 = np.sum(delta2, axis = <span class="number">0</span>,keepdims = <span class="literal">True</span>)  <span class="comment"># 交叉熵对b1的导数</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 梯度更新</span></span><br><span class="line">        W1 -= lr * dW1</span><br><span class="line">        b1 -= lr * db1</span><br><span class="line">        W2 -= lr * dW2</span><br><span class="line">        b2 -= lr * db2</span><br><span class="line">                  </span><br><span class="line">        model = &#123;<span class="string">'W1'</span>:W1,<span class="string">"b1"</span>:b1,<span class="string">"W2"</span>:W2,<span class="string">"b2"</span>:b2&#125;</span><br><span class="line">        <span class="keyword">if</span> print_loss <span class="keyword">and</span> i % <span class="number">10</span> ==<span class="number">0</span>:</span><br><span class="line">                  print(<span class="string">'Loss after iteration &#123;&#125; : &#123;&#125;'</span>.format(i,calculate_loss(model)))</span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line">model = build_model(<span class="number">10</span>, <span class="number">500</span>,print_loss = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/07/blue-cup-ADV205-%E6%8B%BF%E7%B3%96%E6%9E%9C/" rel="next" title="blue cup ADV205 拿糖果">
+                <i class="fa fa-chevron-left"></i> blue cup ADV205 拿糖果
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/09/machine-learning-Regularization/" rel="prev" title="machine learning  Regularization">
+                machine learning  Regularization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#激活函数的饱和性"><span class="nav-number">1.</span> <span class="nav-text">激活函数的饱和性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软饱和"><span class="nav-number">1.1.</span> <span class="nav-text">软饱和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬饱和"><span class="nav-number">1.2.</span> <span class="nav-text">硬饱和</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单的神经网络"><span class="nav-number">2.</span> <span class="nav-text">简单的神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与AND"><span class="nav-number">2.1.</span> <span class="nav-text">与AND</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#或OR"><span class="nav-number">2.2.</span> <span class="nav-text">或OR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非NEGATION"><span class="nav-number">2.3.</span> <span class="nav-text">非NEGATION</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异或XNOR"><span class="nav-number">2.4.</span> <span class="nav-text">异或XNOR</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交叉熵"><span class="nav-number">3.</span> <span class="nav-text">交叉熵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#激活函数"><span class="nav-number">4.</span> <span class="nav-text">激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-双曲正切函数tanh"><span class="nav-number">4.1.</span> <span class="nav-text">1.双曲正切函数tanh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ReLu函数"><span class="nav-number">4.2.</span> <span class="nav-text">2.ReLu函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Leaky-ReLU"><span class="nav-number">4.3.</span> <span class="nav-text">3.Leaky ReLU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-sotfmax函数"><span class="nav-number">4.4.</span> <span class="nav-text">3.sotfmax函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对sorftmax求导"><span class="nav-number">4.4.1.</span> <span class="nav-text">对sorftmax求导</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#反向传播的简单例子"><span class="nav-number">5.</span> <span class="nav-text">反向传播的简单例子</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

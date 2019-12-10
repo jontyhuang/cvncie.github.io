@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning  Regularization">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;12&#x2F;09&#x2F;machine-learning-Regularization&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202718.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209163702.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202812.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202905.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209204518.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209194523.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209194835.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209195048.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209195431.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209200135.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209200704.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209200952.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209201140.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209201319.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209201708.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202107.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202135.png">
+<meta property="og:updated_time" content="2019-12-09T12:46:06.301Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191209202718.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/12/09/machine-learning-Regularization/"/>
+
+
+
+
+
+  <title>machine learning  Regularization | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/09/machine-learning-Regularization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">machine learning  Regularization</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-09T16:33:48+08:00">
+                2019-12-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209202718.png" alt=""></p>
+<a id="more"></a>
+
+<h1 id="问题的产生"><a href="#问题的产生" class="headerlink" title="问题的产生"></a>问题的产生</h1><p>过度拟合的问题通常发生在变量（特征）过多的时候。这种情况下训练出的方程总是能很好的拟合训练数据，也就是说，我们的代价函数可能非常接近于 0 或者就为 0。</p>
+<p>但是，这样的曲线千方百计的去拟合训练数据，这样会导致它无法泛化到新的数据样本中，以至于无法预测新样本价格。在这里，<strong>术语”泛化”指的是一个假设模型能够应用到新样本的能力。</strong>新样本数据是指没有出现在训练集中的数据。</p>
+<p>下面是线性回归的过拟合问题：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209163702.png" alt=""></p>
+<h1 id="问题的解决"><a href="#问题的解决" class="headerlink" title="问题的解决"></a>问题的解决</h1><p>上述问题，我们一般有两种解决方法：</p>
+<ul>
+<li>尽量减少选取变量的数量，这需要我们人工去筛选特征变量。</li>
+<li>正则化。我们保留所有的特征变量，但是减少特征变量的数量级。</li>
+</ul>
+<p>常见的四种正则化方式：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209202812.png" alt=""></p>
+<p>lasso回归的代价函数：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209202905.png" alt=""></p>
+<p>关于加入了lasso回归发线性回归的梯度下降：</p>
+<p>下式的sgn函数的系数存在一些错误，应该还需要除以2.</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209204518.png" alt=""></p>
+<h2 id="举例解释"><a href="#举例解释" class="headerlink" title="举例解释"></a>举例解释</h2><p>现在我们使用两个函数去拟合同一个样本，结果如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209194523.png" alt=""></p>
+<p>我们发现两个函数拟合的都很好，甚至高次函数拟合的会更好，但是这样的函数未必是一个好的结果，可能存在过拟合的问题。</p>
+<p>我们在原来的代价函数上添加惩罚项，使得参数$\theta_3$和$\theta_4$足够小。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209194835.png" alt=""></p>
+<p>当我们尽量让上述的代价函数最小时，$\theta_3$和$\theta_4$会尽可能接近于0，就相当于三次项和四次项都不存在一样。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209195048.png" alt=""></p>
+<p> 我们最终恰当地拟合了数据，我们所使用的正是二次函数加上一些非常小，贡献很小项（因为这些项的 θ3、 θ4 非常接近于0）。显然，这是一个更好的假设。 </p>
+<h2 id="更一般的思路"><a href="#更一般的思路" class="headerlink" title="更一般的思路"></a>更一般的思路</h2><p>在我们上面的例子中，我们惩罚的只是 θ3 和 θ4 ，使这两个值均接近于零，从而我们得到了一个更简单的假设，实际上这个假设大抵上是一个二次函数。</p>
+<p>但更一般地说，如果我们像惩罚 θ3 和 θ4 这样惩罚其它参数，那么我们往往可以得到一个相对较为简单的假设。</p>
+<p>如果我们有一百个特征，实际上我们并不知道如何选择关联度更好的参数，如何缩小参数的数目等等。因此在正则化里，我们要做的事情，就是把减小我们的代价函数（例子中是线性回归的代价函数）所有的参数值，</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209195431.png" alt=""></p>
+<p>其中$\lambda$是正则化参数。</p>
+<p>$\lambda$的作用是保持均方误差较小和参数值较小的平衡，从而保证了模型的简单性。</p>
+<p>当我们把$\lambda$ 值选的过大时，也就是只有参数值很小的情况下甚至接近于0，代价函数才能过很小。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209200135.png" alt=""></p>
+<p>如果我们这么做。模型就相当于只剩下了$\theta_0$常数，拟合了一条直线，这很明显是欠拟合的。其选择的特性也非常少。</p>
+<p>因此我们不妨理解为，当数据的特征过少时，即模型比较简单，我们可以让$\lambda$过大，来获得一个比较简单的模型。当然具体$\lambda$具体是多少，还需要我们自己去选择。</p>
+<h1 id="Regularized-Linear-Regression"><a href="#Regularized-Linear-Regression" class="headerlink" title="Regularized Linear Regression"></a>Regularized Linear Regression</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209200704.png" alt=""></p>
+<h2 id="模型的求解"><a href="#模型的求解" class="headerlink" title="模型的求解"></a>模型的求解</h2><h3 id="1-梯度下降"><a href="#1-梯度下降" class="headerlink" title="1.梯度下降"></a>1.梯度下降</h3><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209200952.png" alt=""></p>
+<h3 id="2-正规方程"><a href="#2-正规方程" class="headerlink" title="2.正规方程"></a>2.正规方程</h3><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209201140.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209201319.png" alt=""></p>
+<p>我们知道，当样本数过少，导致特征数量大于样本数量，那么$X^TX$是不可逆矩阵，所以我们无法使用正规方程去解出$\theta$，但是正则化为我们解决了这个问题，加入了正则项之后，下面的矩阵是可逆的。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209201708.png" alt=""></p>
+<h1 id="Regularized-Logistic-Regression"><a href="#Regularized-Logistic-Regression" class="headerlink" title="Regularized Logistic Regression"></a>Regularized Logistic Regression</h1><h1 id="添加正则项"><a href="#添加正则项" class="headerlink" title="添加正则项"></a>添加正则项</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209202107.png" alt=""></p>
+<p>导数如下：</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191209202135.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/08/machine-learning-natural-network/" rel="next" title="machine learning neural network">
+                <i class="fa fa-chevron-left"></i> machine learning neural network
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/10/blue-cup-ADV202-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/" rel="prev" title="blue cup ADV202 最长公共子序列">
+                blue cup ADV202 最长公共子序列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题的产生"><span class="nav-number">1.</span> <span class="nav-text">问题的产生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题的解决"><span class="nav-number">2.</span> <span class="nav-text">问题的解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#举例解释"><span class="nav-number">2.1.</span> <span class="nav-text">举例解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更一般的思路"><span class="nav-number">2.2.</span> <span class="nav-text">更一般的思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regularized-Linear-Regression"><span class="nav-number">3.</span> <span class="nav-text">Regularized Linear Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型的求解"><span class="nav-number">3.1.</span> <span class="nav-text">模型的求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-梯度下降"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-正规方程"><span class="nav-number">3.1.2.</span> <span class="nav-text">2.正规方程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Regularized-Logistic-Regression"><span class="nav-number">4.</span> <span class="nav-text">Regularized Logistic Regression</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加正则项"><span class="nav-number">5.</span> <span class="nav-text">添加正则项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

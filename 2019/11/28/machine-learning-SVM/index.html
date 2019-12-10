@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning SVM">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;11&#x2F;28&#x2F;machine-learning-SVM&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;SVM.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128115838.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128120617.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128150452.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128120944.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128150930.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128151144.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128151510.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128151853.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128152144.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128154248.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128154640.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128154746.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128155150.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128155424.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128155808.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128160613.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128161204.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128161413.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128161533.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128161736.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128162117.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191128162557.png">
+<meta property="og:updated_time" content="2019-11-28T09:01:33.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;SVM.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/11/28/machine-learning-SVM/"/>
+
+
+
+
+
+  <title>machine learning SVM | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/28/machine-learning-SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">machine learning SVM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T07:34:22+08:00">
+                2019-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/SVM.jpg" alt=""></p>
+<a id="more"></a>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128115838.png" alt=""></p>
+<h1 id="1-线性可分支持向量机"><a href="#1-线性可分支持向量机" class="headerlink" title="1. 线性可分支持向量机"></a>1. 线性可分支持向量机</h1><p>考虑一个二分类问题，假设输入空间与特征空间为两个不同的空间。输入空间为欧式空间或者离散集合，特征空间为欧式空间或者希尔伯特空间。线性可分支持向量机，线性支持向量机假设这两个空间的元素一一对应，并将输入空间中输入映射为特征空间中的特征向量，支持向量机的学习是在特征空间中进行的。学习的目标是在特征空间中寻找一个超平面，能够将实例分到不同的类，分离超平面对应于方程$w\cdot x+b = 0$,它由法向量w和截距b决定。</p>
+<p>一般的当数据线性可分时，存在无穷个分离超平面可将两类数据正确分开。线性可分支持向量机利用间隔最大化求最优分离超平面。这时，解是唯一的。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128120617.png" alt=""></p>
+<h2 id="1-1-函数间隔"><a href="#1-1-函数间隔" class="headerlink" title="1.1 函数间隔"></a>1.1 函数间隔</h2><p>我们用函数间隔来表示分类预测的确信程度，离超平面越近，其置信程度越低。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128150452.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128120944.png" alt=""></p>
+<p>函数间隔可以表示分类预测的正确性和置信度，但是在选择超平面时, 只有函数间隔还不够。因为只要成比例地改变w和b, 例如将它们改为2w和2b，超平面没有改变，但是函数间隔变为原来的两倍了。因此，我们需要对于分离超平面的法向量w加一些约束，如规范化，$||w|| =1$ ,使得间隔是确定的，这时的函数间隔为几何间隔。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128150930.png" alt=""></p>
+<p>当样本点被超平面正确分类时，几何间隔就是实例点到超平面的距离。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128151144.png" alt=""></p>
+<h2 id="1-2-间隔最大化"><a href="#1-2-间隔最大化" class="headerlink" title="1.2 间隔最大化"></a>1.2 间隔最大化</h2><p>支持向量机学习的基本思想就是求解能够正确划分训练数据集并且几何间隔最大的分离超平面。对于线性可分数据集而言，线性可分分离超平面有无穷多个（等价于感知机），但是几何间隔最大的分离超平面是唯一的。这里的间隔最大化又称为硬间隔最大化。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128151510.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128151853.png" alt=""></p>
+<p>上述问题是凸二次规划问题，解出最优解$w^<em>$,$b^</em>$。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128152144.png" alt=""> </p>
+<h2 id="1-3-支持向量和间隔边界"><a href="#1-3-支持向量和间隔边界" class="headerlink" title="1.3 支持向量和间隔边界"></a>1.3 支持向量和间隔边界</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128154248.png" alt=""></p>
+<h2 id="1-4-对偶问题的求解"><a href="#1-4-对偶问题的求解" class="headerlink" title="1.4 对偶问题的求解"></a>1.4 对偶问题的求解</h2><p>线性可分支持向量机的最优化问题可以应用拉格朗日对偶性，通过求解对偶问题求解最优解。这样做，第一是对偶问题往往容易求解，第二是自然引入核函数，进而推广到非线性分类问题。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128154640.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128154746.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128155150.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128155424.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128155808.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128160613.png" alt=""></p>
+<h1 id="2-线性支持向量机"><a href="#2-线性支持向量机" class="headerlink" title="2. 线性支持向量机"></a>2. 线性支持向量机</h1><p>线性不可分意味着某些样本点不能满足函数间隔大于等于1的约束条件。为了解决这个问题，我们对每个样本点引入一个松弛变量$\xi_i \geq 0 $;</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128161204.png" alt=""></p>
+<h2 id="2-1-对偶算法"><a href="#2-1-对偶算法" class="headerlink" title="2.1 对偶算法"></a>2.1 对偶算法</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128161413.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128161533.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128161736.png" alt=""></p>
+<h2 id="2-2-支持向量"><a href="#2-2-支持向量" class="headerlink" title="2.2 支持向量"></a>2.2 支持向量</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128162117.png" alt=""></p>
+<h1 id="SVM实战（SMO高效优化算法）"><a href="#SVM实战（SMO高效优化算法）" class="headerlink" title="SVM实战（SMO高效优化算法）"></a>SVM实战（SMO高效优化算法）</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191128162557.png" alt=""></p>
+<p>  SMO算法的目标是求出一系列$\alpha$和b，一旦求出了这些$\alpha$，就很容易计算出权重向量w并得到分隔超平面。  </p>
+<p>  SMO算法的工作原理是：每次循环中选择两个$\alpha$进行优化处理。一旦找到一对合适的<br>$\alpha$，那么就增大其中一个同时减小另一个。这里所谓的“合适”就是指两个$\alpha$必须要符合<br>一定的条件，条件之一就是这两个$\alpha$必须要在间隔边界之外，而其第二个条件则是这两个$\alpha$<br>还没有进行过区间化处理或者不在边界上。  </p>
+<p>  首先在数据集上遍历每一个$\alpha$，然后在剩下的$\alpha$集合中随机选择另一个$\alpha$，从而构建$\alpha$对。这里有一点相当重要，就是我们要同时改变两个$\alpha$。之所以这样做是因为我们有一个约束条件：  $\Sigma\alpha_i\cdot y_i= 0$</p>
+<p>所以当我们改变一个$\alpha$值时，为了约束条件的成立，必须再改变一个。</p>
+<p>  为此，我们将构建一个辅助函数，用于在某个区间范围内随机选择一个整数。同时，我们也需要另一个辅助函数，用于在数值太大时对其进行调整。下面的程序清单给出了这两个函数的实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">(fileName)</span>:</span></span><br><span class="line">    <span class="string">"""加载数据"""</span></span><br><span class="line">    dataMat = []; labelMat = []</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</span><br><span class="line">        lineArr = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        dataMat.append([float(lineArr[<span class="number">0</span>]), float(lineArr[<span class="number">1</span>])])</span><br><span class="line">        labelMat.append(float(lineArr[<span class="number">2</span>]))</span><br><span class="line">    <span class="keyword">return</span> dataMat,labelMat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectJrand</span><span class="params">(i,m)</span>:</span></span><br><span class="line">    <span class="string">"""随机选取另一个alpha"""</span></span><br><span class="line">    j=i <span class="comment">#we want to select any J not equal to i</span></span><br><span class="line">    <span class="keyword">while</span> (j==i):</span><br><span class="line">        j = int(random.uniform(<span class="number">0</span>,m))</span><br><span class="line">    <span class="keyword">return</span> j</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clipAlpha</span><span class="params">(aj,H,L)</span>:</span></span><br><span class="line">    <span class="string">"""调整alpha的值"""</span></span><br><span class="line">    <span class="keyword">if</span> aj &gt; H: </span><br><span class="line">        aj = H</span><br><span class="line">    <span class="keyword">if</span> L &gt; aj:</span><br><span class="line">        aj = L</span><br><span class="line">    <span class="keyword">return</span> aj</span><br></pre></td></tr></table></figure>
+
+
+
+<p>SMO算法程序</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smoSimple</span><span class="params">(dataMatIn, classLabels, C, toler, maxIter)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    dataMatin - 数据集</span></span><br><span class="line"><span class="string">    classLabels - 类别标签</span></span><br><span class="line"><span class="string">    C - 常数C</span></span><br><span class="line"><span class="string">    toler - 容错率</span></span><br><span class="line"><span class="string">    maxIter - 退出最大循环次数</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    dataMatrix = mat(dataMatIn); labelMat = mat(classLabels).transpose()</span><br><span class="line">    b = <span class="number">0</span>; m,n = shape(dataMatrix)</span><br><span class="line">    alphas = mat(zeros((m,<span class="number">1</span>)))</span><br><span class="line">    iter = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (iter &lt; maxIter):</span><br><span class="line">        alphaPairsChanged = <span class="number">0</span>  <span class="comment"># 用于记录alpha是否已经进行优化</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            fXi = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[i,:].T)) + b    <span class="comment"># 预测类别</span></span><br><span class="line">            Ei = fXi - float(labelMat[i])<span class="comment">#if checks if an example violates KKT conditions  计算误差</span></span><br><span class="line">            <span class="keyword">if</span> ((labelMat[i]*Ei &lt; -toler) <span class="keyword">and</span> (alphas[i] &lt; C)) <span class="keyword">or</span> ((labelMat[i]*Ei &gt; toler) <span class="keyword">and</span> (alphas[i] &gt; <span class="number">0</span>)):     <span class="comment"># 如果误差过大</span></span><br><span class="line">                j = selectJrand(i,m)  <span class="comment"># 选取第二个alpha值</span></span><br><span class="line">                fXj = float(multiply(alphas,labelMat).T*(dataMatrix*dataMatrix[j,:].T)) + b  <span class="comment"># 计算j的类别</span></span><br><span class="line">                Ej = fXj - float(labelMat[j])</span><br><span class="line">                alphaIold = alphas[i].copy(); alphaJold = alphas[j].copy();</span><br><span class="line">                <span class="keyword">if</span> (labelMat[i] != labelMat[j]):  </span><br><span class="line">                    L = max(<span class="number">0</span>, alphas[j] - alphas[i])</span><br><span class="line">                    H = min(C, C + alphas[j] - alphas[i])</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    L = max(<span class="number">0</span>, alphas[j] + alphas[i] - C)</span><br><span class="line">                    H = min(C, alphas[j] + alphas[i])</span><br><span class="line">                <span class="keyword">if</span> L==H: <span class="keyword">print</span> <span class="string">"L==H"</span>; <span class="keyword">continue</span></span><br><span class="line">                eta = <span class="number">2.0</span> * dataMatrix[i,:]*dataMatrix[j,:].T - dataMatrix[i,:]*dataMatrix[i,:].T - dataMatrix[j,:]*dataMatrix[j,:].T</span><br><span class="line">                <span class="keyword">if</span> eta &gt;= <span class="number">0</span>: <span class="keyword">print</span> <span class="string">"eta&gt;=0"</span>; <span class="keyword">continue</span></span><br><span class="line">                alphas[j] -= labelMat[j]*(Ei - Ej)/eta</span><br><span class="line">                alphas[j] = clipAlpha(alphas[j],H,L)</span><br><span class="line">                <span class="keyword">if</span> (abs(alphas[j] - alphaJold) &lt; <span class="number">0.00001</span>): <span class="keyword">print</span> <span class="string">"j not moving enough"</span>; <span class="keyword">continue</span></span><br><span class="line">                alphas[i] += labelMat[j]*labelMat[i]*(alphaJold - alphas[j])<span class="comment">#update i by the same amount as j</span></span><br><span class="line">                                                                        <span class="comment">#the update is in the oppostie direction</span></span><br><span class="line">                b1 = b - Ei- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[i,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[i,:]*dataMatrix[j,:].T</span><br><span class="line">                b2 = b - Ej- labelMat[i]*(alphas[i]-alphaIold)*dataMatrix[i,:]*dataMatrix[j,:].T - labelMat[j]*(alphas[j]-alphaJold)*dataMatrix[j,:]*dataMatrix[j,:].T</span><br><span class="line">                <span class="keyword">if</span> (<span class="number">0</span> &lt; alphas[i]) <span class="keyword">and</span> (C &gt; alphas[i]): b = b1</span><br><span class="line">                <span class="keyword">elif</span> (<span class="number">0</span> &lt; alphas[j]) <span class="keyword">and</span> (C &gt; alphas[j]): b = b2</span><br><span class="line">                <span class="keyword">else</span>: b = (b1 + b2)/<span class="number">2.0</span></span><br><span class="line">                alphaPairsChanged += <span class="number">1</span></span><br><span class="line">                <span class="keyword">print</span> <span class="string">"iter: %d i:%d, pairs changed %d"</span> % (iter,i,alphaPairsChanged)</span><br><span class="line">        <span class="keyword">if</span> (alphaPairsChanged == <span class="number">0</span>): iter += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>: iter = <span class="number">0</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">"iteration number: %d"</span> % iter</span><br><span class="line">    <span class="keyword">return</span> b,alphas</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/11/25/blue-cup-%E7%89%B9%E6%AE%8A%E7%9A%84%E8%B4%A8%E6%95%B0%E8%82%8B%E9%AA%A8/" rel="next" title="blue cup 特殊的质数肋骨">
+                <i class="fa fa-chevron-left"></i> blue cup 特殊的质数肋骨
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/11/28/blue-cup-%E6%8E%92%E9%98%9F%E6%89%93%E6%B0%B4/" rel="prev" title="blue cup  排队打水">
+                blue cup  排队打水 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-线性可分支持向量机"><span class="nav-number">1.</span> <span class="nav-text">1. 线性可分支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-函数间隔"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 函数间隔</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-间隔最大化"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 间隔最大化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-支持向量和间隔边界"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 支持向量和间隔边界</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-对偶问题的求解"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 对偶问题的求解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-线性支持向量机"><span class="nav-number">2.</span> <span class="nav-text">2. 线性支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-对偶算法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 对偶算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-支持向量"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 支持向量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SVM实战（SMO高效优化算法）"><span class="nav-number">3.</span> <span class="nav-text">SVM实战（SMO高效优化算法）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
