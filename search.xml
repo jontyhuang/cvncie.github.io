@@ -1,6 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>machine learning k-均值聚类</title>
+    <url>/jontyhuang.github.io/2019/12/19/machine-learning-k-%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB/</url>
+    <content><![CDATA[<p>  聚类与分类的最大不同在于，分类的目标事先已知，而聚类则不一样。因为其产生的结果与分类相同，而只是类别没有预先定义，聚类有时也被称为无监督分类</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB.jpeg" alt="">  </p>
+<a id="more"></a>
+
+<p>  聚类是一种无监督的学习，它将相似的对象归到同一个簇中。它有点像全自动分类。聚类方法几乎可以应用于所有对象，簇内的对象越相似，聚类的效果越好。本章要学习一种称为K-均值（K-means）聚类的算法。之所以称之为K-均值是因为它可以发现k个不同的簇，且每个簇的中心采用簇中所含值的均值计算而成。下面会逐步介绍该算法的更多细节。  </p>
+<h1 id="K-均值聚类算法"><a href="#K-均值聚类算法" class="headerlink" title="K-均值聚类算法"></a>K-均值聚类算法</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219201324.png" alt=""></p>
+<p>   K-均值是发现给定数据集的k个簇的算法。簇个数k是用户给定的，每一个簇通过其质心（centroid），即簇中所有点的中心来描述。  </p>
+<p>K-均值算法的工作流程是这样的。首先，随机确定k个初始点作为质心。然后将数据集中的<br>每个点分配到一个簇中，具体来讲，为每个点找距其最近的质心，并将其分配给该质心所对应的簇。这一步完成之后，每个簇的质心更新为该簇所有点的平均值。  </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">loadDataSet</span><span class="params">(fileName)</span>:      #general function to parse tab -delimited floats</span></span><br><span class="line">    dataMat = []                #assume last column is target value</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line in fr.readlines():</span><br><span class="line">        curLine = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        fltLine = map(float,curLine) #map all elements to float()</span><br><span class="line">        dataMat.append(fltLine)</span><br><span class="line">    <span class="keyword">return</span> dataMat</span><br><span class="line"></span><br><span class="line"><span class="function">def <span class="title">distEclud</span><span class="params">(vecA, vecB)</span>:</span></span><br><span class="line"><span class="function">    return <span class="title">sqrt</span><span class="params">(sum(power(vecA - vecB, <span class="number">2</span>)</span>)) #la.<span class="title">norm</span><span class="params">(vecA-vecB)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">def <span class="title">randCent</span><span class="params">(dataSet, k)</span>:   # 构建k个随机质心</span></span><br><span class="line"><span class="function">    n </span>= shape(dataSet)[<span class="number">1</span>]</span><br><span class="line">    centroids = mat(zeros((k,n)))#create centroid mat</span><br><span class="line">    <span class="function"><span class="keyword">for</span> j in <span class="title">range</span><span class="params">(n)</span>:#create random cluster centers, within bounds of each dimension</span></span><br><span class="line"><span class="function">        minJ </span>= min(dataSet[:,j]) </span><br><span class="line">        rangeJ = <span class="keyword">float</span>(max(dataSet[:,j]) - minJ)</span><br><span class="line">        centroids[:,j] = mat(minJ + rangeJ * random.rand(k,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> centroids</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们准备实现数据点的簇分配。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kMeans</span><span class="params">(dataSet, k, distMeas=distEclud, createCent=randCent)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    创建K个质心,然后将每个店分配到最近的质心,再重新计算质心。</span></span><br><span class="line"><span class="string">    这个过程重复数次,直到数据点的簇分配结果不再改变为止</span></span><br><span class="line"><span class="string">    :param dataMat: 数据集</span></span><br><span class="line"><span class="string">    :param k: 簇的数目</span></span><br><span class="line"><span class="string">    :param distMeans: 计算距离</span></span><br><span class="line"><span class="string">    :param createCent: 创建初始质心</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    m = shape(dataSet)[<span class="number">0</span>] <span class="comment"># 样本数</span></span><br><span class="line">    <span class="comment"># clusterAssment包含两个列:一列记录簇索引值,第二列存储误差(误差是指当前点到簇质心的距离,后面会使用该误差来评价聚类的效果)</span></span><br><span class="line">    clusterAssment = mat(zeros((m,<span class="number">2</span>)))</span><br><span class="line">    centroids = createCent(dataSet, k)   <span class="comment"># 创建k个质心 </span></span><br><span class="line">    clusterChanged = <span class="literal">True</span>   <span class="comment"># 初始化标志变量,用于判断迭代是否继续,如果True,则继续迭代</span></span><br><span class="line">    <span class="keyword">while</span> clusterChanged:</span><br><span class="line">        clusterChanged = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):<span class="comment">#寻找最近的质点</span></span><br><span class="line">            minDist = inf; minIndex = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                distJI = distMeas(centroids[j,:],dataSet[i,:])</span><br><span class="line">                <span class="keyword">if</span> distJI &lt; minDist:</span><br><span class="line">                    minDist = distJI; minIndex = j</span><br><span class="line">            <span class="comment"># 如果任一点的簇分配结果发生改变,则更新clusterChanged标志</span></span><br><span class="line">            <span class="keyword">if</span> clusterAssment[i,<span class="number">0</span>] != minIndex: clusterChanged = <span class="literal">True</span></span><br><span class="line">            clusterAssment[i,:] = minIndex,minDist**<span class="number">2</span></span><br><span class="line">        print(centroids)</span><br><span class="line">        <span class="comment"># 遍历所有质心并更新它们的取值</span></span><br><span class="line">        <span class="keyword">for</span> cent <span class="keyword">in</span> range(k):</span><br><span class="line">            <span class="comment"># 通过数据过滤来获得给定簇的所有点</span></span><br><span class="line">            ptsInClust = dataSet[nonzero(clusterAssment[:,<span class="number">0</span>].A==cent)[<span class="number">0</span>]]<span class="comment">#get all the point in this cluster</span></span><br><span class="line">            <span class="comment"># 计算所有点的均值,axis=0表示沿矩阵的列方向进行均值计算</span></span><br><span class="line">            centroids[cent,:] = mean(ptsInClust, axis=<span class="number">0</span>) </span><br><span class="line">    <span class="keyword">return</span> centroids, clusterAssment</span><br></pre></td></tr></table></figure>
+
+<h1 id="聚类性能指标SSE"><a href="#聚类性能指标SSE" class="headerlink" title="聚类性能指标SSE"></a>聚类性能指标SSE</h1><p>  在K-均值聚类中簇的数目k是一个用户预先定义的参数，那么用户如何才能知道k的选择是否正确？如何才能知道生成的簇比较好呢？在包含簇分配结果的矩阵中保存着每个点的误差，即该点到簇质心的距离平方值。  </p>
+<p>  我们使用SSE误差平方和来评价聚类性能，SSE值越小表示数据点越接近于它们的质心，聚类效果也越好。因为对误差取了平方，因此更加重视那些远离中心的点。一种肯定可以降低SSE值的方法是增加簇的个数，但这违背了聚类的目标。聚类的目标是在保持簇数目不变的情况下提高簇的质量。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219211739.png" alt=""></p>
+<p>  考虑图10-2中的聚类结果，这是在一个包含三个簇的数据集上运行K-均值算法之后的结果，但是点的簇分配结果值没有那么准确。 K-均值算法收敛但聚类效果较差的原因是， K-均值算法收敛到了局部最小值，而非全局最小值（局部最小值指结果还可以但并非最好结果，全局最小值是可能的最好结果）  </p>
+<p> 那么如何对图10-2的结果进行改进？你可以对生成的簇进行后处理，一种方法是将具有最大SSE值的簇划分成两个簇。具体实现时可以将最大簇包含的点过滤出来并在这些点上运行K-均值算法，其中k设为2. </p>
+<p>  为了保持簇总数不变，可以将某两个簇进行合并。从图10-2中很明显就可以看出，应该将图下部两个出错的簇质心进行合并。可以很容易对二维数据上的聚类进行可视化，但是如果遇到40维的数据应该如何去做？<br>有两种可以量化的办法：合并最近的质心，或者合并两个使得SSE增幅最小的质心。第一种<br>思路通过计算所有质心之间的距离，然后合并距离最近的两个点来实现。第二种方法需要合并两个簇然后计算总SSE值。必须在所有可能的两个簇上重复上述处理过程，直到找到合并最佳的两个簇为止。接下来将讨论利用上述簇划分技术得到更好的聚类结果的方法。  </p>
+<h1 id="二分均值算法"><a href="#二分均值算法" class="headerlink" title="二分均值算法"></a>二分均值算法</h1><p>  为克服K-均值算法收敛于局部最小值的问题，有人提出了另一个称为二分K-（bisecting K-means）的算法。该算法首先将所有点作为一个簇，然后将该簇一分为二。之后选择其中一个簇继续进行划分，选择哪一个簇进行划分取决于对其划分是否可以最大程度降低SSE的值。上述基于SSE的划分过程不断重复，直到得到用户指定的簇数目为止。  </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">biKmeans</span><span class="params">(dataMat, k, distMeas=distEclud)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    在给定数据集,所期望的簇数目和距离计算方法的条件下,函数返回聚类结果</span></span><br><span class="line"><span class="string">    :param dataMat:</span></span><br><span class="line"><span class="string">    :param k:</span></span><br><span class="line"><span class="string">    :param distMeas:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    m, n = shape(dataMat)</span><br><span class="line">    <span class="comment"># 创建一个矩阵来存储数据集中每个点的簇分配结果及平方误差</span></span><br><span class="line">    clusterAssment = mat(zeros((m, <span class="number">2</span>)))</span><br><span class="line">    <span class="comment"># 计算整个数据集的质心,并使用一个列表来保留所有的质心</span></span><br><span class="line">    centroid0 = mean(dataMat, axis=<span class="number">0</span>).tolist()[<span class="number">0</span>]</span><br><span class="line">    centList = [centroid0]</span><br><span class="line">    <span class="comment"># 遍历数据集中所有点来计算每个点到质心的误差值</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">        clusterAssment[j, <span class="number">1</span>] = distMeas(mat(centroid0), dataMat[j, :]) ** <span class="number">2</span></span><br><span class="line">    <span class="comment"># 对簇不停的进行划分,直到得到想要的簇数目为止</span></span><br><span class="line">    <span class="keyword">while</span> (len(centList) &lt; k):</span><br><span class="line">        <span class="comment"># 初始化最小SSE为无穷大,用于比较划分前后的SSE</span></span><br><span class="line">        lowestSSE = inf</span><br><span class="line">        <span class="comment"># 通过考察簇列表中的值来获得当前簇的数目,遍历所有的簇来决定最佳的簇进行划分</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(centList)):</span><br><span class="line">            <span class="comment"># 对每一个簇,将该簇中的所有点堪称一个小的数据集</span></span><br><span class="line">            ptsInCurrCluster = dataMat[nonzero(clusterAssment[:, <span class="number">0</span>].A == i)[<span class="number">0</span>], :]</span><br><span class="line">            <span class="comment"># 将ptsInCurrCluster输入到函数kMeans中进行处理,k=2,</span></span><br><span class="line">            <span class="comment"># kMeans会生成两个质心(簇),同时给出每个簇的误差值</span></span><br><span class="line">            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, <span class="number">2</span>, distMeas)</span><br><span class="line">            <span class="comment"># 将误差值与剩余数据集的误差之和作为本次划分的误差</span></span><br><span class="line">            sseSplit = sum(splitClustAss[:, <span class="number">1</span>])</span><br><span class="line">            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, <span class="number">0</span>].A != i)[<span class="number">0</span>], <span class="number">1</span>])</span><br><span class="line">            print(<span class="string">'sseSplit, and notSplit: '</span>, sseSplit, sseNotSplit)</span><br><span class="line">            <span class="comment"># 如果本次划分的SSE值最小,则本次划分被保存</span></span><br><span class="line">            <span class="keyword">if</span> (sseSplit + sseNotSplit) &lt; lowestSSE:</span><br><span class="line">                bestCentToSplit = i</span><br><span class="line">                bestNewCents = centroidMat</span><br><span class="line">                bestClustAss = splitClustAss.copy()</span><br><span class="line">                lowestSSE = sseSplit + sseNotSplit</span><br><span class="line">        <span class="comment"># 找出最好的簇分配结果</span></span><br><span class="line">        <span class="comment"># 调用kmeans函数并且指定簇数为2时,会得到两个编号分别为0和1的结果簇</span></span><br><span class="line">        bestClustAss[nonzero(bestClustAss[:, <span class="number">0</span>].A == <span class="number">1</span>)[<span class="number">0</span>], <span class="number">0</span>] = len(centList)</span><br><span class="line">        <span class="comment"># 更新为最佳质心</span></span><br><span class="line">        bestClustAss[nonzero(bestClustAss[:, <span class="number">0</span>].A == <span class="number">0</span>)[<span class="number">0</span>], <span class="number">0</span>] = bestCentToSplit</span><br><span class="line">        print(<span class="string">'the bestCentToSplit is: '</span>, bestCentToSplit)</span><br><span class="line">        print(<span class="string">'the len of bestClustAss is: '</span>, len(bestClustAss))</span><br><span class="line">        <span class="comment"># 更新质心列表</span></span><br><span class="line">        <span class="comment"># 更新原质心list中的第i个质心为使用二分kMeans后bestNewCents的第一个质心</span></span><br><span class="line">        centList[bestCentToSplit] = bestNewCents[<span class="number">0</span>, :].tolist()[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 添加bestNewCents的第二个质心</span></span><br><span class="line">        centList.append(bestNewCents[<span class="number">1</span>, :].tolist()[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 重新分配最好簇下的数据(质心)以及SSE</span></span><br><span class="line">        clusterAssment[nonzero(clusterAssment[:, <span class="number">0</span>].A == bestCentToSplit)[<span class="number">0</span>], :] = bestClustAss</span><br><span class="line">    <span class="keyword">return</span> mat(centList), clusterAssment</span><br></pre></td></tr></table></figure>
+
+<p> nonzero()将布尔数组转换成一组整数数组，然后使用整数数组进行下标运算(返回数组中值不为0的元素下标）。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219213945.png" alt=""></p>
+<h1 id="示例：对地理坐标进行聚类"><a href="#示例：对地理坐标进行聚类" class="headerlink" title="示例：对地理坐标进行聚类"></a>示例：对地理坐标进行聚类</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clusterClubs</span><span class="params">(fileName, imgName, numClust=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    将文本文件的解析,聚类以及画图都封装在一起</span></span><br><span class="line"><span class="string">    :param fileName: 文本数据路径</span></span><br><span class="line"><span class="string">    :param imgName: 图片路径</span></span><br><span class="line"><span class="string">    :param numClust: 希望得到的簇数目</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 创建一个空列表</span></span><br><span class="line">    datList = []</span><br><span class="line">    <span class="comment"># 打开文本文件获取第4列和第5列,这两列分别对应维度和经度,然后将这些值封装到datList</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> open(fileName).readlines():</span><br><span class="line">        lineArr = line.split(<span class="string">'\t'</span>)</span><br><span class="line">        datList.append([float(lineArr[<span class="number">4</span>]), float(lineArr[<span class="number">3</span>])])</span><br><span class="line">    datMat = mat(datList)</span><br><span class="line">    <span class="comment"># 调用biKmeans并使用distSLC函数作为聚类中使用的距离计算方式</span></span><br><span class="line">    myCentroids, clustAssing = biKmeans(datMat, numClust, distMeas=distSLC)</span><br><span class="line">    <span class="comment"># 创建一幅图和一个举行,使用该矩形来决定绘制图的哪一部分</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    rect = [<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span>]</span><br><span class="line">    <span class="comment"># 构建一个标记形状的列表用于绘制散点图</span></span><br><span class="line">    scatterMarkers = [<span class="string">'s'</span>, <span class="string">'o'</span>, <span class="string">'^'</span>, <span class="string">'8'</span>, <span class="string">'p'</span>, <span class="string">'d'</span>, <span class="string">'v'</span>, <span class="string">'h'</span>, <span class="string">'&gt;'</span>, <span class="string">'&lt;'</span>]</span><br><span class="line">    axprops = dict(xticks=[], yticks=[])</span><br><span class="line">    ax0 = fig.add_axes(rect, label=<span class="string">'ax0'</span>, **axprops)</span><br><span class="line">    <span class="comment"># 使用imread函数基于一幅图像来创建矩阵</span></span><br><span class="line">    imgP = plt.imread(imgName)</span><br><span class="line">    <span class="comment"># 使用imshow绘制该矩阵</span></span><br><span class="line">    ax0.imshow(imgP)</span><br><span class="line">    <span class="comment"># 再同一幅图上绘制一张新图,允许使用两套坐标系统并不做任何缩放或偏移</span></span><br><span class="line">    ax1 = fig.add_axes(rect, label=<span class="string">'ax1'</span>, frameon=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment"># 遍历每一个簇并将它们一一画出来,标记类型从前面创建的scatterMarkers列表中得到</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numClust):</span><br><span class="line">        ptsInCurrCluster = datMat[nonzero(clustAssing[:, <span class="number">0</span>].A == i)[<span class="number">0</span>], :]</span><br><span class="line">        <span class="comment"># 使用索引i % len(scatterMarkers)来选择标记形状,这意味这当有更多簇时,可以循环使用这标记</span></span><br><span class="line">        markerStyle = scatterMarkers[i % len(scatterMarkers)]</span><br><span class="line">        <span class="comment"># 使用十字标记来表示簇中心并在图中显示</span></span><br><span class="line">        ax1.scatter(ptsInCurrCluster[:, <span class="number">0</span>].flatten().A[<span class="number">0</span>], ptsInCurrCluster[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], marker=markerStyle,</span><br><span class="line">                    s=<span class="number">90</span>)</span><br><span class="line">    ax1.scatter(myCentroids[:, <span class="number">0</span>].flatten().A[<span class="number">0</span>], myCentroids[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], marker=<span class="string">'+'</span>, s=<span class="number">300</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>machine learning</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>software design 结构型设计模式</title>
+    <url>/jontyhuang.github.io/2019/12/16/software-design-%E7%BB%93%E6%9E%84%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>结构型设计模式主要是将现有的类和对象组合在一起形成强大结构的模式</p>
+<a id="more"></a>
+
+<h1 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h1><p>  若一个软件系统在运行时产生的对象数量太多，将导致运行代价过高，带来系统性能下降等问题。为了避免系统中出现大量相同或相似的对象，同时又不影响客户端程序通过面向对象的方式对这些对象进行操作，享元模式 因此诞生。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216214820.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216214907.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216215746.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216220116.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216220229.png" alt=""></p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216215328.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216215409.png" alt=""></p>
+<p>单例模式保证Factory类是唯一的，简单工厂模式是去生产黑白两种棋子。因此单例加简单工厂生产了唯一的黑白棋子，使整个程序共享黑白棋子。</p>
+<h1 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111643.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111753.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111811.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111827.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111849.png" alt=""></p>
+<h2 id="抽象外观类"><a href="#抽象外观类" class="headerlink" title="抽象外观类"></a>抽象外观类</h2><p>将外观类抽象化。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217112245.png" alt=""></p>
+<p>  定义：将一个接口转换成客户希望的另一个接口，使接口不兼容的那些类可以一起工作，其别名为包装器（Wrapper）。  </p>
+<p>  在 适配器模式 中引入了一个被称为适配器（Adapter）的包装类，而它所包装的对象称为适配者（Adaptee），即被适配的类。适配器的实现就是把客户类的请求转化为对适配者的相应接口的调用。从而解决了接口不兼容的问题，使得原本没有任何关系的类可以协同<br>工作。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216230025.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216231252.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216230926.png" alt=""></p>
+<h1 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216231726.png" alt=""></p>
+<p>定义：  将抽象部分与它的实现部分分离，使它们都可以独立地变化。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232104.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232142.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232256.png" alt=""></p>
+<h2 id="举例-1"><a href="#举例-1" class="headerlink" title="举例"></a>举例</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232600.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232632.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232711.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216232831.png" alt=""></p>
+<h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234154.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234245.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234449.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234524.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234549.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234648.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234735.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216234841.png" alt=""></p>
+<h2 id="透明组合模式"><a href="#透明组合模式" class="headerlink" title="透明组合模式"></a>透明组合模式</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216235221.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216235302.png" alt=""></p>
+<h1 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217071952.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217104613.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217104637.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217104715.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217104753.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217104913.png" alt=""></p>
+<h2 id="半透明装饰模式"><a href="#半透明装饰模式" class="headerlink" title="半透明装饰模式"></a>半透明装饰模式</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217105552.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217105658.png" alt=""></p>
+<h2 id="透明装饰模式"><a href="#透明装饰模式" class="headerlink" title="透明装饰模式"></a>透明装饰模式</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217105804.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217105915.png" alt=""></p>
+<h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217110717.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217110756.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217110912.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217110839.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217110939.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111226.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111325.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111341.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111358.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111437.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191217111450.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>software design 创建型设计模式</title>
+    <url>/jontyhuang.github.io/2019/12/16/software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.jpeg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216112354.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216112515.png" alt=""></p>
+<p>  在使用 简单工厂模式 时，首先需要对产品类进行重构，不能设计<strong>一个包罗万象的产品类</strong>，而需要根据实际情况设计一个产品层次结构，将所有产品类公共的代码移至抽象产品类，并在抽象产品类中声明一些抽象方法，以供不同的具体产品类实现。  </p>
+<p>  <strong>简单工厂模式</strong>的核心是<strong>工厂类</strong>，在没有工厂类之前，客户端一般会使用 new 关键字来直接创建产品对象，而在引入工厂类之后，客户端可以通过工厂类中的静态工厂方法，根据传入的不同参数创建不同的产品对象。  </p>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>  工厂方法模式（Factory Method Pattern）定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式 让一个类的实例化延迟到其子类。  </p>
+<p>  在<strong>工厂方法模式</strong>中，我们不再提供一个统一的工厂类来创建所有的产品对象，而是针对不同的产品提供不同的工厂，提供一个与产品等级结构对应的工厂等级结构。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216122220.png" alt=""></p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216122306140.png" alt="image-20191216122306140"></p>
+<p>总结：相比于简单工厂模式，工厂方法模式使用抽象类工厂来生成多个工厂，增强了工厂类的扩展性。但是无论哪个工厂，产品的类型是要相同的。</p>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>工厂方法模式存在的问题：</p>
+<ul>
+<li><p>但是上述工厂方法模式，如果我们将产品的层次增加一个，针对每个一个新增加具体组件都需要增加一个具体工厂，  这无疑会导致系统越来越庞大，增加系统的维护成本和运行开销。  </p>
+<p>在 工厂方法模式 中具体工厂负责生产具体产品，每一个具体工厂对应一种具体产品。但是有时候我们希望一个工厂可以提供多个产品对象，而不是单一的产品对象，如一个电器工厂，它可以生产电视机、电冰箱等多种电器，而不是只生产某一种电器。  </p>
+</li>
+<li><p>产品等级结构：产品等级结构即产品的继承结构，如一个抽象类是电视机，其子类有海尔电视机、海信电视机，则抽象电视机与具体品牌的电视机之间构成了一个产品等级结构。  </p>
+</li>
+</ul>
+<ul>
+<li>产品族：指由同一个工厂生产的，位于不同产品等级结构中的一组产品，如海尔电器工厂生产的海尔电视机、海尔电冰箱。海尔电视机位于电视机产品等级结构中，海尔电冰箱位于电冰箱产品等级结构中，海尔电视机、海尔电冰箱构成一个产品族。  </li>
+</ul>
+<p><strong>抽象工厂模式</strong>与<strong>工厂方法模式</strong>最大的区别在于：</p>
+<ul>
+<li>工厂方法模式：针对的是一个产品等级结构；</li>
+<li>抽象工厂模式：针对的是一个产品族，每一个具体工厂可以生产属于一个产品族的所有产品。  </li>
+</ul>
+<p>抽象工厂：</p>
+<p>  提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。（对product进行抽象）  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216205150.png" alt=""></p>
+<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>  确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216173732.png" alt=""></p>
+<p>单例类的三个要点：</p>
+<ul>
+<li>在单例类（ Singleton ）的内部实现只生成一个实例，同时它提供一个静态的 GetInstance() 工厂方法，让客户可以访问它的唯一实例；  </li>
+<li>为了防止在外部对其实例化，将其构造函数设计为私有；  </li>
+<li>在单例类内部定义一个 Singleton 类型的静态对象，作为外部共<br>享的唯一实例；  </li>
+</ul>
+<h2 id="饿汉式单例模式"><a href="#饿汉式单例模式" class="headerlink" title="饿汉式单例模式"></a>饿汉式单例模式</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216174130.png" alt=""></p>
+<h2 id="懒汉式单例模式"><a href="#懒汉式单例模式" class="headerlink" title="懒汉式单例模式"></a>懒汉式单例模式</h2><p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216174209924.png" alt="image-20191216174209924"></p>
+<ul>
+<li><p>饿汉式单例模式<br>当加载类时，初始化静态变量 Instance （调用私有构造函数），创建单例类的唯一实例。如果使用饿汉式单例类，不会出现创建多个单例对象的情况，可确保单例对象的唯一性。  </p>
+</li>
+<li><p>懒汉式单例模式<br>懒汉式单例类在第一次调用 GetInstance() 方法时实例化，在类加载时并不自实例化，这种技术称为延迟加载（Lazy Load）技术，即需要的时候再加载实例。但实际运行中可能存在多线程调用 GetInstance() 方法的情况，这样不能保证单例对象的唯一<br>性。  </p>
+</li>
+</ul>
+<h3 id="为什么懒汉式不安全"><a href="#为什么懒汉式不安全" class="headerlink" title="为什么懒汉式不安全?"></a>为什么懒汉式不安全?</h3><p>我们假设有多个线程1，线程2都需要使用这个单例对象。而恰巧，线程1在判断完s==null后突然交换了cpu的使用权，变为线程2执行，由于s仍然为null，那么线程2中就会创建这个Singleton的单例对象。之后线程1拿回cpu的使用权，而正好线程1之前暂停的位置就是判断s是否为null之后，创建对象之前。这样线程1又会创建一个新的Singleton对象。</p>
+<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><p>  使用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。  </p>
+<p>  需要注意的是通过克隆方法所创建的对象是全新的对象，它们在内存中拥有新的地址，通常对克隆所产生的对象进行修改对原型对象不会造成任何影响，每一个克隆对象都是相互独立的。通过不同的方式修改可以得到一系列相似但不完全相同的对象。  </p>
+<h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>  建造者模式（Builder Pattern）将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216204501.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216204734.png" alt=""></p>
+<p><strong>建造者模式</strong>与<strong>抽象工厂模式</strong>有点类似：  </p>
+<ul>
+<li><p>抽象工厂模式 返回一系列相关产品，而 建造者模式 返回一个<br>完整的复杂产品。  </p>
+</li>
+<li><p>在 抽象工厂模式 中，客户端通过选择具体工厂来生成所需对<br>象，而在 建造者模式 中，客户端通过指定具体建造者类型并通<br>过 Director 类去一步一步构建一个复杂对象，然后将结果返<br>回。  </p>
+</li>
+<li><p>如果将 抽象工厂模式 看成一个汽车配件生产厂，生产不同类型<br>的汽车配件，那么<strong>建造者模式</strong>就是一个汽车组装厂，通过对配<br>件进行组装返回一辆完整的汽车。  </p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>blue cup ADV94 盾神与积木游戏</title>
+    <url>/jontyhuang.github.io/2019/12/15/blue-cup-ADV94-%E7%9B%BE%E7%A5%9E%E4%B8%8E%E7%A7%AF%E6%9C%A8%E6%B8%B8%E6%88%8F/</url>
+    <content><![CDATA[<p>  问题描述<br>最近的m天盾神都去幼⼉园陪⼩朋友们玩去了+<br>每个⼩朋友都拿到了⼀些积⽊，他们各⾃需要不同数量的积⽊来拼⼀些他们想要的东⻄。但是有的⼩<br>朋友拿得多，有的⼩朋友拿得少，有些⼩朋友需要拿到其他⼩朋友的积⽊才能完成他的⼤作。如果某<br>个⼩朋友完成了他的作品，那么他就会把⾃⼰的作品推倒，⽽⽆私地把他的所有积⽊都奉献出来；但<br>package adv193;<br>import java.util.LinkedList;<br>import java.util.List;<br>import java.util.Scanner;<br>public class Main {<br>public static void main(String[] args) {<br>Scanner in = new Scanner(System.in);<br>int n = in.nextInt();<br>int m = in.nextInt();<br>List<String> list = new LinkedList&lt;&gt;();<br>for (int i = 0; i &lt; n; i++) {<br>list.add(in.next());<br>}<br>for (int i = 0; i &lt; m; i++) {<br>String c = in.next();<br>if (c.equals(“DEL”)) {<br>String p = in.next();<br>list.remove(p);<br>} else if (c.equals(“ADD”)) {<br>String p = in.next();<br>String q = in.next();<br>int site = list.indexOf(p);<br>list.add(site, q);<br>}<br>}<br>in.close();<br>System.out.println(list.size());<br>for (int i = 0; i &lt; list.size(); i++) {<br>System.out.print(list.get(i) + “ “);<br>}<br>}<br>}<br>123456789<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>是，如果他还没有完成⾃⼰的作品，他是不会把积⽊让出去的哟+<br>盾神看到这么和谐的⼩朋友们感到⾮常开⼼，于是想帮助他们所有⼈都完成他们各⾃的作品。盾神现<br>在在想，这个理想有没有可能实现呢？于是把这个问题交给了他最信赖的你。<br>输⼊格式<br>第⼀⾏为⼀个数m。<br>接下来有m组数据。每⼀组的第⼀⾏为n，表示这天有n个⼩朋友。接下来的n⾏每⾏两个数，分别表<br>示他现在拥有的积⽊数和他⼀共需要的积⽊数。<br>输出格式<br>输出m⾏，如果第i天能顺利完成所有作品，输出YES，否则输出NO。<br>样例输⼊<br>2 2<br>2 2<br>1 3<br>3<br>1 5<br>3 3<br>0 4<br>样例输出<br>YES<br>NO<br>数据规模和约定<br>1&lt;=n&lt;=10000， 1&lt;=m&lt;=10。  </p>
+<a id="more"></a>
+
+<h1 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h1><p>这个题目我使用的银行家算法。去找出一个安全序列，如果是安全的话，那么遍历B.Length次就可以求出安全序列，每次遍历必找到至少一个可分配的人。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> Mycup;</span><br><span class="line"><span class="keyword">import</span> java.awt.print.Printable;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sound.midi.SysexMessage;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JTree;</span><br><span class="line"><span class="keyword">import</span> javax.swing.text.StyledEditorKit.BoldAction;</span><br><span class="line"><span class="keyword">import</span> javax.xml.transform.Templates;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.omg.CORBA.INTERNAL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] num;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Boolean <span class="title">make</span><span class="params">(<span class="keyword">int</span>[][] A)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> relax = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> len = A.length;</span><br><span class="line">		<span class="keyword">boolean</span>[] B = <span class="keyword">new</span> <span class="keyword">boolean</span>[len];</span><br><span class="line">		<span class="keyword">int</span> count =<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (count &lt;=len)&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">				<span class="keyword">if</span> ((A[i][<span class="number">0</span>] + relax) &gt;= A[i][<span class="number">1</span>]  &amp;&amp; B[i]== <span class="keyword">false</span>)&#123;</span><br><span class="line">					</span><br><span class="line">					relax += A[i][<span class="number">0</span>];</span><br><span class="line">					B[i] = <span class="keyword">true</span>;</span><br><span class="line">					</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		count ++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(Boolean sBoolean : B)&#123;</span><br><span class="line">			<span class="keyword">if</span> (sBoolean == <span class="keyword">false</span>)&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	   Scanner inScanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">	   <span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">	   <span class="keyword">int</span> m = inScanner.nextInt();</span><br><span class="line">	   <span class="keyword">int</span>[][] A;</span><br><span class="line">	   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">		   <span class="keyword">int</span> n= inScanner.nextInt();</span><br><span class="line">		   A = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">2</span>];</span><br><span class="line">		   <span class="keyword">for</span> (<span class="keyword">int</span> j =<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">			   A[j][<span class="number">0</span>] = inScanner.nextInt();</span><br><span class="line">			   A[j][<span class="number">1</span>] = inScanner.nextInt();</span><br><span class="line">		   &#125;</span><br><span class="line">		   <span class="keyword">if</span> (make(A) == <span class="keyword">true</span>)</span><br><span class="line">		   &#123;</span><br><span class="line">			   System.out.println(<span class="string">"NO"</span>);</span><br><span class="line">			   </span><br><span class="line">		   &#125;</span><br><span class="line">		   <span class="keyword">else</span>&#123;</span><br><span class="line">			   System.out.println(<span class="string">"YES"</span>);</span><br><span class="line">		   &#125;</span><br><span class="line">		   </span><br><span class="line">	   &#125;</span><br><span class="line">	   <span class="comment">//////////////////////////</span></span><br><span class="line">	    <span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">	    System.out.println(<span class="string">"\n程序运行时间"</span> + (endTime - startTime) + <span class="string">"ms"</span>);</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>the blue cup of Java</category>
+      </categories>
+  </entry>
+  <entry>
     <title>blue cup ADV202 最长公共子序列</title>
     <url>/jontyhuang.github.io/2019/12/10/blue-cup-ADV202-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/</url>
     <content><![CDATA[<p>  问题描述<br>给定两个字符串，寻找这两个字串之间的最⻓公共⼦序列。<br>输⼊格式<br>输⼊两⾏，分别包含⼀个字符串，仅含有⼩写字⺟。<br>输出格式<br>最⻓公共⼦序列的⻓度。<br>样例输⼊<br>abcdgh<br>aedfhb<br>样例输出<br>3<br>样例说明<br>最⻓公共⼦序列为a， d， h。<br>数据规模和约定<br>字串⻓度1+1000  </p>
@@ -317,11 +501,6 @@
       <categories>
         <category>the blue cup of Java</category>
       </categories>
-  </entry>
-  <entry>
-    <title>software engineering  composite mode</title>
-    <url>/jontyhuang.github.io/2019/11/25/software-engineering-composite-mode/</url>
-    <content><![CDATA[<a id="more"></a>]]></content>
   </entry>
   <entry>
     <title>blue cup 现代诗如蚯</title>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="聚类与分类的最大不同在于，分类的目标事先已知，而聚类则不一样。因为其产生的结果与分类相同，而只是类别没有预先定义，聚类有时也被称为无监督分类">
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="machine learning k-均值聚类">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;12&#x2F;19&#x2F;machine-learning-k-%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:description" content="聚类与分类的最大不同在于，分类的目标事先已知，而聚类则不一样。因为其产生的结果与分类相同，而只是类别没有预先定义，聚类有时也被称为无监督分类">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191219201324.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191219211739.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191219213945.png">
+<meta property="og:updated_time" content="2019-12-21T09:17:25.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/12/19/machine-learning-k-均值聚类/"/>
+
+
+
+
+
+  <title>machine learning k-均值聚类 | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/19/machine-learning-k-%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">machine learning k-均值聚类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-19T20:09:01+08:00">
+                2019-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>  聚类与分类的最大不同在于，分类的目标事先已知，而聚类则不一样。因为其产生的结果与分类相同，而只是类别没有预先定义，聚类有时也被称为无监督分类</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/K%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB.jpeg" alt="">  </p>
+<a id="more"></a>
+
+<p>  聚类是一种无监督的学习，它将相似的对象归到同一个簇中。它有点像全自动分类。聚类方法几乎可以应用于所有对象，簇内的对象越相似，聚类的效果越好。本章要学习一种称为K-均值（K-means）聚类的算法。之所以称之为K-均值是因为它可以发现k个不同的簇，且每个簇的中心采用簇中所含值的均值计算而成。下面会逐步介绍该算法的更多细节。  </p>
+<h1 id="K-均值聚类算法"><a href="#K-均值聚类算法" class="headerlink" title="K-均值聚类算法"></a>K-均值聚类算法</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219201324.png" alt=""></p>
+<p>   K-均值是发现给定数据集的k个簇的算法。簇个数k是用户给定的，每一个簇通过其质心（centroid），即簇中所有点的中心来描述。  </p>
+<p>K-均值算法的工作流程是这样的。首先，随机确定k个初始点作为质心。然后将数据集中的<br>每个点分配到一个簇中，具体来讲，为每个点找距其最近的质心，并将其分配给该质心所对应的簇。这一步完成之后，每个簇的质心更新为该簇所有点的平均值。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">def <span class="title">loadDataSet</span><span class="params">(fileName)</span>:      #general function to parse tab -delimited floats</span></span><br><span class="line">    dataMat = []                #assume last column is target value</span><br><span class="line">    fr = open(fileName)</span><br><span class="line">    <span class="keyword">for</span> line in fr.readlines():</span><br><span class="line">        curLine = line.strip().split(<span class="string">'\t'</span>)</span><br><span class="line">        fltLine = map(float,curLine) #map all elements to float()</span><br><span class="line">        dataMat.append(fltLine)</span><br><span class="line">    <span class="keyword">return</span> dataMat</span><br><span class="line"></span><br><span class="line"><span class="function">def <span class="title">distEclud</span><span class="params">(vecA, vecB)</span>:</span></span><br><span class="line"><span class="function">    return <span class="title">sqrt</span><span class="params">(sum(power(vecA - vecB, <span class="number">2</span>)</span>)) #la.<span class="title">norm</span><span class="params">(vecA-vecB)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">def <span class="title">randCent</span><span class="params">(dataSet, k)</span>:   # 构建k个随机质心</span></span><br><span class="line"><span class="function">    n </span>= shape(dataSet)[<span class="number">1</span>]</span><br><span class="line">    centroids = mat(zeros((k,n)))#create centroid mat</span><br><span class="line">    <span class="function"><span class="keyword">for</span> j in <span class="title">range</span><span class="params">(n)</span>:#create random cluster centers, within bounds of each dimension</span></span><br><span class="line"><span class="function">        minJ </span>= min(dataSet[:,j]) </span><br><span class="line">        rangeJ = <span class="keyword">float</span>(max(dataSet[:,j]) - minJ)</span><br><span class="line">        centroids[:,j] = mat(minJ + rangeJ * random.rand(k,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> centroids</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们准备实现数据点的簇分配。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kMeans</span><span class="params">(dataSet, k, distMeas=distEclud, createCent=randCent)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    创建K个质心,然后将每个店分配到最近的质心,再重新计算质心。</span></span><br><span class="line"><span class="string">    这个过程重复数次,直到数据点的簇分配结果不再改变为止</span></span><br><span class="line"><span class="string">    :param dataMat: 数据集</span></span><br><span class="line"><span class="string">    :param k: 簇的数目</span></span><br><span class="line"><span class="string">    :param distMeans: 计算距离</span></span><br><span class="line"><span class="string">    :param createCent: 创建初始质心</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    m = shape(dataSet)[<span class="number">0</span>] <span class="comment"># 样本数</span></span><br><span class="line">    <span class="comment"># clusterAssment包含两个列:一列记录簇索引值,第二列存储误差(误差是指当前点到簇质心的距离,后面会使用该误差来评价聚类的效果)</span></span><br><span class="line">    clusterAssment = mat(zeros((m,<span class="number">2</span>)))</span><br><span class="line">    centroids = createCent(dataSet, k)   <span class="comment"># 创建k个质心 </span></span><br><span class="line">    clusterChanged = <span class="literal">True</span>   <span class="comment"># 初始化标志变量,用于判断迭代是否继续,如果True,则继续迭代</span></span><br><span class="line">    <span class="keyword">while</span> clusterChanged:</span><br><span class="line">        clusterChanged = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):<span class="comment">#寻找最近的质点</span></span><br><span class="line">            minDist = inf; minIndex = <span class="number">-1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(k):</span><br><span class="line">                distJI = distMeas(centroids[j,:],dataSet[i,:])</span><br><span class="line">                <span class="keyword">if</span> distJI &lt; minDist:</span><br><span class="line">                    minDist = distJI; minIndex = j</span><br><span class="line">            <span class="comment"># 如果任一点的簇分配结果发生改变,则更新clusterChanged标志</span></span><br><span class="line">            <span class="keyword">if</span> clusterAssment[i,<span class="number">0</span>] != minIndex: clusterChanged = <span class="literal">True</span></span><br><span class="line">            clusterAssment[i,:] = minIndex,minDist**<span class="number">2</span></span><br><span class="line">        print(centroids)</span><br><span class="line">        <span class="comment"># 遍历所有质心并更新它们的取值</span></span><br><span class="line">        <span class="keyword">for</span> cent <span class="keyword">in</span> range(k):</span><br><span class="line">            <span class="comment"># 通过数据过滤来获得给定簇的所有点</span></span><br><span class="line">            ptsInClust = dataSet[nonzero(clusterAssment[:,<span class="number">0</span>].A==cent)[<span class="number">0</span>]]<span class="comment">#get all the point in this cluster</span></span><br><span class="line">            <span class="comment"># 计算所有点的均值,axis=0表示沿矩阵的列方向进行均值计算</span></span><br><span class="line">            centroids[cent,:] = mean(ptsInClust, axis=<span class="number">0</span>) </span><br><span class="line">    <span class="keyword">return</span> centroids, clusterAssment</span><br></pre></td></tr></table></figure>
+
+<h1 id="聚类性能指标SSE"><a href="#聚类性能指标SSE" class="headerlink" title="聚类性能指标SSE"></a>聚类性能指标SSE</h1><p>  在K-均值聚类中簇的数目k是一个用户预先定义的参数，那么用户如何才能知道k的选择是否正确？如何才能知道生成的簇比较好呢？在包含簇分配结果的矩阵中保存着每个点的误差，即该点到簇质心的距离平方值。  </p>
+<p>  我们使用SSE误差平方和来评价聚类性能，SSE值越小表示数据点越接近于它们的质心，聚类效果也越好。因为对误差取了平方，因此更加重视那些远离中心的点。一种肯定可以降低SSE值的方法是增加簇的个数，但这违背了聚类的目标。聚类的目标是在保持簇数目不变的情况下提高簇的质量。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219211739.png" alt=""></p>
+<p>  考虑图10-2中的聚类结果，这是在一个包含三个簇的数据集上运行K-均值算法之后的结果，但是点的簇分配结果值没有那么准确。 K-均值算法收敛但聚类效果较差的原因是， K-均值算法收敛到了局部最小值，而非全局最小值（局部最小值指结果还可以但并非最好结果，全局最小值是可能的最好结果）  </p>
+<p> 那么如何对图10-2的结果进行改进？你可以对生成的簇进行后处理，一种方法是将具有最大SSE值的簇划分成两个簇。具体实现时可以将最大簇包含的点过滤出来并在这些点上运行K-均值算法，其中k设为2. </p>
+<p>  为了保持簇总数不变，可以将某两个簇进行合并。从图10-2中很明显就可以看出，应该将图下部两个出错的簇质心进行合并。可以很容易对二维数据上的聚类进行可视化，但是如果遇到40维的数据应该如何去做？<br>有两种可以量化的办法：合并最近的质心，或者合并两个使得SSE增幅最小的质心。第一种<br>思路通过计算所有质心之间的距离，然后合并距离最近的两个点来实现。第二种方法需要合并两个簇然后计算总SSE值。必须在所有可能的两个簇上重复上述处理过程，直到找到合并最佳的两个簇为止。接下来将讨论利用上述簇划分技术得到更好的聚类结果的方法。  </p>
+<h1 id="二分均值算法"><a href="#二分均值算法" class="headerlink" title="二分均值算法"></a>二分均值算法</h1><p>  为克服K-均值算法收敛于局部最小值的问题，有人提出了另一个称为二分K-（bisecting K-means）的算法。该算法首先将所有点作为一个簇，然后将该簇一分为二。之后选择其中一个簇继续进行划分，选择哪一个簇进行划分取决于对其划分是否可以最大程度降低SSE的值。上述基于SSE的划分过程不断重复，直到得到用户指定的簇数目为止。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">biKmeans</span><span class="params">(dataMat, k, distMeas=distEclud)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    在给定数据集,所期望的簇数目和距离计算方法的条件下,函数返回聚类结果</span></span><br><span class="line"><span class="string">    :param dataMat:</span></span><br><span class="line"><span class="string">    :param k:</span></span><br><span class="line"><span class="string">    :param distMeas:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    m, n = shape(dataMat)</span><br><span class="line">    <span class="comment"># 创建一个矩阵来存储数据集中每个点的簇分配结果及平方误差</span></span><br><span class="line">    clusterAssment = mat(zeros((m, <span class="number">2</span>)))</span><br><span class="line">    <span class="comment"># 计算整个数据集的质心,并使用一个列表来保留所有的质心</span></span><br><span class="line">    centroid0 = mean(dataMat, axis=<span class="number">0</span>).tolist()[<span class="number">0</span>]</span><br><span class="line">    centList = [centroid0]</span><br><span class="line">    <span class="comment"># 遍历数据集中所有点来计算每个点到质心的误差值</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(m):</span><br><span class="line">        clusterAssment[j, <span class="number">1</span>] = distMeas(mat(centroid0), dataMat[j, :]) ** <span class="number">2</span></span><br><span class="line">    <span class="comment"># 对簇不停的进行划分,直到得到想要的簇数目为止</span></span><br><span class="line">    <span class="keyword">while</span> (len(centList) &lt; k):</span><br><span class="line">        <span class="comment"># 初始化最小SSE为无穷大,用于比较划分前后的SSE</span></span><br><span class="line">        lowestSSE = inf</span><br><span class="line">        <span class="comment"># 通过考察簇列表中的值来获得当前簇的数目,遍历所有的簇来决定最佳的簇进行划分</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(centList)):</span><br><span class="line">            <span class="comment"># 对每一个簇,将该簇中的所有点堪称一个小的数据集</span></span><br><span class="line">            ptsInCurrCluster = dataMat[nonzero(clusterAssment[:, <span class="number">0</span>].A == i)[<span class="number">0</span>], :]</span><br><span class="line">            <span class="comment"># 将ptsInCurrCluster输入到函数kMeans中进行处理,k=2,</span></span><br><span class="line">            <span class="comment"># kMeans会生成两个质心(簇),同时给出每个簇的误差值</span></span><br><span class="line">            centroidMat, splitClustAss = kMeans(ptsInCurrCluster, <span class="number">2</span>, distMeas)</span><br><span class="line">            <span class="comment"># 将误差值与剩余数据集的误差之和作为本次划分的误差</span></span><br><span class="line">            sseSplit = sum(splitClustAss[:, <span class="number">1</span>])</span><br><span class="line">            sseNotSplit = sum(clusterAssment[nonzero(clusterAssment[:, <span class="number">0</span>].A != i)[<span class="number">0</span>], <span class="number">1</span>])</span><br><span class="line">            print(<span class="string">'sseSplit, and notSplit: '</span>, sseSplit, sseNotSplit)</span><br><span class="line">            <span class="comment"># 如果本次划分的SSE值最小,则本次划分被保存</span></span><br><span class="line">            <span class="keyword">if</span> (sseSplit + sseNotSplit) &lt; lowestSSE:</span><br><span class="line">                bestCentToSplit = i</span><br><span class="line">                bestNewCents = centroidMat</span><br><span class="line">                bestClustAss = splitClustAss.copy()</span><br><span class="line">                lowestSSE = sseSplit + sseNotSplit</span><br><span class="line">        <span class="comment"># 找出最好的簇分配结果</span></span><br><span class="line">        <span class="comment"># 调用kmeans函数并且指定簇数为2时,会得到两个编号分别为0和1的结果簇</span></span><br><span class="line">        bestClustAss[nonzero(bestClustAss[:, <span class="number">0</span>].A == <span class="number">1</span>)[<span class="number">0</span>], <span class="number">0</span>] = len(centList)</span><br><span class="line">        <span class="comment"># 更新为最佳质心</span></span><br><span class="line">        bestClustAss[nonzero(bestClustAss[:, <span class="number">0</span>].A == <span class="number">0</span>)[<span class="number">0</span>], <span class="number">0</span>] = bestCentToSplit</span><br><span class="line">        print(<span class="string">'the bestCentToSplit is: '</span>, bestCentToSplit)</span><br><span class="line">        print(<span class="string">'the len of bestClustAss is: '</span>, len(bestClustAss))</span><br><span class="line">        <span class="comment"># 更新质心列表</span></span><br><span class="line">        <span class="comment"># 更新原质心list中的第i个质心为使用二分kMeans后bestNewCents的第一个质心</span></span><br><span class="line">        centList[bestCentToSplit] = bestNewCents[<span class="number">0</span>, :].tolist()[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 添加bestNewCents的第二个质心</span></span><br><span class="line">        centList.append(bestNewCents[<span class="number">1</span>, :].tolist()[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># 重新分配最好簇下的数据(质心)以及SSE</span></span><br><span class="line">        clusterAssment[nonzero(clusterAssment[:, <span class="number">0</span>].A == bestCentToSplit)[<span class="number">0</span>], :] = bestClustAss</span><br><span class="line">    <span class="keyword">return</span> mat(centList), clusterAssment</span><br></pre></td></tr></table></figure>
+
+<p> nonzero()将布尔数组转换成一组整数数组，然后使用整数数组进行下标运算(返回数组中值不为0的元素下标）。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191219213945.png" alt=""></p>
+<h1 id="示例：对地理坐标进行聚类"><a href="#示例：对地理坐标进行聚类" class="headerlink" title="示例：对地理坐标进行聚类"></a>示例：对地理坐标进行聚类</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clusterClubs</span><span class="params">(fileName, imgName, numClust=<span class="number">5</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    将文本文件的解析,聚类以及画图都封装在一起</span></span><br><span class="line"><span class="string">    :param fileName: 文本数据路径</span></span><br><span class="line"><span class="string">    :param imgName: 图片路径</span></span><br><span class="line"><span class="string">    :param numClust: 希望得到的簇数目</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 创建一个空列表</span></span><br><span class="line">    datList = []</span><br><span class="line">    <span class="comment"># 打开文本文件获取第4列和第5列,这两列分别对应维度和经度,然后将这些值封装到datList</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> open(fileName).readlines():</span><br><span class="line">        lineArr = line.split(<span class="string">'\t'</span>)</span><br><span class="line">        datList.append([float(lineArr[<span class="number">4</span>]), float(lineArr[<span class="number">3</span>])])</span><br><span class="line">    datMat = mat(datList)</span><br><span class="line">    <span class="comment"># 调用biKmeans并使用distSLC函数作为聚类中使用的距离计算方式</span></span><br><span class="line">    myCentroids, clustAssing = biKmeans(datMat, numClust, distMeas=distSLC)</span><br><span class="line">    <span class="comment"># 创建一幅图和一个举行,使用该矩形来决定绘制图的哪一部分</span></span><br><span class="line">    fig = plt.figure()</span><br><span class="line">    rect = [<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span>]</span><br><span class="line">    <span class="comment"># 构建一个标记形状的列表用于绘制散点图</span></span><br><span class="line">    scatterMarkers = [<span class="string">'s'</span>, <span class="string">'o'</span>, <span class="string">'^'</span>, <span class="string">'8'</span>, <span class="string">'p'</span>, <span class="string">'d'</span>, <span class="string">'v'</span>, <span class="string">'h'</span>, <span class="string">'&gt;'</span>, <span class="string">'&lt;'</span>]</span><br><span class="line">    axprops = dict(xticks=[], yticks=[])</span><br><span class="line">    ax0 = fig.add_axes(rect, label=<span class="string">'ax0'</span>, **axprops)</span><br><span class="line">    <span class="comment"># 使用imread函数基于一幅图像来创建矩阵</span></span><br><span class="line">    imgP = plt.imread(imgName)</span><br><span class="line">    <span class="comment"># 使用imshow绘制该矩阵</span></span><br><span class="line">    ax0.imshow(imgP)</span><br><span class="line">    <span class="comment"># 再同一幅图上绘制一张新图,允许使用两套坐标系统并不做任何缩放或偏移</span></span><br><span class="line">    ax1 = fig.add_axes(rect, label=<span class="string">'ax1'</span>, frameon=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment"># 遍历每一个簇并将它们一一画出来,标记类型从前面创建的scatterMarkers列表中得到</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(numClust):</span><br><span class="line">        ptsInCurrCluster = datMat[nonzero(clustAssing[:, <span class="number">0</span>].A == i)[<span class="number">0</span>], :]</span><br><span class="line">        <span class="comment"># 使用索引i % len(scatterMarkers)来选择标记形状,这意味这当有更多簇时,可以循环使用这标记</span></span><br><span class="line">        markerStyle = scatterMarkers[i % len(scatterMarkers)]</span><br><span class="line">        <span class="comment"># 使用十字标记来表示簇中心并在图中显示</span></span><br><span class="line">        ax1.scatter(ptsInCurrCluster[:, <span class="number">0</span>].flatten().A[<span class="number">0</span>], ptsInCurrCluster[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], marker=markerStyle,</span><br><span class="line">                    s=<span class="number">90</span>)</span><br><span class="line">    ax1.scatter(myCentroids[:, <span class="number">0</span>].flatten().A[<span class="number">0</span>], myCentroids[:, <span class="number">1</span>].flatten().A[<span class="number">0</span>], marker=<span class="string">'+'</span>, s=<span class="number">300</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/16/software-design-%E7%BB%93%E6%9E%84%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="next" title="software design 结构型设计模式">
+                <i class="fa fa-chevron-left"></i> software design 结构型设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#K-均值聚类算法"><span class="nav-number">1.</span> <span class="nav-text">K-均值聚类算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聚类性能指标SSE"><span class="nav-number">2.</span> <span class="nav-text">聚类性能指标SSE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分均值算法"><span class="nav-number">3.</span> <span class="nav-text">二分均值算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例：对地理坐标进行聚类"><span class="nav-number">4.</span> <span class="nav-text">示例：对地理坐标进行聚类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

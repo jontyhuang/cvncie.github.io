@@ -241,6 +241,404 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/" itemprop="url">machine learning of k-Nearest Neighbor</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T20:37:20+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114204004.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/jontyhuang.github.io/2019/11/14/machine-learning-of-k-Nearest-Neighbor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/" itemprop="url">ReID Fine-grained multi-feature fusion</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T16:19:26+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p> 前面，我们基于一个优化的ResNet-50网络作为一个 baseline，学习的是图像数据的全局特征。然后我们基于baseline网络，使用了PCB分块方法，学习的是图像数据的局部特征。这里，将使用一个更复杂的模型来学习全局和局部特征，并训练一个细粒度多特征融合网络。 </p>
+<h1 id="单一全局特征与局部特征学习存在的问题"><a href="#单一全局特征与局部特征学习存在的问题" class="headerlink" title="单一全局特征与局部特征学习存在的问题"></a>单一全局特征与局部特征学习存在的问题</h1><p> 下图是一幅行人图像学习全局特征和局部特征的特征响应图，左边部分是全局特征，右边部分是局部特征。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114162116.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/jontyhuang.github.io/2019/11/14/ReID-Fine-grained-multi-feature-fusion/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/" itemprop="url">ReID Learn block and local features</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T15:55:44+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-局部特征学习方法"><a href="#1-局部特征学习方法" class="headerlink" title="1. 局部特征学习方法"></a>1. 局部特征学习方法</h1><p> 早期的ReID研究，人们更多的方向的是全局特征，就像上一篇说的baseline一样，将整个图像作为网络的输入，通过学习网络的特征提取得到特征图谱。但是ReID任务的数据集是多样性的，有时候并不能得到完好的全身图像，而全局特征也忽略了图像本身的一些细粒度信息，所以，基于局部特征的ReID也是行人重识别研究的一个重要方向之一。 </p>
+<p> 基于局部特征学习方法的ReID目前主要有两种做法，一种是利用人体的关键点定位，通过区域联结获取行人的姿态特征。Spindle Net是这种做法的一个代表网络，如图所示。 </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114155821.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/jontyhuang.github.io/2019/11/14/ReID-Learn-block-and-local-features/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1224,452 +1622,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/09/numpy's-argpartition/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/09/numpy's-argpartition/" itemprop="url">numpy's argpartition</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-09T00:55:13+08:00">
-                2019-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/numpy/" itemprop="url" rel="index">
-                    <span itemprop="name">numpy</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="argpartition"><a href="#argpartition" class="headerlink" title="argpartition"></a>argpartition</h1><p> numpy.argpartition(a, kth, axis=-1, kind=’introselect’, order=None) </p>
-<p> 使用<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.argpartition.html" target="_blank" rel="noopener"><code>np.argpartition</code></a>.它不会对整个阵列进行排序.它只保证第k个元素处于排序位置,所有较小的元素将在它之前移动.因此,前k个元素将是k个最小元素. 返回是numpy数组的索引。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([<span class="number">1</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">0.1</span>, <span class="number">17</span>, <span class="number">17</span>, <span class="number">1.5</span>])</span><br><span class="line">k = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">idx = np.argpartition(A, k)</span><br><span class="line">print(idx)</span><br><span class="line"><span class="comment"># [4 0 7 3 1 2 6 5]</span></span><br></pre></td></tr></table></figure>
-
-<p>这将返回k个最小值.请注意,这些可能不是按排序顺序.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(A[idx[:k]])</span><br><span class="line"># [ 0.1  1.   1.5]</span><br></pre></td></tr></table></figure>
-
-<p>要获得k最大值使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">idx = np.argpartition(A, -k)</span><br><span class="line"># [4 0 7 3 1 2 6 5]</span><br><span class="line"></span><br><span class="line">A[idx[-3:]]</span><br><span class="line"># [  9.  17.  17.]</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/" itemprop="url">machine learning of LabelEncoder and OneHotEncode</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-07T12:21:47+08:00">
-                2019-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="LabelEncoder标准化标签"><a href="#LabelEncoder标准化标签" class="headerlink" title="LabelEncoder标准化标签"></a>LabelEncoder标准化标签</h1><p>labelEncoder是对<strong>不连续的数字或者文本</strong>进行编号。</p>
-<ul>
-<li>sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内 </li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder()</span><br><span class="line">le = LabelEncoder()</span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码</span></span><br><span class="line">le.fit([<span class="number">1</span>,<span class="number">5</span>,<span class="number">67</span>,<span class="number">100</span>])  <span class="comment">#对数组进行编码，并返回标准化之后的数组</span></span><br><span class="line">le.transform([<span class="number">1</span>,<span class="number">1</span>,<span class="number">100</span>,<span class="number">67</span>,<span class="number">5</span>])</span><br><span class="line"><span class="comment"># 输出： array([0,0,3,2,1])</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/jontyhuang.github.io/2019/11/07/machine-learning-of-LabelEncoder-and-OneHotEncode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/06/blue-cup-Flip-a-coin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/06/blue-cup-Flip-a-coin/" itemprop="url">blue cup Flip a coin</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T22:09:41+08:00">
-                2019-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/the-blue-cup-of-Java/" itemprop="url" rel="index">
-                    <span itemprop="name">the blue cup of Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p>问题描述<br>小明正在玩一个“翻硬币”的游戏。桌上放着排成一排的若干硬币。我们用 * 表示正面，用 o 表示反面（是小写字母，不是零）。比如，可能情形是：**oo***oooo<br>如果同时翻转左边的两个硬币，则变为：oooo***oooo<br>现在小明的问题是：如果已知了初始状态和要达到的目标状态，每次只能同时翻转相邻的两个硬币,那么对特定的局面，最少要翻动多少次呢？<br>我们约定：把翻动相邻的两个硬币叫做一步操作，那么要求：<br>输入格式<br>两行等长的字符串，分别表示初始状态和要达到的目标状态。每行的长度&lt;1000<br>输出格式<br>一个整数，表示最小操作步数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">样例输入</span><br><span class="line"> **********</span><br><span class="line"> o****o****</span><br><span class="line">样例输出</span><br><span class="line">5</span><br><span class="line">样例输入</span><br><span class="line"> *o**o***o***</span><br><span class="line"> *o***o**o***</span><br><span class="line">样例输出</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/jontyhuang.github.io/2019/11/06/blue-cup-Flip-a-coin/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1724,7 +1676,7 @@
               
                 <a href="/jontyhuang.github.io/archives">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

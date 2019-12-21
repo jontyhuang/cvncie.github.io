@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="software design 创建型设计模式">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2019&#x2F;12&#x2F;16&#x2F;software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216112354.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216112515.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216122220.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216122306140.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216205150.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216173732.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216174130.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216174209924.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216204501.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20191216204734.png">
+<meta property="og:updated_time" content="2019-12-16T13:30:19.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2019/12/16/software-design-创建型设计模式/"/>
+
+
+
+
+
+  <title>software design 创建型设计模式 | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/16/software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">software design 创建型设计模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T11:19:59+08:00">
+                2019-12-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.jpeg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216112354.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216112515.png" alt=""></p>
+<p>  在使用 简单工厂模式 时，首先需要对产品类进行重构，不能设计<strong>一个包罗万象的产品类</strong>，而需要根据实际情况设计一个产品层次结构，将所有产品类公共的代码移至抽象产品类，并在抽象产品类中声明一些抽象方法，以供不同的具体产品类实现。  </p>
+<p>  <strong>简单工厂模式</strong>的核心是<strong>工厂类</strong>，在没有工厂类之前，客户端一般会使用 new 关键字来直接创建产品对象，而在引入工厂类之后，客户端可以通过工厂类中的静态工厂方法，根据传入的不同参数创建不同的产品对象。  </p>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>  工厂方法模式（Factory Method Pattern）定义一个用于创建对象的接口，让子类决定将哪一个类实例化。工厂方法模式 让一个类的实例化延迟到其子类。  </p>
+<p>  在<strong>工厂方法模式</strong>中，我们不再提供一个统一的工厂类来创建所有的产品对象，而是针对不同的产品提供不同的工厂，提供一个与产品等级结构对应的工厂等级结构。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216122220.png" alt=""></p>
+<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216122306140.png" alt="image-20191216122306140"></p>
+<p>总结：相比于简单工厂模式，工厂方法模式使用抽象类工厂来生成多个工厂，增强了工厂类的扩展性。但是无论哪个工厂，产品的类型是要相同的。</p>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><p>工厂方法模式存在的问题：</p>
+<ul>
+<li><p>但是上述工厂方法模式，如果我们将产品的层次增加一个，针对每个一个新增加具体组件都需要增加一个具体工厂，  这无疑会导致系统越来越庞大，增加系统的维护成本和运行开销。  </p>
+<p>在 工厂方法模式 中具体工厂负责生产具体产品，每一个具体工厂对应一种具体产品。但是有时候我们希望一个工厂可以提供多个产品对象，而不是单一的产品对象，如一个电器工厂，它可以生产电视机、电冰箱等多种电器，而不是只生产某一种电器。  </p>
+</li>
+<li><p>产品等级结构：产品等级结构即产品的继承结构，如一个抽象类是电视机，其子类有海尔电视机、海信电视机，则抽象电视机与具体品牌的电视机之间构成了一个产品等级结构。  </p>
+</li>
+</ul>
+<ul>
+<li>产品族：指由同一个工厂生产的，位于不同产品等级结构中的一组产品，如海尔电器工厂生产的海尔电视机、海尔电冰箱。海尔电视机位于电视机产品等级结构中，海尔电冰箱位于电冰箱产品等级结构中，海尔电视机、海尔电冰箱构成一个产品族。  </li>
+</ul>
+<p><strong>抽象工厂模式</strong>与<strong>工厂方法模式</strong>最大的区别在于：</p>
+<ul>
+<li>工厂方法模式：针对的是一个产品等级结构；</li>
+<li>抽象工厂模式：针对的是一个产品族，每一个具体工厂可以生产属于一个产品族的所有产品。  </li>
+</ul>
+<p>抽象工厂：</p>
+<p>  提供一个创建一系列相关或相互依赖对象的接口，而无须指定它们具体的类。（对product进行抽象）  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216205150.png" alt=""></p>
+<h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>  确保某一个类只有一个实例，而且自行实例化并向整个系统提供这个实例，这个类称为单例类，它提供全局访问的方法。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216173732.png" alt=""></p>
+<p>单例类的三个要点：</p>
+<ul>
+<li>在单例类（ Singleton ）的内部实现只生成一个实例，同时它提供一个静态的 GetInstance() 工厂方法，让客户可以访问它的唯一实例；  </li>
+<li>为了防止在外部对其实例化，将其构造函数设计为私有；  </li>
+<li>在单例类内部定义一个 Singleton 类型的静态对象，作为外部共<br>享的唯一实例；  </li>
+</ul>
+<h2 id="饿汉式单例模式"><a href="#饿汉式单例模式" class="headerlink" title="饿汉式单例模式"></a>饿汉式单例模式</h2><p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216174130.png" alt=""></p>
+<h2 id="懒汉式单例模式"><a href="#懒汉式单例模式" class="headerlink" title="懒汉式单例模式"></a>懒汉式单例模式</h2><p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20191216174209924.png" alt="image-20191216174209924"></p>
+<ul>
+<li><p>饿汉式单例模式<br>当加载类时，初始化静态变量 Instance （调用私有构造函数），创建单例类的唯一实例。如果使用饿汉式单例类，不会出现创建多个单例对象的情况，可确保单例对象的唯一性。  </p>
+</li>
+<li><p>懒汉式单例模式<br>懒汉式单例类在第一次调用 GetInstance() 方法时实例化，在类加载时并不自实例化，这种技术称为延迟加载（Lazy Load）技术，即需要的时候再加载实例。但实际运行中可能存在多线程调用 GetInstance() 方法的情况，这样不能保证单例对象的唯一<br>性。  </p>
+</li>
+</ul>
+<h3 id="为什么懒汉式不安全"><a href="#为什么懒汉式不安全" class="headerlink" title="为什么懒汉式不安全?"></a>为什么懒汉式不安全?</h3><p>我们假设有多个线程1，线程2都需要使用这个单例对象。而恰巧，线程1在判断完s==null后突然交换了cpu的使用权，变为线程2执行，由于s仍然为null，那么线程2中就会创建这个Singleton的单例对象。之后线程1拿回cpu的使用权，而正好线程1之前暂停的位置就是判断s是否为null之后，创建对象之前。这样线程1又会创建一个新的Singleton对象。</p>
+<h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><p>  使用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。  </p>
+<p>  需要注意的是通过克隆方法所创建的对象是全新的对象，它们在内存中拥有新的地址，通常对克隆所产生的对象进行修改对原型对象不会造成任何影响，每一个克隆对象都是相互独立的。通过不同的方式修改可以得到一系列相似但不完全相同的对象。  </p>
+<h1 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h1><p>  建造者模式（Builder Pattern）将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。  </p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216204501.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191216204734.png" alt=""></p>
+<p><strong>建造者模式</strong>与<strong>抽象工厂模式</strong>有点类似：  </p>
+<ul>
+<li><p>抽象工厂模式 返回一系列相关产品，而 建造者模式 返回一个<br>完整的复杂产品。  </p>
+</li>
+<li><p>在 抽象工厂模式 中，客户端通过选择具体工厂来生成所需对<br>象，而在 建造者模式 中，客户端通过指定具体建造者类型并通<br>过 Director 类去一步一步构建一个复杂对象，然后将结果返<br>回。  </p>
+</li>
+<li><p>如果将 抽象工厂模式 看成一个汽车配件生产厂，生产不同类型<br>的汽车配件，那么<strong>建造者模式</strong>就是一个汽车组装厂，通过对配<br>件进行组装返回一辆完整的汽车。  </p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/15/blue-cup-ADV94-%E7%9B%BE%E7%A5%9E%E4%B8%8E%E7%A7%AF%E6%9C%A8%E6%B8%B8%E6%88%8F/" rel="next" title="blue cup ADV94 盾神与积木游戏">
+                <i class="fa fa-chevron-left"></i> blue cup ADV94 盾神与积木游戏
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2019/12/16/software-design-%E7%BB%93%E6%9E%84%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="prev" title="software design 结构型设计模式">
+                software design 结构型设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">1.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">3.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式"><span class="nav-number">4.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉式单例模式"><span class="nav-number">4.1.</span> <span class="nav-text">饿汉式单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉式单例模式"><span class="nav-number">4.2.</span> <span class="nav-text">懒汉式单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么懒汉式不安全"><span class="nav-number">4.2.1.</span> <span class="nav-text">为什么懒汉式不安全?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型模式"><span class="nav-number">5.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建造者模式"><span class="nav-number">6.</span> <span class="nav-text">建造者模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
