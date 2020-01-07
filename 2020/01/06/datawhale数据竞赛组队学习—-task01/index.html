@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="datawhale数据竞赛组队学习—-task01">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2020&#x2F;01&#x2F;06&#x2F;datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0%E2%80%94-task01&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%AF%BC%E5%9B%BE1.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20200106213438.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20200106213316.png">
+<meta property="og:updated_time" content="2020-01-07T12:29:53.496Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%AF%BC%E5%9B%BE1.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2020/01/06/datawhale数据竞赛组队学习—-task01/"/>
+
+
+
+
+
+  <title>datawhale数据竞赛组队学习—-task01 | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2020/01/06/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0%E2%80%94-task01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">datawhale数据竞赛组队学习—-task01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-06T20:45:18+08:00">
+                2020-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/basic-learning-of-data-competition/" itemprop="url" rel="index">
+                    <span itemprop="name">basic learning of data competition</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/%E5%AF%BC%E5%9B%BE1.jpeg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="赛题分析"><a href="#赛题分析" class="headerlink" title="赛题分析"></a>赛题分析</h1><p>房价预测是一个典型的回归问题。</p>
+<p>$R^{2}=1-\frac{SS_{res}}{SS_{tot}}=1-\frac{\sum\left(y_{i}-\hat{y}<em>{i}\right)^{2}}{\sum\left(y</em>{i}-\overline{y}\right)^{2}}$</p>
+<p>其中，我们发现当模型预测结果越好时，即分子值越小，评价分数越接近1.也就是说score值越大，模型越好。</p>
+<p>所给的数据特征大部分是同一个板块的特征。</p>
+<h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="comment">#导入warnings包，利用过滤器来实现忽略警告语句。</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># GBDT</span></span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> GradientBoostingRegressor</span><br><span class="line"><span class="comment"># XGBoost</span></span><br><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="comment"># LightGBM</span></span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"></span><br><span class="line"><span class="comment">#载入数据</span></span><br><span class="line">data_train = pd.read_csv(<span class="string">'./train_data.csv'</span>)</span><br><span class="line">data_train[<span class="string">'Type'</span>] = <span class="string">'Train'</span>   <span class="comment"># 增加新的一列Type</span></span><br><span class="line"></span><br><span class="line">data_test = pd.read_csv(<span class="string">'./test_a.csv'</span>)</span><br><span class="line">data_test[<span class="string">'Type'</span>] = <span class="string">'Test'</span></span><br><span class="line">data_all = pd.concat([data_train, data_test], ignore_index=<span class="literal">True</span>)  <span class="comment"># 拼接数据，同时忽略需要连接的frame本身的index。当原本的index没有特别意义的时候可以使用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 总体情况</span></span><br><span class="line">print(data_train.info())</span><br><span class="line">print(data_train.describe())  <span class="comment"># 得到统计数目，针对数值类型数据</span></span><br><span class="line">data_train.head()  <span class="comment"># 返回前n行数据</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="数据总览"><a href="#数据总览" class="headerlink" title="数据总览"></a>数据总览</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 总体情况</span></span><br><span class="line">print(data_train.info())</span><br><span class="line">print(data_train.describe())  <span class="comment"># 得到统计数目，针对数值类型数据</span></span><br><span class="line">data_train.head()  <span class="comment"># 返回前n行数据</span></span><br></pre></td></tr></table></figure>
+
+<p>我们有52列数据，有describe()函数我们可以知道有40列数据为数值型(其中房价为label值）。</p>
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><h2 id="提取出分类特征和数值型特征"><a href="#提取出分类特征和数值型特征" class="headerlink" title="提取出分类特征和数值型特征"></a>提取出分类特征和数值型特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据特征含义和特征一览，大致可以判断出数值型和类别型特征如下</span></span><br><span class="line">categorical_feas = [<span class="string">'rentType'</span>, <span class="string">'houseType'</span>, <span class="string">'houseFloor'</span>, <span class="string">'region'</span>, <span class="string">'plate'</span>, <span class="string">'houseToward'</span>, <span class="string">'houseDecoration'</span>,</span><br><span class="line">    <span class="string">'communityName'</span>,<span class="string">'city'</span>,<span class="string">'region'</span>,<span class="string">'plate'</span>,<span class="string">'buildYear'</span>]</span><br><span class="line">numerical_feas=[<span class="string">'ID'</span>,<span class="string">'area'</span>,<span class="string">'totalFloor'</span>,<span class="string">'saleSecHouseNum'</span>,<span class="string">'subwayStationNum'</span>,</span><br><span class="line">    <span class="string">'busStationNum'</span>,<span class="string">'interSchoolNum'</span>,<span class="string">'schoolNum'</span>,<span class="string">'privateSchoolNum'</span>,<span class="string">'hospitalNum'</span>,</span><br><span class="line">    <span class="string">'drugStoreNum'</span>,<span class="string">'gymNum'</span>,<span class="string">'bankNum'</span>,<span class="string">'shopNum'</span>,<span class="string">'parkNum'</span>,<span class="string">'mallNum'</span>,<span class="string">'superMarketNum'</span>,</span><br><span class="line">    <span class="string">'totalTradeMoney'</span>,<span class="string">'totalTradeArea'</span>,<span class="string">'tradeMeanPrice'</span>,<span class="string">'tradeSecNum'</span>,<span class="string">'totalNewTradeMoney'</span>,</span><br><span class="line">    <span class="string">'totalNewTradeArea'</span>,<span class="string">'tradeNewMeanPrice'</span>,<span class="string">'tradeNewNum'</span>,<span class="string">'remainNewNum'</span>,<span class="string">'supplyNewNum'</span>,</span><br><span class="line">    <span class="string">'supplyLandNum'</span>,<span class="string">'supplyLandArea'</span>,<span class="string">'tradeLandNum'</span>,<span class="string">'tradeLandArea'</span>,<span class="string">'landTotalPrice'</span>,</span><br><span class="line">    <span class="string">'landMeanPrice'</span>,<span class="string">'totalWorkers'</span>,<span class="string">'newWorkers'</span>,<span class="string">'residentPopulation'</span>,<span class="string">'pv'</span>,<span class="string">'uv'</span>,<span class="string">'lookNum'</span>]</span><br><span class="line">print(len(numerical_feas))</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="缺失值分析"><a href="#缺失值分析" class="headerlink" title="缺失值分析"></a>缺失值分析</h2><h2 id="寻找存在缺失值的特征"><a href="#寻找存在缺失值的特征" class="headerlink" title="寻找存在缺失值的特征"></a>寻找存在缺失值的特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.DataFrame(data_train.isnull().sum())</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20200106213438.png" alt=""></p>
+<p>有上图我们知道pv和uv特征存在缺失值。</p>
+<h2 id="缺失值分析-1"><a href="#缺失值分析-1" class="headerlink" title="缺失值分析"></a>缺失值分析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缺失值分析</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">missing_values</span><span class="params">(df)</span>:</span></span><br><span class="line">    alldata_na = pd.DataFrame(df.isnull().sum(), columns=&#123;<span class="string">'missingNum'</span>&#125;)</span><br><span class="line">    alldata_na[<span class="string">'existNum'</span>] = len(df) - alldata_na[<span class="string">'missingNum'</span>]</span><br><span class="line">    alldata_na[<span class="string">'sum'</span>] = len(df)</span><br><span class="line">    alldata_na[<span class="string">'missingRatio'</span>] = alldata_na[<span class="string">'missingNum'</span>]/len(df)*<span class="number">100</span></span><br><span class="line">    alldata_na[<span class="string">'dtype'</span>] = df.dtypes</span><br><span class="line">    <span class="comment">#ascending：默认True升序排列；False降序排列</span></span><br><span class="line">    alldata_na = alldata_na[alldata_na[<span class="string">'missingNum'</span>]&gt;<span class="number">0</span>].reset_index().sort_values(by=[<span class="string">'missingNum'</span>,<span class="string">'index'</span>],ascending=[<span class="literal">False</span>,<span class="literal">True</span>])</span><br><span class="line">    alldata_na.set_index(<span class="string">'index'</span>,inplace=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> alldata_na</span><br><span class="line"></span><br><span class="line">missing_values(data_train)</span><br><span class="line">analy_data = data_train[data_train[<span class="string">'uv'</span>].isnull() == <span class="literal">True</span>] <span class="comment"># 找出uv列存在缺失值的列</span></span><br><span class="line">print(analy_data)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> data_train.columns:</span><br><span class="line">    print(i, analy_data.loc[:,i].value_counts().size)</span><br></pre></td></tr></table></figure>
+
+<p>和讲解的一样，所缺失的数据都是同一个板块的数据。</p>
+<h2 id="单调特征列分析"><a href="#单调特征列分析" class="headerlink" title="单调特征列分析"></a>单调特征列分析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#是否有单调特征列(单调的特征列很大可能是时间)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">incresing</span><span class="params">(vals)</span>:</span></span><br><span class="line">    cnt = <span class="number">0</span></span><br><span class="line">    len_ = len(vals)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len_<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> vals[i+<span class="number">1</span>] &gt; vals[i]:</span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> cnt</span><br><span class="line"></span><br><span class="line">fea_cols = [col <span class="keyword">for</span> col <span class="keyword">in</span> data_train.columns]</span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> fea_cols:</span><br><span class="line">    cnt = incresing(data_train[col].values)</span><br><span class="line">    <span class="keyword">if</span> cnt / data_train.shape[<span class="number">0</span>] &gt;= <span class="number">0.55</span>:</span><br><span class="line">        print(<span class="string">'单调特征：'</span>,col)</span><br><span class="line">        print(<span class="string">'单调特征值个数：'</span>, cnt)</span><br><span class="line">        print(<span class="string">'单调特征值比例：'</span>, cnt / data_train.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20200106213316.png" alt=""></p>
+<h2 id="特征nunique分布"><a href="#特征nunique分布" class="headerlink" title="特征nunique分布"></a>特征nunique分布</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 特征nunique分布</span></span><br><span class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> categorical_feas:</span><br><span class="line">    print(feature + <span class="string">"的特征分布如下："</span>)</span><br><span class="line">    print(data_train[feature].value_counts())</span><br><span class="line">    <span class="keyword">if</span> feature != <span class="string">'communityName'</span>: <span class="comment"># communityName值太多，暂且不看图表</span></span><br><span class="line">        plt.hist(data_all[feature], bins=<span class="number">4</span>)  <span class="comment"># 绘制直方图，bins指定箱子的个数</span></span><br><span class="line">        plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>发现communityName特征画不出图来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(data_train[<span class="string">'communityName'</span>].value_counts())</span><br><span class="line">print(data_test[<span class="string">'communityName'</span>].value_counts())</span><br></pre></td></tr></table></figure>
+
+<p>根据统计发现，该特征有4236个特征点。</p>
+<h2 id="统计特征值频次大于100的特征"><a href="#统计特征值频次大于100的特征" class="headerlink" title="统计特征值频次大于100的特征"></a>统计特征值频次大于100的特征</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 统计特征值出现频次大于100的特征</span></span><br><span class="line"><span class="keyword">for</span> feature <span class="keyword">in</span> categorical_feas:</span><br><span class="line">    df_value_counts = pd.DataFrame(data_train[feature].value_counts())   <span class="comment"># 对feature进行统计</span></span><br><span class="line">    df_value_counts = df_value_counts.reset_index()</span><br><span class="line">    df_value_counts.columns = [feature, <span class="string">'counts'</span>] <span class="comment"># change column names</span></span><br><span class="line">    print(df_value_counts[df_value_counts[<span class="string">'counts'</span>] &gt;= <span class="number">100</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="label分析"><a href="#label分析" class="headerlink" title="label分析"></a>label分析</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Labe 分布</span></span><br><span class="line">fig,axes = plt.subplots(<span class="number">2</span>,<span class="number">3</span>,figsize=(<span class="number">20</span>,<span class="number">5</span>))</span><br><span class="line">fig.set_size_inches(<span class="number">20</span>,<span class="number">12</span>)</span><br><span class="line">sns.distplot(data_train[<span class="string">'tradeMoney'</span>],ax=axes[<span class="number">0</span>][<span class="number">0</span>])   <span class="comment"># 整体绘图</span></span><br><span class="line">sns.distplot(data_train[(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">20000</span>)][<span class="string">'tradeMoney'</span>],ax=axes[<span class="number">0</span>][<span class="number">1</span>])  <span class="comment"># 由第一幅图画出大部分数据所在位置</span></span><br><span class="line">sns.distplot(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">20000</span>)&amp;(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">50000</span>)][<span class="string">'tradeMoney'</span>],ax=axes[<span class="number">0</span>][<span class="number">2</span>])</span><br><span class="line">sns.distplot(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">50000</span>)&amp;(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">100000</span>)][<span class="string">'tradeMoney'</span>],ax=axes[<span class="number">1</span>][<span class="number">0</span>])</span><br><span class="line">sns.distplot(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">100000</span>)][<span class="string">'tradeMoney'</span>],ax=axes[<span class="number">1</span>][<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>使用seaborn包绘图，可以得出直方图和拟合的概率分布图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"money&lt;=10000"</span>,len(data_train[(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">10000</span>)][<span class="string">'tradeMoney'</span>]))</span><br><span class="line">print(<span class="string">"10000&lt;money&lt;=20000"</span>,len(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">10000</span>)&amp;(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">20000</span>)][<span class="string">'tradeMoney'</span>]))</span><br><span class="line">print(<span class="string">"20000&lt;money&lt;=50000"</span>,len(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">20000</span>)&amp;(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">50000</span>)][<span class="string">'tradeMoney'</span>]))</span><br><span class="line">print(<span class="string">"50000&lt;money&lt;=100000"</span>,len(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">50000</span>)&amp;(data_train[<span class="string">'tradeMoney'</span>]&lt;=<span class="number">100000</span>)][<span class="string">'tradeMoney'</span>]))</span><br><span class="line">print(<span class="string">"100000&lt;money"</span>,len(data_train[(data_train[<span class="string">'tradeMoney'</span>]&gt;<span class="number">100000</span>)][<span class="string">'tradeMoney'</span>]))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2020/01/02/java-ArrayList/" rel="next" title="java ArrayList">
+                <i class="fa fa-chevron-left"></i> java ArrayList
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#赛题分析"><span class="nav-number">1.</span> <span class="nav-text">赛题分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据准备"><span class="nav-number">2.</span> <span class="nav-text">数据准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据总览"><span class="nav-number">3.</span> <span class="nav-text">数据总览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据分析"><span class="nav-number">4.</span> <span class="nav-text">数据分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#提取出分类特征和数值型特征"><span class="nav-number">4.1.</span> <span class="nav-text">提取出分类特征和数值型特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺失值分析"><span class="nav-number">4.2.</span> <span class="nav-text">缺失值分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找存在缺失值的特征"><span class="nav-number">4.3.</span> <span class="nav-text">寻找存在缺失值的特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缺失值分析-1"><span class="nav-number">4.4.</span> <span class="nav-text">缺失值分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单调特征列分析"><span class="nav-number">4.5.</span> <span class="nav-text">单调特征列分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征nunique分布"><span class="nav-number">4.6.</span> <span class="nav-text">特征nunique分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计特征值频次大于100的特征"><span class="nav-number">4.7.</span> <span class="nav-text">统计特征值频次大于100的特征</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#label分析"><span class="nav-number">5.</span> <span class="nav-text">label分析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
