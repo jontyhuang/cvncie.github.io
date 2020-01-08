@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/jontyhuang.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/jontyhuang.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/jontyhuang.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/jontyhuang.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/jontyhuang.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/jontyhuang.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据清洗的优良取决于第一步对数据分析是否透彻，是否清楚数据中的分类特征和数值型特征，以及哪些特征存在缺失值，分类特征中各个分类特征的文本信息是否有意义，是否需要进一步处理">
+<meta name="keywords" content="机器学习,python,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="datawhale数据竞赛组队学习-task02-数据清洗">
+<meta property="og:url" content="https:&#x2F;&#x2F;github.com&#x2F;jontyhuang&#x2F;blog&#x2F;2020&#x2F;01&#x2F;07&#x2F;datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0-task02&#x2F;index.html">
+<meta property="og:site_name" content="IU的fans">
+<meta property="og:description" content="数据清洗的优良取决于第一步对数据分析是否透彻，是否清楚数据中的分类特征和数值型特征，以及哪些特征存在缺失值，分类特征中各个分类特征的文本信息是否有意义，是否需要进一步处理">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20200108162435.png">
+<meta property="og:updated_time" content="2020-01-08T14:39:42.424Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/jontyhuang.github.io/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/jontyhuang/blog/2020/01/07/datawhale数据竞赛组队学习-task02/"/>
+
+
+
+
+
+  <title>datawhale数据竞赛组队学习-task02-数据清洗 | IU的fans</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/jontyhuang.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IU的fans</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/jontyhuang.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/jontyhuang.github.io/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/jontyhuang.github.io/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2020/01/07/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0-task02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">datawhale数据竞赛组队学习-task02-数据清洗</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T20:43:29+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/basic-learning-of-data-competition/" itemprop="url" rel="index">
+                    <span itemprop="name">basic learning of data competition</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据清洗的优良取决于<strong>第一步对数据分析是否透彻</strong>，是否清楚数据中的分类特征和数值型特征，以及哪些特征存在缺失值，分类特征中各个分类特征的文本信息是否有意义，是否需要进一步处理</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.jpeg" alt=""></p>
+<a id="more"></a>
+
+<h1 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h1><h2 id="分类特征"><a href="#分类特征" class="headerlink" title="分类特征"></a>分类特征</h2><ul>
+<li><p>对分类特征中无意义的文本信息进行填充处理</p>
+<ul>
+<li><p><strong>使用指定的特征值去代替特殊文本信息</strong>。譬如”rentType”存在“–”这种无意义的特征值转为“未知方式”</p>
+</li>
+<li><p><strong>使用频次最多的特征值去代替</strong>，譬如特征“buildYear”中的特征点“暂无信息”转为频次最多的特征值1994</p>
+</li>
+</ul>
+</li>
+<li><p>特殊的分类特征处理方式</p>
+<ul>
+<li>对tradeTime的特征值进行分割，分为month和day，这样分类特征就转为了数值型特征</li>
+</ul>
+</li>
+</ul>
+<p>对分类特征进行labelEncode编码处理，以便模型的使用。</p>
+<h2 id="数值型特征"><a href="#数值型特征" class="headerlink" title="数值型特征"></a>数值型特征</h2><ul>
+<li>主要是对缺失值的处理，处理方法有平均值。</li>
+</ul>
+<h2 id="代码如下："><a href="#代码如下：" class="headerlink" title="代码如下："></a>代码如下：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preprocessingData</span><span class="params">(data)</span>:</span></span><br><span class="line">    <span class="comment"># 填充缺失值</span></span><br><span class="line">    data[<span class="string">'rentType'</span>][data[<span class="string">'rentType'</span>] == <span class="string">'--'</span>] = <span class="string">'未知方式'</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 转换object类型数据</span></span><br><span class="line">    columns = [<span class="string">'rentType'</span>,<span class="string">'communityName'</span>,<span class="string">'houseType'</span>, <span class="string">'houseFloor'</span>, <span class="string">'houseToward'</span>, <span class="string">'houseDecoration'</span>,  <span class="string">'region'</span>, <span class="string">'plate'</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> feature <span class="keyword">in</span> columns:</span><br><span class="line">        data[feature] = LabelEncoder().fit_transform(data[feature]) <span class="comment"># 对分类特征进行labelEcode编码</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#处理objec类型的数值信息，将其中的文本信息转为频次最多的数值信息 </span></span><br><span class="line">    <span class="comment">#将buildYear列转换为整型数据</span></span><br><span class="line">    buildYearmean = pd.DataFrame(data[data[<span class="string">'buildYear'</span>] != <span class="string">'暂无信息'</span>][<span class="string">'buildYear'</span>].mode()) <span class="comment"># 提取出现最多的次数的年数</span></span><br><span class="line">    data.loc[data[data[<span class="string">'buildYear'</span>] == <span class="string">'暂无信息'</span>].index, <span class="string">'buildYear'</span>] = buildYearmean.iloc[<span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">    data[<span class="string">'buildYear'</span>] = data[<span class="string">'buildYear'</span>].astype(<span class="string">'int'</span>) </span><br><span class="line"></span><br><span class="line">    <span class="comment"># 处理pv和uv的空值</span></span><br><span class="line">    data[<span class="string">'pv'</span>].fillna(data[<span class="string">'pv'</span>].mean(), inplace=<span class="literal">True</span>)   <span class="comment"># 使用数据的平均值填充空值</span></span><br><span class="line">    data[<span class="string">'uv'</span>].fillna(data[<span class="string">'uv'</span>].mean(), inplace=<span class="literal">True</span>)</span><br><span class="line">    data[<span class="string">'pv'</span>] = data[<span class="string">'pv'</span>].astype(<span class="string">'int'</span>)</span><br><span class="line">    data[<span class="string">'uv'</span>] = data[<span class="string">'uv'</span>].astype(<span class="string">'int'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分割交易时间</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">month</span><span class="params">(x)</span>:</span></span><br><span class="line">        month = int(x.split(<span class="string">'/'</span>)[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> month</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">day</span><span class="params">(x)</span>:</span></span><br><span class="line">        day = int(x.split(<span class="string">'/'</span>)[<span class="number">2</span>])</span><br><span class="line">        <span class="keyword">return</span> day</span><br><span class="line">    data[<span class="string">'month'</span>] = data[<span class="string">'tradeTime'</span>].apply(<span class="keyword">lambda</span> x: month(x)) <span class="comment"># apply将month函数映射到各行各列</span></span><br><span class="line">    data[<span class="string">'day'</span>] = data[<span class="string">'tradeTime'</span>].apply(<span class="keyword">lambda</span> x: day(x))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 去掉部分特征</span></span><br><span class="line">    data.drop(<span class="string">'city'</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    data.drop(<span class="string">'tradeTime'</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    data.drop(<span class="string">'ID'</span>, axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">data_train = preprocessingData(data_train)</span><br></pre></td></tr></table></figure>
+
+<h1 id="异常值处理"><a href="#异常值处理" class="headerlink" title="异常值处理"></a>异常值处理</h1><ul>
+<li>孤立森林(IsolationForest)寻找异常值（孤立森林的讲解链接）</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clean data</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清洗tradeMoney的数据</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">IF_drop</span><span class="params">(train)</span>:</span></span><br><span class="line">    IForest = IsolationForest(contamination=<span class="number">0.01</span>)</span><br><span class="line">    IForest.fit(train[<span class="string">"tradeMoney"</span>].values.reshape(<span class="number">-1</span>,<span class="number">1</span>))</span><br><span class="line">    y_pred = IForest.predict(train[<span class="string">"tradeMoney"</span>].values.reshape(<span class="number">-1</span>,<span class="number">1</span>))</span><br><span class="line">    drop_index = train.loc[y_pred==<span class="number">-1</span>].index</span><br><span class="line">    print(drop_index)</span><br><span class="line">    train.drop(drop_index,inplace=<span class="literal">True</span>)  <span class="comment"># inpalce对原数据进行操作，不新建新的dataframe</span></span><br><span class="line">    <span class="keyword">return</span> train</span><br><span class="line"></span><br><span class="line">data_train = IF_drop(data_train)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dropData</span><span class="params">(train)</span>:</span></span><br><span class="line">    <span class="comment"># 丢弃部分异常值</span></span><br><span class="line">    train = train[train.area &lt;= <span class="number">200</span>]</span><br><span class="line">    train = train[(train.tradeMoney &lt;=<span class="number">16000</span>) &amp; (train.tradeMoney &gt;=<span class="number">700</span>)]</span><br><span class="line">    train.drop(train[(train[<span class="string">'totalFloor'</span>] == <span class="number">0</span>)].index, inplace=<span class="literal">True</span>)  <span class="comment"># 去掉总层数为0的数据</span></span><br><span class="line">    <span class="keyword">return</span> train  </span><br><span class="line"><span class="comment">#数据集异常值处理</span></span><br><span class="line">data_train = dropData(data_train)</span><br><span class="line"><span class="comment"># 处理异常值后再次查看面积和租金分布图</span></span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">5</span>))</span><br><span class="line">sns.boxplot(data_train.area)</span><br><span class="line">plt.show()</span><br><span class="line">plt.figure(figsize=(<span class="number">15</span>,<span class="number">5</span>))</span><br><span class="line">sns.boxplot(data_train.tradeMoney),</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20200108162435.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2020/01/06/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0%E2%80%94-task01/" rel="next" title="datawhale数据竞赛组队学习—-task01-数据分析">
+                <i class="fa fa-chevron-left"></i> datawhale数据竞赛组队学习—-task01-数据分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/jontyhuang.github.io/2020/01/08/machine-learning-Ioslation-Forest/" rel="prev" title="machine learning Ioslation Forest">
+                machine learning Ioslation Forest <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/jontyhuang.github.io/images/head.jpg"
+                alt="Jonty Huang" />
+            
+              <p class="site-author-name" itemprop="name">Jonty Huang</p>
+              <p class="site-description motion-element" itemprop="description">不努力，毋宁single</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/jontyhuang.github.io/archives">
+              
+                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/jontyhuang.github.io/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#缺失值处理"><span class="nav-number">1.</span> <span class="nav-text">缺失值处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分类特征"><span class="nav-number">1.1.</span> <span class="nav-text">分类特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值型特征"><span class="nav-number">1.2.</span> <span class="nav-text">数值型特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码如下："><span class="nav-number">1.3.</span> <span class="nav-text">代码如下：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#异常值处理"><span class="nav-number">2.</span> <span class="nav-text">异常值处理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jonty Huang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/jontyhuang.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/jontyhuang.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/jontyhuang.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
