@@ -241,6 +241,257 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/" itemprop="url">ReID  construct baseline</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T11:40:26+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-baseline的构建及ResNet-50的模型迁移"><a href="#1-baseline的构建及ResNet-50的模型迁移" class="headerlink" title="1 baseline的构建及ResNet-50的模型迁移"></a>1 baseline的构建及ResNet-50的模型迁移</h1><p> 什么是baseline? 即所谓的基线网络，就是为个性化的模型提供基础框架和算法。 </p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/jontyhuang.github.io/2019/11/14/ReID-construct-baseline/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/14/ReID-what-is-it/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/" itemprop="url">ReID what is it</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-14T11:12:44+08:00">
+                2019-11-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="什么是ReID"><a href="#什么是ReID" class="headerlink" title="什么是ReID"></a>什么是ReID</h1><p>ReID，也就是 Re-identification，其定义是利用算法，在图像库中找到要搜索的目标的技术，所以它是属于图像检索的一个子问题。</p>
+<p>为什么会有这个方向呢？来看大背景：随着社会的发展，公共安全成为全社会的一个共同话题，与之相辅相成的视频监控系统也得到了大量的普及。视频监控系统可以直观的再现目标场景，可作为公安侦破案件的强力辅助。在执法部门的工作中，目标的识别和定位是及其关键的一步，然而现有的监控部署下，这个关键步骤几乎是靠着人力完成的。在这个讲究数据和效率的时代，通过人工观察监控录像查找结果显然存在着很大的资源浪费以及效率的低下。另外，由于摄像头的分辨率等硬件缺陷，很难得到清晰的人身图像，因此，已经大力推广的人脸识别技术已不再适用此场景。由于传统人工查询的不便性以及人脸识别的无法应用，研究者思考如何发明一项更合适的技术来取代人脸识别，能在监控领域以机器代替人力分析呢？故此，行人重识别（P-edestrian Re-identification，ReID）的研究也应随之展开。</p>
+<p>说白了，在监控拍不到人脸的情况下，ReID可以代替人脸识别来在视频序列中找到我要找到目标对象。那么他的应用就很广了，可以做安防，可以做个人定位，在商场上可以配合推荐系统，搭建出个性化的推荐服务等等。下面一张图可以生动的解释它在安防的一个应用场景。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20191114111659.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/jontyhuang.github.io/2019/11/14/ReID-what-is-it/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/12/cv-Harris-Corner/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1419,293 +1670,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/" itemprop="url">blue cup The amount that can not be bought</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-05T11:17:02+08:00">
-                2019-11-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/the-blue-cup-of-Java/" itemprop="url" rel="index">
-                    <span itemprop="name">the blue cup of Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>小明开了一家糖果店。他别出心裁：把水果糖包成4颗一包和7颗一包的两种。糖果不能拆包卖。 小朋友来买糖的时候，他就用这两种包装来组合。当然有些糖果数目是无法组合出来的，比如要买 10 颗糖。 你可以用计算机测试一下，在这种包装情况下，最大不能买到的数量是17。大于17的任何数字都可以用4和7组合出来。 本题的要求就是在已知两个包装的数量时，求最大不能组合出的数字。<br>输入格式<br>两个正整数，表示每种包装中糖的颗数(都不多于1000)<br>输出格式<br>一个正整数，表示最大不能买到的糖数<br>样例输入<br>4 7<br>样例输出<br>17<br>样例输入<br>3 5<br>样例输出<br>7</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/jontyhuang.github.io/2019/11/05/blue-cup-The-amount-that-can-t-be-bought/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/11/04/java-basic-grammar/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/11/04/java-basic-grammar/" itemprop="url">java basic grammar</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-04T14:00:25+08:00">
-                2019-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/jontyhuang.github.io/categories/basic-learning-of-Java/" itemprop="url" rel="index">
-                    <span itemprop="name">basic learning of Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1760,7 +1724,7 @@
               
                 <a href="/jontyhuang.github.io/archives">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
