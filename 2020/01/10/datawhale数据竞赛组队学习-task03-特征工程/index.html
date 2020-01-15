@@ -88,7 +88,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%AF%BC%E5%9B%BE1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20200110212238.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;20200111213656.png">
-<meta property="og:updated_time" content="2020-01-12T11:34:43.611Z">
+<meta property="og:updated_time" content="2020-01-13T12:23:09.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jontyhuang&#x2F;PicGo&#x2F;master&#x2F;%E5%AF%BC%E5%9B%BE1.jpg">
 
@@ -283,6 +283,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/basic-learning-of-data-competition/" itemprop="url" rel="index">
+                    <span itemprop="name">basic learning of data competition</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -327,8 +349,6 @@
 
 <p>下面的代码是对特征进行合并（相同属性之间进行合并）:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 合并部分配套设施特征</span></span><br><span class="line">    <span class="comment"># 合并交通</span></span><br><span class="line">    data[<span class="string">'trainsportNum'</span>] = <span class="number">5</span> * data[<span class="string">'subwayStationNum'</span>] / data[<span class="string">'subwayStationNum'</span>].mean() + data[<span class="string">'busStationNum'</span>] / \</span><br><span class="line">                                                                                             data[<span class="string">'busStationNum'</span>].mean()</span><br><span class="line">    <span class="comment"># 合并学校</span></span><br><span class="line">    data[<span class="string">'all_SchoolNum'</span>] = <span class="number">2</span> * data[<span class="string">'interSchoolNum'</span>] / data[<span class="string">'interSchoolNum'</span>].mean() + data[<span class="string">'schoolNum'</span>] / data[</span><br><span class="line">        <span class="string">'schoolNum'</span>].mean() \</span><br><span class="line">                            + data[<span class="string">'privateSchoolNum'</span>] / data[<span class="string">'privateSchoolNum'</span>].mean()</span><br><span class="line">    <span class="comment">#合并医院，同时医院比药店更重要</span></span><br><span class="line">    data[<span class="string">'all_hospitalNum'</span>] = <span class="number">2</span> * data[<span class="string">'hospitalNum'</span>] / data[<span class="string">'hospitalNum'</span>].mean() + \</span><br><span class="line">                              data[<span class="string">'drugStoreNum'</span>] / data[<span class="string">'drugStoreNum'</span>].mean()</span><br><span class="line">    <span class="comment"># 合并商场</span></span><br><span class="line">    data[<span class="string">'all_mall'</span>] = data[<span class="string">'mallNum'</span>] / data[<span class="string">'mallNum'</span>].mean() + \</span><br><span class="line">                       data[<span class="string">'superMarketNum'</span>] / data[<span class="string">'superMarketNum'</span>].mean()</span><br><span class="line">    data[<span class="string">'otherNum'</span>] = data[<span class="string">'gymNum'</span>] / data[<span class="string">'gymNum'</span>].mean() + data[<span class="string">'bankNum'</span>] / data[<span class="string">'bankNum'</span>].mean() + \</span><br><span class="line">                       data[<span class="string">'shopNum'</span>] / data[<span class="string">'shopNum'</span>].mean() + <span class="number">2</span> * data[<span class="string">'parkNum'</span>] / data[<span class="string">'parkNum'</span>].mean()</span><br><span class="line"></span><br><span class="line">    data.drop([<span class="string">'subwayStationNum'</span>, <span class="string">'busStationNum'</span>,</span><br><span class="line">               <span class="string">'interSchoolNum'</span>, <span class="string">'schoolNum'</span>, <span class="string">'privateSchoolNum'</span>,</span><br><span class="line">               <span class="string">'hospitalNum'</span>, <span class="string">'drugStoreNum'</span>, <span class="string">'mallNum'</span>, <span class="string">'superMarketNum'</span>, <span class="string">'gymNum'</span>, <span class="string">'bankNum'</span>, <span class="string">'shopNum'</span>, <span class="string">'parkNum'</span>],</span><br><span class="line">              axis=<span class="number">1</span>, inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
-
 
 <h1 id="2、特征选择"><a href="#2、特征选择" class="headerlink" title="2、特征选择"></a>2、特征选择</h1><p>当数据预处理完成后，我们需要选择有意义的特征输入机器学习的算法和模型进行训练。通常来说，从两个方面考虑来选择特征：</p>
 <ul>
@@ -515,7 +535,7 @@
               
                 <a href="/jontyhuang.github.io/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

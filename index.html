@@ -241,6 +241,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2020/01/14/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0-task05%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jonty Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IU的fans">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/jontyhuang.github.io/2020/01/14/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0-task05%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/" itemprop="url">datawhale数据竞赛组队学习-task05模型融合</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-14T16:54:41+08:00">
+                2020-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+
+<h1 id="模型融合"><a href="#模型融合" class="headerlink" title="模型融合"></a>模型融合</h1><p>顾名思义，模型融合就是综合考虑不同模型的情况，并将它们的结果融合到一起。</p>
+<h2 id="1、Voting"><a href="#1、Voting" class="headerlink" title="1、Voting"></a>1、Voting</h2><p>Voting即投票机制，分为软投票和硬投票两种，其原理采用少数服从多数的思想。</p>
+<p>硬投票：对多个模型直接进行投票，最终投票数最多的类为最终被预测的类。</p>
+<p>软投票：和硬投票原理相同，增加了设置权重的功能，可以为不同模型设置不同权重，进而区别模型不同的重要度。</p>
+<p>备注：此方法用于解决分类问题。</p>
+<h2 id="2、Average"><a href="#2、Average" class="headerlink" title="2、Average"></a>2、Average</h2><p>Averaging，其原理是对模型结果取平均。</p>
+<p>处理回归问题，直接取平均值作为最终的预测值。（也可以使用加权平均）</p>
+<p>平均法存在问题就是如果不同回归方法的预测结果波动幅度相差比较大，那么波动小的回归结果在融合时候起的作用就比较小。</p>
+<h2 id="3、Ranking"><a href="#3、Ranking" class="headerlink" title="3、Ranking"></a>3、Ranking</h2><p>Ranking的思想和Averaging一致，但是因为上述平均法存在一定的问题。</p>
+<p>所以这里采用了把排名做平均，如果有权重，则求n个模型权重比排名之和，即为最后的结果。</p>
+<h2 id="4、Bagging"><a href="#4、Bagging" class="headerlink" title="4、Bagging"></a>4、Bagging</h2><p>Bagging方法的出现，可以完美地解决了决策树过拟合的问题，同时bagging的使用也会使分类器分类效果得到了显著的提高。</p>
+<p>应用场景：对不稳定的分类器做Bagging是一个好主意。在机器学习中，如果训练数据的一个小变化导致学习中的分类器的大变化，则该算法（或学习算法）被认为是不稳定的。</p>
+<p>Bagging就是采用有放回的方式进行抽样，用抽样的样本建立子模型,对子模型进行训练，这个过程重复多次，最后进行融合。大概分为两步：</p>
+<ul>
+<li><p>1.重复K次</p>
+<ul>
+<li>有放回地重复抽样建模 </li>
+<li>训练子模型</li>
+</ul>
+</li>
+<li><p>2.模型融合</p>
+<ul>
+<li>模型融合，如果是分类问题用voting解决 。如果是回归问题用average解决。</li>
+</ul>
+</li>
+</ul>
+<p>注意：在bagging集成中，各个模型的预测不会彼此依赖。Bagging算法不用我们自己实现，随机森林就是基于Bagging算法的一个典型例子，采用的基分类器是决策树。可以直接调用。</p>
+<h2 id="5、Boosting"><a href="#5、Boosting" class="headerlink" title="5、Boosting"></a>5、Boosting</h2><p>Boosting的思想是一种迭代的方法，它每次训练使用的都是同一个训练集。但是每次它会给这些分类错误的样例增加更大的权重，下一次迭代的目标就是能够更容易辨别出上一轮分类错误的样例。最终将这些弱分类器进行加权相加。</p>
+<p>注意：Boosting下一次的迭代必须在上一次的基础上。</p>
+<p>同样地，基于Boosting思想的有AdaBoost、GBDT等，也可以直接调用。</p>
+<h2 id="6、Stacking"><a href="#6、Stacking" class="headerlink" title="6、Stacking"></a>6、Stacking</h2><p>stacking是一种分层模型集成框架。以两层为例，第一层由多个基学习器组成，其输入为原始训练集，第二层的模型则是以第一层基学习器的输出作为训练集进行再训练，从而得到完整的stacking模型。</p>
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20200114213656.png" alt=""></p>
+<p>stacking两层模型都使用了全部的训练数据。</p>
+<p>n个训练样本，m个测试样本。</p>
+<p>第一层模型：</p>
+<p>首先数据有训练集和测试集两部分</p>
+<p>1、对训练集进行五折交叉验证，把训练集划分为A，B两部分</p>
+<p>2、对A部分进行训练，对B部分进行预测，得到a1，五折后则为a1，a2，a3，a4，a5，对他们合并，形成n行一列的数据</p>
+<p>3、对测试集进行预测，会得到b1，b2，b3，b4，b5，将各部分相加取平均得到m行一列的数据</p>
+<p>4、以上是一个模型，如果有三个模型，则可以得到A1,A2,A3,B1,B2,B3</p>
+<p>5、在此之后，我们把A1,A2,A3并列合并得到一个n行三列的矩阵作为training data，B1,B2,B3并列合并得到一个m行三列的矩阵作为testing data。让下一层的模型，基于他们进一步训练。</p>
+<h2 id="7、Blending"><a href="#7、Blending" class="headerlink" title="7、Blending"></a>7、Blending</h2><p>Bending是一种模型融合方法，对于一般的Blending，主要思路是把原始的训练集先分成两部分，比如70%的数据作为新的训练集，剩下30%的数据作为测试集。第一层我们在这70%的数据上训练多个模型，然后去预测那30%数据的label和test的label。在第二层里，我们就直接用这30%数据在第一层预测的结果做为新特征继续训练即可。</p>
+<p>Blending的优点在于：</p>
+<ul>
+<li><p>1.比stacking简单（因为不用进行k次的交叉验证来获得stacker feature）</p>
+</li>
+<li><p>2.避开了一个信息泄露问题：generlizers和stacker使用了不一样的数据集</p>
+</li>
+</ul>
+<p>而缺点在于：</p>
+<ul>
+<li><p>1.使用了很少的数据（第二阶段的blender只使用training set10%的量）</p>
+</li>
+<li><p>2.blender可能会过拟合</p>
+</li>
+<li><p>3.stacking使用多次的交叉验证会比较稳健</p>
+</li>
+</ul>
+<p>对于实践中的结果而言，stacking和blending的效果是差不多的，所以使用哪种方法都没什么所谓，完全取决于个人爱好。</p>
+<h1 id="Stacking实现代码"><a href="#Stacking实现代码" class="headerlink" title="Stacking实现代码"></a>Stacking实现代码</h1><p>对训练集进行五折交叉验证的stacking，同时进行三次stacking。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> KFold</span><br><span class="line"><span class="comment"># 训练集的 feature 特征矩阵  label</span></span><br><span class="line"><span class="comment"># test 测试集</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Stacking</span></span><br><span class="line"><span class="keyword">import</span>  lightgbm <span class="keyword">as</span> lgb</span><br><span class="line">    folds = KFold(n_splits=<span class="number">5</span>, shuffle=<span class="literal">True</span>, random_state=<span class="number">2333</span>)</span><br><span class="line">   </span><br><span class="line">    <span class="string">"===================================第一轮========================================================"</span></span><br><span class="line">    y_pre_list = []</span><br><span class="line">    r2_list = []</span><br><span class="line">    train_feat = pd.Series()</span><br><span class="line">    <span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds.split(feature.values, label)):</span><br><span class="line">        print(<span class="string">"fold &#123;&#125;"</span>.format(fold_))</span><br><span class="line">        trn_data = lgb.Dataset(feature.iloc[trn_idx], label[trn_idx], categorical_feature=categorical_feats)  <span class="comment"># 训练集</span></span><br><span class="line">        val_data = lgb.Dataset(feature.iloc[val_idx], label[val_idx], categorical_feature=categorical_feats)   <span class="comment"># 测试集</span></span><br><span class="line"></span><br><span class="line">        num_round = <span class="number">10000</span></span><br><span class="line">        clf = lgb.train(params, trn_data, num_round,valid_sets=[trn_data, val_data], verbose_eval=<span class="number">500</span>,</span><br><span class="line">                    early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">        y_pre = clf.predict(feature.iloc[val_idx], num_iteration=clf.best_iteration)</span><br><span class="line">        r2 = r2_score(y_pre,label[val_idx])</span><br><span class="line">        r2_list.append(r2)</span><br><span class="line">        train_feat = train_feat.append(pd.Series(y_pre,index=val_idx))</span><br><span class="line">        y_pre_test = clf.predict(test,num_iteration=clf.best_iteration)</span><br><span class="line">        y_pre_list.append(y_pre_test)</span><br><span class="line">    print(<span class="string">'r2 score&#123;:&#125;'</span>.format(r2))</span><br><span class="line">    print(<span class="string">'r2:&#123;:&#125;'</span>.format(np.mean(r2_list)))</span><br><span class="line"></span><br><span class="line">    y_pred_final=  (y_pre_list[<span class="number">0</span>]+y_pre_list[<span class="number">1</span>]+y_pre_list[<span class="number">2</span>]+y_pre_list[<span class="number">3</span>]+y_pre_list[<span class="number">4</span>])/<span class="number">5</span></span><br><span class="line">    feature[<span class="string">'pre'</span>] = train_feat</span><br><span class="line">    test[<span class="string">'pre'</span>] = y_pred_final</span><br><span class="line">    <span class="string">"===================================第二轮========================================================"</span></span><br><span class="line">    y_pre_list = []</span><br><span class="line">    r2_list = []</span><br><span class="line">    train_feat = pd.Series()</span><br><span class="line">    <span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds.split(feature.values, label)):</span><br><span class="line">        print(<span class="string">"fold &#123;&#125;"</span>.format(fold_))</span><br><span class="line">        trn_data = lgb.Dataset(feature.iloc[trn_idx], label[trn_idx], categorical_feature=categorical_feats)</span><br><span class="line">        val_data = lgb.Dataset(feature.iloc[val_idx], label[val_idx], categorical_feature=categorical_feats)</span><br><span class="line"></span><br><span class="line">        num_round = <span class="number">10000</span></span><br><span class="line">        clf = lgb.train(params, trn_data, num_round, feval=get_r2_metric,valid_sets=[trn_data, val_data], verbose_eval=<span class="number">500</span>,</span><br><span class="line">                    early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">        y_pre = clf.predict(feature.iloc[val_idx], num_iteration=clf.best_iteration)</span><br><span class="line">        r2 = r2_score(y_pre,label[val_idx])</span><br><span class="line">        r2_list.append(r2)</span><br><span class="line">        train_feat = train_feat.append(pd.Series(y_pre,index=val_idx))</span><br><span class="line">        y_pre_test = clf.predict(test,num_iteration=clf.best_iteration)</span><br><span class="line">        y_pre_list.append(y_pre_test)</span><br><span class="line">    print(<span class="string">'r2 score&#123;:&#125;'</span>.format(r2))</span><br><span class="line">    print(<span class="string">'r2:&#123;:&#125;'</span>.format(np.mean(r2_list)))</span><br><span class="line">    </span><br><span class="line">    y_pred_final=  (y_pre_list[<span class="number">0</span>]+y_pre_list[<span class="number">1</span>]+y_pre_list[<span class="number">2</span>]+y_pre_list[<span class="number">3</span>]+y_pre_list[<span class="number">4</span>])/<span class="number">5</span></span><br><span class="line">    feature[<span class="string">'pre_2'</span>] = train_feat</span><br><span class="line">    test[<span class="string">'pre_2'</span>] = y_pred_final</span><br><span class="line">    <span class="string">"=======================第三轮========================================================"</span></span><br><span class="line">    y_pre_list = []</span><br><span class="line">    r2_list = []</span><br><span class="line">    train_feat = pd.Series()</span><br><span class="line">    <span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds.split(feature.values, label)):</span><br><span class="line">        print(<span class="string">"fold &#123;&#125;"</span>.format(fold_))</span><br><span class="line">        trn_data = lgb.Dataset(feature.iloc[trn_idx], label[trn_idx], categorical_feature=categorical_feats)</span><br><span class="line">        val_data = lgb.Dataset(feature.iloc[val_idx], label[val_idx], categorical_feature=categorical_feats)</span><br><span class="line"></span><br><span class="line">        num_round = <span class="number">10000</span></span><br><span class="line">        clf = lgb.train(params, trn_data, num_round, feval=get_r2_metric,valid_sets=[trn_data, val_data], verbose_eval=<span class="number">500</span>,</span><br><span class="line">                    early_stopping_rounds=<span class="number">200</span>)</span><br><span class="line">        y_pre = clf.predict(feature.iloc[val_idx], num_iteration=clf.best_iteration)</span><br><span class="line">        r2 = r2_score(y_pre,label[val_idx])</span><br><span class="line">        r2_list.append(r2)</span><br><span class="line">        train_feat = train_feat.append(pd.Series(y_pre,index=val_idx))</span><br><span class="line">        y_pre_test = clf.predict(test,num_iteration=clf.best_iteration)</span><br><span class="line">        y_pre_list.append(y_pre_test)</span><br><span class="line">    print(<span class="string">'r2 score&#123;:&#125;'</span>.format(r2))</span><br><span class="line">    print(<span class="string">'r2:&#123;:&#125;'</span>.format(np.mean(r2_list)))</span><br><span class="line">    </span><br><span class="line">    y_pred_final=  (y_pre_list[<span class="number">0</span>]+y_pre_list[<span class="number">1</span>]+y_pre_list[<span class="number">2</span>]+y_pre_list[<span class="number">3</span>]+y_pre_list[<span class="number">4</span>])/<span class="number">5</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> y_pred_final</span><br></pre></td></tr></table></figure>
+
+<h1 id="Blending实现代码"><a href="#Blending实现代码" class="headerlink" title="Blending实现代码"></a>Blending实现代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">blend</span><span class="params">(train,test,target)</span>:</span></span><br><span class="line">    <span class="string">'''5折'''</span></span><br><span class="line">    <span class="comment"># n_flods = 5</span></span><br><span class="line">    <span class="comment"># skf = list(StratifiedKFold(y, n_folds=n_flods))</span></span><br><span class="line">    <span class="string">'''切分训练数据集为d1,d2两部分'''</span></span><br><span class="line">    X_d1, X_d2, y_d1, y_d2 = train_test_split(train, target, test_size=<span class="number">0.5</span>, random_state=<span class="number">914</span>)</span><br><span class="line"></span><br><span class="line">    train_ = np.zeros((X_d2.shape[<span class="number">0</span>],len(clfs*<span class="number">3</span>)))</span><br><span class="line">    test_ = np.zeros((test.shape[<span class="number">0</span>],len(clfs*<span class="number">3</span>)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> j,clf <span class="keyword">in</span> enumerate(clfs):</span><br><span class="line">        <span class="string">'''依次训练各个单模型'''</span></span><br><span class="line">        <span class="comment"># print(j, clf)</span></span><br><span class="line">        <span class="string">'''使用第1个部分作为预测，第2部分来训练模型，获得其预测的输出作为第2部分的新特征。'''</span></span><br><span class="line">        <span class="comment"># X_train, y_train, X_test, y_test = X[train], y[train], X[test], y[test]</span></span><br><span class="line">        X_d1fillna=X_d1.fillna(<span class="number">0</span>)</span><br><span class="line">        X_d2fillna = X_d2.fillna(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">        X_predictfillna= test.fillna(<span class="number">0</span>)  <span class="comment"># 训练集的数据</span></span><br><span class="line"></span><br><span class="line">        clf.fit(X_d1fillna,y_d1)</span><br><span class="line">        y_submission = clf.predict(X_d2fillna)</span><br><span class="line">        y_test_submission = clf.predict(X_predictfillna)</span><br><span class="line"></span><br><span class="line">        train_[:,j*<span class="number">3</span>] = y_submission*y_submission</span><br><span class="line">        <span class="string">'''对于训练集分出的测试集，直接用这k个模型的预测值作为新的特征。'''</span></span><br><span class="line">        test_[:, j*<span class="number">3</span>] = y_test_submission*y_test_submission</span><br><span class="line">        <span class="comment"># 计算归一化的特征</span></span><br><span class="line">        train_[:, j+<span class="number">1</span>] =(y_submission - y_submission.min()) /(y_submission.max() - y_submission.min())</span><br><span class="line">        <span class="string">'''对于测试集，直接用这k个模型的预测值作为新的特征。'''</span></span><br><span class="line">        y_test_submission = (y_test_submission - y_test_submission.min()) / \</span><br><span class="line">                            (y_test_submission.max() - y_test_submission.min())</span><br><span class="line">        test_[:, j+<span class="number">1</span>] = y_test_submission</span><br><span class="line">        <span class="comment"># 计算log平滑后的特征</span></span><br><span class="line">        train_[:, j+<span class="number">2</span>] = np.log(y_submission)</span><br><span class="line">        <span class="string">'''对于测试集，直接用这k个模型的预测值作为新的特征。'''</span></span><br><span class="line">        y_test_submission =np.log(y_test_submission)</span><br><span class="line">        test_[:, j+<span class="number">2</span>] = y_test_submission</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># print("val auc Score: %f" % r2_score(y_predict, dataset_d2[:, j]))</span></span><br><span class="line">        print(<span class="string">'已完成第'</span>,j)</span><br><span class="line"></span><br><span class="line">    train_.to_csv(<span class="string">'./input/train_blending.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line">    test_.to_csv(<span class="string">'./input/test_blending.csv'</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="stacking代码"><a href="#stacking代码" class="headerlink" title="stacking代码"></a>stacking代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以python自带的鸢尾花数据集为例</span></span><br><span class="line">iris = datasets.load_iris()</span><br><span class="line">X, y = iris.data[:, <span class="number">1</span>:<span class="number">3</span>], iris.target</span><br><span class="line"></span><br><span class="line">clf1 = KNeighborsClassifier(n_neighbors=<span class="number">1</span>)</span><br><span class="line">clf2 = RandomForestClassifier(random_state=<span class="number">1</span>)</span><br><span class="line">clf3 = GaussianNB()</span><br><span class="line">lr = LogisticRegression()</span><br><span class="line">sclf = StackingClassifier(classifiers=[clf1, clf2, clf3], </span><br><span class="line">                          meta_classifier=lr)</span><br><span class="line"></span><br><span class="line">label = [<span class="string">'KNN'</span>, <span class="string">'Random Forest'</span>, <span class="string">'Naive Bayes'</span>, <span class="string">'Stacking Classifier'</span>]</span><br><span class="line">clf_list = [clf1, clf2, clf3, sclf]</span><br><span class="line">    </span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>,<span class="number">8</span>))</span><br><span class="line">gs = gridspec.GridSpec(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">grid = itertools.product([<span class="number">0</span>,<span class="number">1</span>],repeat=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">clf_cv_mean = []</span><br><span class="line">clf_cv_std = []</span><br><span class="line"><span class="keyword">for</span> clf, label, grd <span class="keyword">in</span> zip(clf_list, label, grid):</span><br><span class="line">        </span><br><span class="line">    scores = cross_val_score(clf, X, y, cv=<span class="number">3</span>, scoring=<span class="string">'accuracy'</span>)</span><br><span class="line">    print(<span class="string">"Accuracy: %.2f (+/- %.2f) [%s]"</span> %(scores.mean(), scores.std(), label))</span><br><span class="line">    clf_cv_mean.append(scores.mean())</span><br><span class="line">    clf_cv_std.append(scores.std())</span><br><span class="line">        </span><br><span class="line">    clf.fit(X, y)</span><br><span class="line">    ax = plt.subplot(gs[grd[<span class="number">0</span>], grd[<span class="number">1</span>]])</span><br><span class="line">    fig = plot_decision_regions(X=X, y=y, clf=clf)</span><br><span class="line">    plt.title(label)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/20200115184854.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2020/01/12/datawhale%E6%95%B0%E6%8D%AE%E7%AB%9E%E8%B5%9B%E7%BB%84%E9%98%9F%E5%AD%A6%E4%B9%A0-task04%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -335,6 +523,22 @@
         
           
             <a id="more"></a>
+
+<p>我们以ligthGBM为例</p>
+<h1 id="lightGBM"><a href="#lightGBM" class="headerlink" title="lightGBM"></a>lightGBM</h1><p><a href="https://www.jianshu.com/p/3daf08229d78" target="_blank" rel="noopener">lightGBM原理</a></p>
+<p><a href="https://lightgbm.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">ligthGBM官方文档</a></p>
+<h1 id="设置参数"><a href="#设置参数" class="headerlink" title="设置参数"></a>设置参数</h1><p><a href="https://lightgbm.readthedocs.io/en/latest/Parameters.html" target="_blank" rel="noopener">lightGBM参数</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_lgb_params</span><span class="params">(space)</span>:</span></span><br><span class="line">    lgb_params = dict()</span><br><span class="line">    lgb_params[<span class="string">'boosting_type'</span>] = space[<span class="string">'boosting_type'</span>] <span class="keyword">if</span> <span class="string">'boosting_type'</span> <span class="keyword">in</span> space <span class="keyword">else</span> <span class="string">'gbdt'</span>  <span class="comment"># 未指定使用梯度提升决策树</span></span><br><span class="line">    lgb_params[<span class="string">'objective'</span>] = <span class="string">'regression'</span>  <span class="comment"># L2回归类型</span></span><br><span class="line">    lgb_params[<span class="string">'metric'</span>] = <span class="string">'rmse'</span>  <span class="comment"># 评估指标</span></span><br><span class="line">    lgb_params[<span class="string">'learning_rate'</span>] = space[<span class="string">'learning_rate'</span>]</span><br><span class="line">    lgb_params[<span class="string">'num_leaves'</span>] = int(space[<span class="string">'num_leaves'</span>])   <span class="comment"># 叶子数</span></span><br><span class="line">    lgb_params[<span class="string">'min_data_in_leaf'</span>] = int(space[<span class="string">'min_data_in_leaf'</span>])  <span class="comment"># 一个叶子上的最小数据量，防止生长为较深的树</span></span><br><span class="line">    lgb_params[<span class="string">'min_sum_hessian_in_leaf'</span>] = space[<span class="string">'min_sum_hessian_in_leaf'</span>]  <span class="comment"># 一个叶子的最小海塞矩阵之和</span></span><br><span class="line">    lgb_params[<span class="string">'max_depth'</span>] = <span class="number">-1</span>  <span class="comment"># 不指定最大深度</span></span><br><span class="line">    lgb_params[<span class="string">'lambda_l1'</span>] = space[<span class="string">'lambda_l1'</span>] <span class="keyword">if</span> <span class="string">'lambda_l1'</span> <span class="keyword">in</span> space <span class="keyword">else</span> <span class="number">0.0</span>   <span class="comment"># 正则项</span></span><br><span class="line">    lgb_params[<span class="string">'lambda_l2'</span>] = space[<span class="string">'lambda_l2'</span>] <span class="keyword">if</span> <span class="string">'lambda_l2'</span> <span class="keyword">in</span> space <span class="keyword">else</span> <span class="number">0.0</span></span><br><span class="line">    lgb_params[<span class="string">'max_bin'</span>] = int(space[<span class="string">'max_bin'</span>]) <span class="keyword">if</span> <span class="string">'max_bin'</span> <span class="keyword">in</span> space <span class="keyword">else</span> <span class="number">256</span> <span class="comment">#   存储特征的最大箱数</span></span><br><span class="line">    lgb_params[<span class="string">'feature_fraction'</span>] = space[<span class="string">'feature_fraction'</span>]  <span class="comment"># 随机抽取特征的比例</span></span><br><span class="line">    lgb_params[<span class="string">'bagging_fraction'</span>] = space[<span class="string">'bagging_fraction'</span>]  <span class="comment"># 在不进行重采样的情况下随机选择部分数据的比例</span></span><br><span class="line">    lgb_params[<span class="string">'bagging_freq'</span>] = int(space[<span class="string">'bagging_freq'</span>]) <span class="keyword">if</span> <span class="string">'bagging_freq'</span> <span class="keyword">in</span> space <span class="keyword">else</span> <span class="number">1</span>   <span class="comment"># bagging的频率，k意味着每k次迭代执行bagging</span></span><br><span class="line">    lgb_params[<span class="string">'nthread'</span>] = <span class="number">4</span>  <span class="comment">#线程数</span></span><br><span class="line">    <span class="keyword">return</span> lgb_params</span><br></pre></td></tr></table></figure>
+
+<h1 id="运用LightGBM"><a href="#运用LightGBM" class="headerlink" title="运用LightGBM"></a>运用LightGBM</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">objective</span><span class="params">(space)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> obj_call_count, cur_best_score</span><br><span class="line"></span><br><span class="line">    obj_call_count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'\nLightGBM objective call #&#123;&#125; cur_best_score=&#123;:7.5f&#125;'</span>.format(obj_call_count,cur_best_score) )</span><br><span class="line"></span><br><span class="line">    lgb_params = get_lgb_params(space)  <span class="comment"># 读取参数</span></span><br><span class="line"></span><br><span class="line">    sorted_params = sorted(space.items(), key=<span class="keyword">lambda</span> z: z[<span class="number">0</span>])</span><br><span class="line">    params_str = str.join(<span class="string">' '</span>, [<span class="string">'&#123;&#125;=&#123;&#125;'</span>.format(k, v) <span class="keyword">for</span> k, v <span class="keyword">in</span> sorted_params])</span><br><span class="line">    print(<span class="string">'Params: &#123;&#125;'</span>.format(params_str) )</span><br><span class="line">    </span><br><span class="line">    kf = KFold(n_splits=<span class="number">3</span>, shuffle=<span class="literal">True</span>, random_state=<span class="number">0</span>)</span><br><span class="line">    out_of_fold = np.zeros(len(X_train))</span><br><span class="line">    <span class="keyword">for</span> fold, (train_idx, val_idx) <span class="keyword">in</span> enumerate(kf.split(X_train)):</span><br><span class="line">        D_train = lgb.Dataset(X_train.iloc[train_idx], label=Y_train[train_idx])</span><br><span class="line">        D_val = lgb.Dataset(X_train.iloc[val_idx], label=Y_train[val_idx])</span><br><span class="line">        <span class="comment"># Train</span></span><br><span class="line">        num_round = <span class="number">10000</span></span><br><span class="line">        clf = lgb.train(lgb_params,</span><br><span class="line">                           D_train,</span><br><span class="line">                           num_boost_round=num_round,</span><br><span class="line">                           <span class="comment"># metrics='mlogloss',</span></span><br><span class="line">                           valid_sets=D_val,</span><br><span class="line">                           <span class="comment"># valid_names='val',</span></span><br><span class="line">                           <span class="comment"># fobj=None,</span></span><br><span class="line">                           <span class="comment"># feval=None,</span></span><br><span class="line">                           <span class="comment"># init_model=None,</span></span><br><span class="line">                           <span class="comment"># feature_name='auto',</span></span><br><span class="line">                           <span class="comment"># categorical_feature='auto',</span></span><br><span class="line">                           early_stopping_rounds=<span class="number">200</span>,</span><br><span class="line">                           <span class="comment"># evals_result=None,</span></span><br><span class="line">                           verbose_eval=<span class="literal">False</span>,</span><br><span class="line">                           <span class="comment"># learning_rates=None,</span></span><br><span class="line">                           <span class="comment"># keep_training_booster=False,</span></span><br><span class="line">                           <span class="comment"># callbacks=None</span></span><br><span class="line">                           )</span><br><span class="line">        <span class="comment"># predict</span></span><br><span class="line">        nb_trees = clf.best_iteration  <span class="comment"># 选择指定模型的最佳迭代</span></span><br><span class="line">        val_loss = clf.best_score[<span class="string">'valid_0'</span>]</span><br><span class="line">        print(<span class="string">'nb_trees=&#123;&#125; val_loss=&#123;&#125;'</span>.format(nb_trees, val_loss))</span><br><span class="line">        out_of_fold[val_idx] = clf.predict(X_train.iloc[val_idx], num_iteration=nb_trees)</span><br><span class="line">        score = r2_score(out_of_fold, Y_train)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'val_r2_score=&#123;&#125;'</span>.format(score))</span><br><span class="line"></span><br><span class="line">    log_writer.write(<span class="string">'score=&#123;&#125; Params:&#123;&#125; nb_trees=&#123;&#125;\n'</span>.format(score, params_str, nb_trees ))</span><br><span class="line">    log_writer.flush()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> score&gt;cur_best_score:</span><br><span class="line">        cur_best_score = score</span><br><span class="line">        print(colorama.Fore.GREEN + <span class="string">'NEW BEST SCORE=&#123;&#125;'</span>.format(cur_best_score) + colorama.Fore.RESET)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">'loss'</span>: -score, <span class="string">'status'</span>: STATUS_OK&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="贝叶斯自动调参"><a href="#贝叶斯自动调参" class="headerlink" title="贝叶斯自动调参"></a>贝叶斯自动调参</h1><p><a href="https://www.jianshu.com/p/35eed1567463" target="_blank" rel="noopener">hyperopt简单使用</a></p>
+<p><a href="https://github.com/FontTian/hyperopt-doc-zh/wiki/FMin">hyperopt中文文档</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">space =&#123;</span><br><span class="line">        <span class="string">'num_leaves'</span>: hp.quniform (<span class="string">'num_leaves'</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1</span>),</span><br><span class="line">        <span class="string">'min_data_in_leaf'</span>:  hp.quniform (<span class="string">'min_data_in_leaf'</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">1</span>),</span><br><span class="line">        <span class="string">'feature_fraction'</span>: hp.uniform(<span class="string">'feature_fraction'</span>, <span class="number">0.75</span>, <span class="number">1.0</span>),</span><br><span class="line">        <span class="string">'bagging_fraction'</span>: hp.uniform(<span class="string">'bagging_fraction'</span>, <span class="number">0.75</span>, <span class="number">1.0</span>),</span><br><span class="line">        <span class="string">'learning_rate'</span>: hp.uniform(<span class="string">'learning_rate'</span>, <span class="number">0</span>, <span class="number">0.01</span>),</span><br><span class="line"><span class="comment">#         'learning_rate': hp.loguniform('learning_rate', -5.0, -2.3),</span></span><br><span class="line">        <span class="string">'min_sum_hessian_in_leaf'</span>: hp.loguniform(<span class="string">'min_sum_hessian_in_leaf'</span>, <span class="number">0</span>, <span class="number">2.3</span>),</span><br><span class="line">        <span class="string">'max_bin'</span>: hp.quniform (<span class="string">'max_bin'</span>, <span class="number">88</span>, <span class="number">200</span>, <span class="number">1</span>),</span><br><span class="line">        <span class="string">'bagging_freq'</span>: hp.quniform (<span class="string">'bagging_freq'</span>, <span class="number">1</span>, <span class="number">15</span>, <span class="number">1</span>),</span><br><span class="line">        <span class="string">'lambda_l1'</span>: hp.uniform(<span class="string">'lambda_l1'</span>, <span class="number">0</span>, <span class="number">10</span> ),</span><br><span class="line">        <span class="string">'lambda_l2'</span>: hp.uniform(<span class="string">'lambda_l2'</span>, <span class="number">0</span>, <span class="number">10</span> ),</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">trials = Trials()</span><br><span class="line">best = hyperopt.fmin(fn=objective,</span><br><span class="line">                     space=space,</span><br><span class="line">                     algo=HYPEROPT_ALGO,</span><br><span class="line">                     max_evals=N_HYPEROPT_PROBES,</span><br><span class="line">                     trials=trials,</span><br><span class="line">                     verbose=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h1 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h1><p><a href="https://www.jianshu.com/p/7467e616f227" target="_blank" rel="noopener">XGBoost原理</a></p>
+<p><a href="https://xgboost.readthedocs.io/en/latest/tutorials/model.html" target="_blank" rel="noopener">官方地址</a></p>
+
           
         
       
@@ -423,6 +627,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/jontyhuang.github.io/categories/basic-learning-of-data-competition/" itemprop="url" rel="index">
+                    <span itemprop="name">basic learning of data competition</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1444,130 +1670,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/jontyhuang/blog/jontyhuang.github.io/2019/12/16/software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jonty Huang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/jontyhuang.github.io/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="IU的fans">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/jontyhuang.github.io/2019/12/16/software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url">software design 创建型设计模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-16T11:19:59+08:00">
-                2019-12-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://raw.githubusercontent.com/jontyhuang/PicGo/master/%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.jpeg" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/jontyhuang.github.io/2019/12/16/software-design-%E5%88%9B%E5%BB%BA%E5%9E%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1622,7 +1724,7 @@
               
                 <a href="/jontyhuang.github.io/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

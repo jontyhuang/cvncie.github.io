@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="IU的fans">
 <meta property="og:description" content="LabelEncoder标准化标签labelEncoder是对不连续的数字或者文本进行编号。  sklearn.preprocessing.LabelEncoder()：标准化标签，将标签值统一转换成range(标签值个数-1)范围内   123456from sklearn.preprocessing import LabelEncoder()le = LabelEncoder()le.fit(">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-13T16:00:57.013Z">
+<meta property="og:updated_time" content="2020-01-14T13:36:21.999Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -367,6 +367,9 @@
 <li>需要： 基于参数的模型或基于距离的模型，都是要进行特征的归一化。</li>
 <li>不需要：基于树的方法是不需要进行特征的归一化，例如随机森林，bagging 和 boosting等。</li>
 </ul>
+<h1 id="如果一个特征的特征值很多，如何使用onehot"><a href="#如果一个特征的特征值很多，如何使用onehot" class="headerlink" title="如果一个特征的特征值很多，如何使用onehot"></a>如果一个特征的特征值很多，如何使用onehot</h1><ul>
+<li>将特征值进行合并，譬如分类变量是中国的村镇，可以合并到县或者市甚至省这一级别。</li>
+</ul>
 
       
     </div>
@@ -484,7 +487,7 @@
               
                 <a href="/jontyhuang.github.io/archives">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -530,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LabelEncoder标准化标签"><span class="nav-number">1.</span> <span class="nav-text">LabelEncoder标准化标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独热码oneHotEncode"><span class="nav-number">2.</span> <span class="nav-text">独热码oneHotEncode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独热编码意义何在"><span class="nav-number">3.</span> <span class="nav-text">独热编码意义何在</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征向量映射到欧式空间"><span class="nav-number">3.1.</span> <span class="nav-text">特征向量映射到欧式空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#独热编码优缺点"><span class="nav-number">3.2.</span> <span class="nav-text">独热编码优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况下-不-用独热编码"><span class="nav-number">3.3.</span> <span class="nav-text">什么情况下(不)用独热编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况下-不-需要归一化"><span class="nav-number">3.4.</span> <span class="nav-text">什么情况下(不)需要归一化</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#LabelEncoder标准化标签"><span class="nav-number">1.</span> <span class="nav-text">LabelEncoder标准化标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独热码oneHotEncode"><span class="nav-number">2.</span> <span class="nav-text">独热码oneHotEncode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#独热编码意义何在"><span class="nav-number">3.</span> <span class="nav-text">独热编码意义何在</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征向量映射到欧式空间"><span class="nav-number">3.1.</span> <span class="nav-text">特征向量映射到欧式空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#独热编码优缺点"><span class="nav-number">3.2.</span> <span class="nav-text">独热编码优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况下-不-用独热编码"><span class="nav-number">3.3.</span> <span class="nav-text">什么情况下(不)用独热编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况下-不-需要归一化"><span class="nav-number">3.4.</span> <span class="nav-text">什么情况下(不)需要归一化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果一个特征的特征值很多，如何使用onehot"><span class="nav-number">4.</span> <span class="nav-text">如果一个特征的特征值很多，如何使用onehot</span></a></li></ol></div>
             
 
           </div>
